@@ -37,7 +37,7 @@ export const signup =
       }
     } catch (err) {
       console.log('error:', err);
-      dispatch({ type: AuthActionTypes.AUTH_ERROR, payload: err });
+      dispatch({ type: AuthActionTypes.AUTH_ERROR, payload: err.message });
     }
   };
 

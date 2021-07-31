@@ -14,6 +14,11 @@ export default function Home() {
   const firebase = useSelector((state) => state.firebase);
   return (
     <div>
+      <Link to="/signup">
+        <Button className="" variant="contained" color="primary" size="large">
+          Signup
+        </Button>
+      </Link>
       <Link to="/login">
         <Button className="" variant="contained" color="primary" size="large">
           Login
