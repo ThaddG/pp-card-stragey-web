@@ -25,6 +25,8 @@ export const authReducer = (state = initialState, action: AuthAction) => {
     case 'LOGOUT':
       console.log('logout successful');
       return { ...state, authMessage: '' };
+    case 'CLEAR_AUTH_MESSAGE':
+      return { ...state, authMessage: '' };
     default:
       return { ...state };
   }

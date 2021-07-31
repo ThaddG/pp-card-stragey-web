@@ -27,6 +27,7 @@ export enum AuthActionTypes {
   LOGOUT = 'LOGOUT',
   SEND_EMAIL = 'SEND_EMAIL',
   AUTH_ERROR = 'AUTH_ERROR',
+  CLEAR_AUTH_MESSAGE = 'CLEAR_AUTH_MESSAGE',
 }
 
 export enum CardActionTypes {
@@ -59,6 +60,9 @@ interface AuthErrorAction {
   type: typeof AuthActionTypes.AUTH_ERROR;
   payload: string;
 }
+interface ClearAuthMessageAction {
+  type: typeof AuthActionTypes.CLEAR_AUTH_MESSAGE;
+}
 
 /**
  *
@@ -88,7 +92,8 @@ export type AuthAction =
   | LoginAction
   | LogoutAction
   | SendEmailAction
-  | AuthErrorAction;
+  | AuthErrorAction
+  | ClearAuthMessageAction;
 
 export type CardAction =
   | AddCardAction

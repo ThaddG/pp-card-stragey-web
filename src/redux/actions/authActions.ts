@@ -85,3 +85,6 @@ export const sendPasswordResetEmail =
         });
       });
   };
+
+export const clearAuthMessage = () => (dispatch: React.Dispatch<AuthAction>) =>
+  dispatch({ type: AuthActionTypes.CLEAR_AUTH_MESSAGE });

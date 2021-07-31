@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import {
   Grid,
@@ -19,7 +19,7 @@ import {
   useAppSelector as useSelector,
   useAppDispatch as useDispatch,
 } from '../hooks';
-import { signup } from '../redux/actions/authActions';
+import { signup, clearAuthMessage } from '../redux/actions/authActions';
 
 // css
 import '../styles/pages/Login.css';
@@ -35,6 +35,8 @@ export default function Signup() {
 
   // ROUTE GUARD
   if (firebase.auth.uid) return <Redirect to="/" />;
+  // clear auth message on component load
+  useEffect(() => {dispatch(clearAuthMessage())}, []);
 
   function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
