@@ -12,8 +12,15 @@ import { logout } from '../redux/actions/authActions';
 export default function Home() {
   const dispatch = useDispatch();
   const firebase = useSelector((state) => state.firebase);
+  console.log(firebase);
   return (
     <div>
+      {firebase.auth.uid ? (
+        <p>
+          You are signed in as {firebase.profile.firstName}{' '}
+          {firebase.profile.lastName}
+        </p>
+      ) : null}
       <Link to="/signup">
         <Button className="" variant="contained" color="primary" size="large">
           Signup

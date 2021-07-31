@@ -1,12 +1,18 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import {
-  Container,
+  Grid,
   TextField,
   FormControl,
   FormHelperText,
   Button,
+  Paper,
+  SvgIcon,
+  Typography,
 } from '@material-ui/core';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+import BackButton from '../components/BackButton';
 
 // redux
 import {
@@ -14,6 +20,9 @@ import {
   useAppDispatch as useDispatch,
 } from '../hooks';
 import { signup } from '../redux/actions/authActions';
+
+// css
+import '../styles/pages/Login.css';
 
 export default function Signup() {
   const user = useSelector((state) => state.auth);
@@ -29,70 +38,107 @@ export default function Signup() {
 
   function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
-    if (firstName != "" && lastName != "") {
+    if (firstName != '' && lastName != '') {
       dispatch(signup({ email, password, firstName, lastName }));
     }
   }
 
   return (
-    <Container maxWidth="sm">
-      <h1>Signup</h1>
-      <form noValidate onSubmit={handleSubmit}>
-        <FormControl margin="normal" required={true}>
-          <TextField
-            id="outlined-basic"
-            label="First Name"
-            variant="outlined"
-            placeholder="Tim"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </FormControl>
-        <FormControl margin="normal" required>
-          <TextField
-            id="outlined-basic"
-            label="Last Name"
-            variant="outlined"
-            placeholder="Cook"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </FormControl>
-        <FormControl margin="normal" required={true}>
-          <TextField
-            id="outlined-basic"
-            label="Email"
-            variant="outlined"
-            placeholder="Email@gmail.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <FormHelperText id="my-helper-text">
-            We'll never share your email.
-          </FormHelperText>
-        </FormControl>
-        <FormControl margin="normal" required>
-          <TextField
-            id="outlined-basic"
-            type="password"
-            label="Password"
-            variant="outlined"
-            placeholder="********"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </FormControl>
-        <FormControl margin="normal">
-          <Button variant="contained" type="submit">
-            Login
-          </Button>
-        </FormControl>
-        <p className="error-text mt-1">{user.authMessage}</p>
-      </form>
-    </Container>
+    <Grid className="containerOverride">
+      <Link to="/">
+        <BackButton text="Home" />
+      </Link>
+      <Paper elevation={10} className="paperStyle">
+        <div className="loginHeaderStyle mb-4">
+          <SvgIcon fontSize="large" className="icon">
+            <AccountCircleIcon></AccountCircleIcon>
+          </SvgIcon>
+          <Typography
+            variant="h2"
+            align="center"
+            color="textPrimary"
+            className="textFieldOverride"
+          >
+            Sign up
+          </Typography>
+        </div>
+        <form noValidate onSubmit={handleSubmit}>
+          <Grid container alignItems="center" spacing={3}>
+            <Grid item xs={12}>
+              <FormControl margin="dense" required={true} fullWidth>
+                <TextField
+                  id="outlined-basic"
+                  label="First Name"
+                  variant="outlined"
+                  placeholder="Tim"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl margin="dense" required fullWidth>
+                <TextField
+                  id="outlined-basic"
+                  label="Last Name"
+                  variant="outlined"
+                  placeholder="Cook"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  required
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl margin="dense" required={true} fullWidth>
+                <TextField
+                  id="outlined-basic"
+                  label="Email"
+                  variant="outlined"
+                  placeholder="Email@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <FormHelperText id="helper-text" className="mb-n2">
+                  We'll never share your email.
+                </FormHelperText>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl margin="dense" required fullWidth>
+                <TextField
+                  id="outlined-basic"
+                  type="password"
+                  label="Password"
+                  variant="outlined"
+                  placeholder="********"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </FormControl>
+            </Grid>
+            <Grid style={{ textAlign: 'center' }} item xs={12}>
+              <FormControl margin="dense" fullWidth>
+                <Button
+                  className="mb-2"
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  type="submit"
+                >
+                  Sign up
+                </Button>
+              </FormControl>
+            </Grid>
+          </Grid>
+          <Typography align="center" color="error">
+            {user.authMessage}
+          </Typography>
+        </form>
+      </Paper>
+    </Grid>
   );
 }

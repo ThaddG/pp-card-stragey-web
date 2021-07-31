@@ -1,0 +1,10 @@
+#back-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+#back-btn-text {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 2.5px;
+}

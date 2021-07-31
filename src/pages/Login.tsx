@@ -1,13 +1,18 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import {
-  Container,
   TextField,
   FormControl,
-  FormHelperText,
   Button,
-  Input
+  Paper,
+  Grid,
+  Typography,
+  SvgIcon,
 } from '@material-ui/core';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+// custom components
+import BackButton from '../components/BackButton';
 
 // redux
 import {
@@ -15,6 +20,13 @@ import {
   useAppDispatch as useDispatch,
 } from '../hooks';
 import { login } from '../redux/actions/authActions';
+
+// css
+import '../styles/pages/Login.css';
+const paperStyle = {
+  padding: 20,
+  height: '70vh',
+};
 
 export default function Login() {
   const user = useSelector((state) => state.auth);
@@ -32,38 +44,72 @@ export default function Login() {
   }
 
   return (
-    <Container maxWidth="sm">
-      <h1>Login</h1>
-      <form noValidate onSubmit={handleSubmit}>
-        <FormControl margin="normal" required={true}>
-          <TextField
-            id="outlined-basic"
-            label="Email"
-            variant="outlined"
-            placeholder="Email@gmail.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required={true}
-          />
-        </FormControl>
-        <FormControl margin="normal" required>
-          <TextField
-            id="outlined-basic"
-            label="Password"
-            variant="outlined"
-            placeholder="********"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </FormControl>
-        <FormControl margin="normal">
-          <Button variant="contained" type="submit">
+    <Grid className="containerOverride">
+      <Link to="/">
+        <BackButton text="Home" />
+      </Link>
+      <Paper elevation={10} style={paperStyle}>
+        <div className="loginHeaderStyle mb-4">
+          <SvgIcon fontSize="large" className="icon">
+            <AccountCircleIcon></AccountCircleIcon>
+          </SvgIcon>
+          <Typography
+            variant="h2"
+            align="center"
+            color="textPrimary"
+            className="textFieldOverride"
+          >
             Login
-          </Button>
-        </FormControl>
-        <p className="error-text mt-1">{user.authMessage}</p>
-      </form>
-    </Container>
+          </Typography>
+        </div>
+        <form noValidate onSubmit={handleSubmit}>
+          <Grid container alignItems="center" spacing={3}>
+            <Grid item xs={12}>
+              <FormControl margin="dense" required={true} fullWidth>
+                <TextField
+                  id="outlined-basic"
+                  label="Email"
+                  variant="outlined"
+                  placeholder="Email@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required={true}
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl margin="dense" required fullWidth>
+                <TextField
+                  id="outlined-basic"
+                  type="password"
+                  label="Password"
+                  variant="outlined"
+                  placeholder="********"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </FormControl>
+            </Grid>
+            <Grid style={{ textAlign: 'center' }} item xs={12}>
+              <FormControl margin="dense" fullWidth>
+                <Button
+                  className="mb-2"
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  type="submit"
+                >
+                  Login
+                </Button>
+              </FormControl>
+            </Grid>
+          </Grid>
+          <Typography align="center" color="error">
+            {user.authMessage}
+          </Typography>
+        </form>
+      </Paper>
+    </Grid>
   );
 }
