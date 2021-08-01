@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   TextField,
   FormControl,
@@ -30,13 +30,10 @@ const paperStyle = {
 
 export default function Login() {
   const user = useSelector((state) => state.auth);
-  const firebase = useSelector((state) => state.firebase);
   const dispatch = useDispatch();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  // ROUTE GUARD
-  if (firebase.auth.uid) return <Redirect to="/" />;
   // clear auth message on component load
   useEffect(() => {dispatch(clearAuthMessage())}, []);
 

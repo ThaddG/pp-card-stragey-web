@@ -1,5 +1,6 @@
 /// <reference types="vite/client" />
 
+// PUT ENV VARIABLES HERE FOR TYPES AND AUTOCORRECT
 interface ImportMetaEnv {
   VITE_APP_FIREBASE_API_KEY: string;
   VITE_APP_FIREBASE_AUTH_DOMAIN: string;

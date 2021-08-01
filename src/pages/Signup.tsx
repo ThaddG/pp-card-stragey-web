@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Grid,
   TextField,
@@ -26,15 +26,12 @@ import '../styles/pages/Login.css';
 
 export default function Signup() {
   const user = useSelector((state) => state.auth);
-  const firebase = useSelector((state) => state.firebase);
   const dispatch = useDispatch();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
 
-  // ROUTE GUARD
-  if (firebase.auth.uid) return <Redirect to="/" />;
   // clear auth message on component load
   useEffect(() => {dispatch(clearAuthMessage())}, []);
 

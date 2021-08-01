@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 
+// custom components
+import Header from '../components/Header';
+
 // redux
 import {
   useAppSelector as useSelector,
@@ -12,9 +15,10 @@ import { logout } from '../redux/actions/authActions';
 export default function Home() {
   const dispatch = useDispatch();
   const firebase = useSelector((state) => state.firebase);
-  console.log(firebase);
+
   return (
     <div>
+      <Header />
       {firebase.auth.uid ? (
         <p>
           You are signed in as {firebase.profile.firstName}{' '}

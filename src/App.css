@@ -1,37 +1,58 @@
+/* MARGIN TOP */
 .mt-1 { margin-top: .25rem !important; }
 .mt-2 { margin-top: .50rem !important; }
 .mt-3 { margin-top: .75rem !important; }
 .mt-4 { margin-top: 1rem !important; }
-
+/* MARGIN BOTTOM */
 .mb-1 { margin-bottom: .25rem !important; }
 .mb-2 { margin-bottom: .50rem !important; }
 .mb-3 { margin-bottom: .75rem !important; }
 .mb-4 { margin-bottom: 1rem !important; }
-
+/* MARGIN BOTTOM NEGATIVE */
 .mb-n1 { margin-bottom: -0.25rem !important; }
 .mb-n2 { margin-bottom: -0.50rem !important; }
 .mb-n3 { margin-bottom: -0.74rem !important; }
 .mb-n4 { margin-bottom: -1rem !important; }
+/* MARGIN Y-AXIS */
+.my-auto { margin: auto; }
+.my-1 { margin-top: 0.25rem !important; margin-bottom: 0.25rem !important; }
+.my-2 { margin-top: 0.50rem !important; margin-bottom: 0.50rem !important; }
+.my-3 { margin-top: 0.75rem !important; margin-bottom: 0.75rem !important; }
+.my-4 { margin-top: 1rem !important; margin-bottom: 1rem !important; }
+/* MARGIN X-AXIS */
+.mx-auto { margin: auto; }
+.mx-1 { margin-left: 0.25rem !important; margin-right: 0.25rem !important; }
+.mx-2 { margin-left: 0.50rem !important; margin-right: 0.50rem !important; }
+.mx-3 { margin-left: 0.75rem !important; margin-right: 0.75rem !important; }
+.mx-4 { margin-left: 1rem !important; margin-right: 1rem !important; }
 
-.mx-1 {
-  margin-left: 0.25rem !important;
-  margin-right: 0.25rem !important;
-}
-.mx-2 {
-  margin-left: 0.50rem !important;
-  margin-right: 0.50rem !important;
-}
-.mx-3 {
-  margin-left: 0.75rem !important;
-  margin-right: 0.75rem !important;
-}
-.mx-4 {
-  margin-left: 1rem !important;
-  margin-right: 1rem !important;
-}
-.mx-auto {
-  margin: auto;
-}
+/* PADDING TOP */
+.pt-1 { padding-top: .25rem !important; }
+.pt-2 { padding-top: .50rem !important; }
+.pt-3 { padding-top: .75rem !important; }
+.pt-4 { padding-top: 1rem !important; }
+/* PADDING BOTTOM */
+.pb-1 { padding-bottom: .25rem !important; }
+.pb-2 { padding-bottom: .50rem !important; }
+.pb-3 { padding-bottom: .75rem !important; }
+.pb-4 { padding-bottom: 1rem !important; }
+/* PADDING BOTTOM NEGATIVE */
+.pb-n1 { padding-bottom: -0.25rem !important; }
+.pb-n2 { padding-bottom: -0.50rem !important; }
+.pb-n3 { padding-bottom: -0.74rem !important; }
+.pb-n4 { padding-bottom: -1rem !important; }
+/* PADDING Y-AXIS */
+.py-auto { padding: auto; }
+.py-1 { padding-top: 0.25rem !important; padding-bottom: 0.25rem !important; }
+.py-2 { padding-top: 0.50rem !important; padding-bottom: 0.50rem !important; }
+.py-3 { padding-top: 0.75rem !important; padding-bottom: 0.75rem !important; }
+.py-4 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+/* PADDING X-AXIS */
+.px-auto { padding: auto; }
+.px-1 { padding-left: 0.25rem !important; padding-right: 0.25rem !important; }
+.px-2 { padding-left: 0.50rem !important; padding-right: 0.50rem !important; }
+.px-3 { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+.px-4 { padding-left: 1rem !important; padding-right: 1rem !important; }
 
 .App {
   text-align: center;
