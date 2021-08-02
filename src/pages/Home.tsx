@@ -25,16 +25,6 @@ export default function Home() {
           {firebase.profile.lastName}
         </p>
       ) : null}
-      <Link to="/signup">
-        <Button className="" variant="contained" color="primary" size="large">
-          Signup
-        </Button>
-      </Link>
-      <Link to="/login">
-        <Button className="" variant="contained" color="primary" size="large">
-          Login
-        </Button>
-      </Link>
       {firebase.auth.uid ? (
         <Button
           className=""
