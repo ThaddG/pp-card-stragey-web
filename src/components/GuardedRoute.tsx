@@ -5,7 +5,7 @@ export interface GuardedRouteProps {
   component: JSX.Element;
   check: boolean;
   path: string;
-  redirectTo: string;
+  redirectTo?: string;
 }
 
 const GuardedRoute: React.VFC<GuardedRouteProps> = ({
@@ -20,10 +20,17 @@ const GuardedRoute: React.VFC<GuardedRouteProps> = ({
       render={({ location }) => {
         return check ? (
           component
-        ) : (
+        ) : redirectTo ? (
           <Redirect
             to={{
               pathname: redirectTo,
+              state: { from: location },
+            }}
+          />
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/',
               state: { from: location },
             }}
           />

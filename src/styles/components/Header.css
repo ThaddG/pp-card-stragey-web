@@ -2,3 +2,7 @@
   background-color: #82b893;
   min-height: 600px;
 }
+
+.header-text {
+  height: calc(600px - 95px);
+}
