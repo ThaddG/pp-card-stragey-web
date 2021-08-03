@@ -7,25 +7,31 @@ import GuardedRoute from './components/GuardedRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Contact from './pages/Contact';
 
-// types/interfaces/enums
-enum GuardedRouteLogic {
-  LOGGED_IN = 'loggedIn',
-  LOGGED_OUT = 'loggedOut',
-}
+// redux
+import { useAppSelector as useSelector } from './hooks';
 
 import './App.css';
 
 function App() {
+  const firebase = useSelector((state) => state.firebase);
   return (
     <Router>
       <Route exact path="/" component={Home} />
-      <GuardedRoute path="/login" check={GuardedRouteLogic.LOGGED_IN}>
-        <Login />
-      </GuardedRoute>
-      <GuardedRoute path="/signup" check={GuardedRouteLogic.LOGGED_IN}>
-        <Signup />
-      </GuardedRoute>
+      <GuardedRoute
+        path="/login"
+        check={!firebase.auth.uid}
+        component={<Login />}
+        redirectTo="/"
+      />
+      <GuardedRoute
+        path="/signup"
+        check={!firebase.auth.uid}
+        component={<Signup />}
+        redirectTo="/"
+      />
+      <Route exact path="/contact" component={Contact} />
     </Router>
   );
 }

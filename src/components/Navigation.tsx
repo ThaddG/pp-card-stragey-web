@@ -140,7 +140,7 @@ export default function Navigation() {
         </Link>
       </MenuItem>
       <MenuItem>
-        <Link to="/">
+        <Link to="/contact">
           <Button variant="text" size="small" color="primary" className="ml-1">
             Contact
           </Button>
@@ -222,7 +222,7 @@ export default function Navigation() {
                 Referrals
               </Button>
             </Link>
-            <Link to="/">
+            <Link to="/contact">
               <Button
                 variant="text"
                 size="small"
