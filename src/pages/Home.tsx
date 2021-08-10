@@ -5,6 +5,7 @@ import { Button } from '@material-ui/core';
 // custom components
 import Header from '../components/Header';
 import DiscoverStacks from '../components/DiscoverStacks';
+import Section from '../components/Section';
 
 // redux
 import {
@@ -20,7 +21,9 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <DiscoverStacks />
+      <Section>
+        <DiscoverStacks />
+      </Section>
       {firebase.auth.uid ? (
         <p>
           You are signed in as {firebase.profile.firstName}{' '}
