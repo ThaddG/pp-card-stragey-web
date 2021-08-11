@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Typography, Grid, Box } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 // custom components
 import SectionHeader from './SectionHeader';
@@ -24,11 +24,6 @@ export default function DiscoverStacks() {
   return (
     // TODO: remove this testing background color
     <div className="px-2 py-2" style={{ backgroundColor: 'mintcream' }}>
-      <SectionHeader
-        title="Discover Stacks"
-        description="Pick a spending category and see which credit card stacks will maximize
-        your rewards the most"
-      />
       <Grid container direction="row" spacing={3}>
         {decks.map((deck, index) => (
           <Grid

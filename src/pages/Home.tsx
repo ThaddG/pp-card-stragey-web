@@ -4,8 +4,9 @@ import { Button } from '@material-ui/core';
 
 // custom components
 import Header from '../components/Header';
-import DiscoverStacks from '../components/DiscoverStacks';
 import Section from '../components/Section';
+import DiscoverStacks from '../components/DiscoverStacks';
+import CreditCards from '../components/CreditCards';
 
 // redux
 import {
@@ -21,8 +22,19 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <Section>
+      <Section
+        title="Discover Stacks"
+        description="Pick a spending category and see which credit card stacks will maximize
+        your rewards the most"
+      >
         <DiscoverStacks />
+      </Section>
+      <Section
+        title="Credit Cards"
+        description="Not sure what's out there? Compare credit cards, their benefits, costs,
+        and find out what works best for you"
+      >
+        <CreditCards />
       </Section>
       {firebase.auth.uid ? (
         <p>
