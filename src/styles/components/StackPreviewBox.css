@@ -1,0 +1,12 @@
+.paper-container {
+  width: 300px !important; /*consider changing to max-width later*/
+  height: 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deck-preview {
+  height: inherit;
+}

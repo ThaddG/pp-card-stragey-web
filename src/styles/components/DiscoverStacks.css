@@ -1,3 +1,5 @@
-.deck-preview {
-  height: 250px;
+.grid-item-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
