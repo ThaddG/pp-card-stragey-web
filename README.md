@@ -1,4 +1,4 @@
-# pp-card-stragey-web
+# pp-card-strategy-web
 pp card strategy website (wip)
 
 1. press the green "code" button on the repo page
