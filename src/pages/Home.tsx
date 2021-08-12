@@ -43,23 +43,6 @@ export default function Home() {
       >
         <Education />
       </Section>
-      {firebase.auth.uid ? (
-        <p>
-          You are signed in as {firebase.profile.firstName}{' '}
-          {firebase.profile.lastName}
-        </p>
-      ) : null}
-      {firebase.auth.uid ? (
-        <Button
-          className=""
-          variant="contained"
-          color="secondary"
-          size="large"
-          onClick={() => dispatch(logout())}
-        >
-          Logout
-        </Button>
-      ) : null}
     </div>
   );
 }

@@ -12,6 +12,13 @@ import {
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 
+// redux
+import {
+  useAppSelector as useSelector,
+  useAppDispatch as useDispatch,
+} from '../hooks';
+import { logout } from '../redux/actions/authActions';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     grow: {
@@ -57,6 +64,8 @@ const useStyles = makeStyles((theme: Theme) =>
 // TODO: hide signup and login buttons when logged in
 
 export default function Navigation() {
+  const dispatch = useDispatch();
+  const firebase = useSelector((state) => state.firebase);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -148,20 +157,37 @@ export default function Navigation() {
           </Button>
         </Link>
       </MenuItem>
-      <MenuItem>
-        <Link to="/signup">
-          <Button variant="contained" color="primary">
-            Signup
-          </Button>
-        </Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to="/login">
-          <Button variant="contained" color="primary">
-            Login
-          </Button>
-        </Link>
-      </MenuItem>
+      {!firebase.auth.uid ? ( //signed out
+        <>
+          <MenuItem>
+            <Link to="/signup">
+              <Button variant="contained" color="primary">
+                Signup
+              </Button>
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to="/login">
+              <Button variant="contained" color="primary">
+                Login
+              </Button>
+            </Link>
+          </MenuItem>
+        </>
+      ) : (
+        // signed in
+        <MenuItem>
+          <Link to="/login">
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => dispatch(logout())}
+            >
+              Logout
+            </Button>
+          </Link>
+        </MenuItem>
+      )}
     </Menu>
   );
 
@@ -234,26 +260,40 @@ export default function Navigation() {
                 Contact
               </Button>
             </Link>
-            <Link to="/signup">
+            {!firebase.auth.uid ? ( // signed in
+              <>
+                <Link to="/signup">
+                  <Button
+                    variant="contained"
+                    size="small"
+                    color="primary"
+                    className="ml-1"
+                  >
+                    Signup
+                  </Button>
+                </Link>
+                <Link to="/login">
+                  <Button
+                    variant="contained"
+                    size="small"
+                    color="primary"
+                    className="ml-1"
+                  >
+                    Login
+                  </Button>
+                </Link>
+              </>
+            ) : (
               <Button
+                className=""
                 variant="contained"
+                color="secondary"
                 size="small"
-                color="primary"
-                className="ml-1"
+                onClick={() => dispatch(logout())}
               >
-                Signup
+                Logout
               </Button>
-            </Link>
-            <Link to="/login">
-              <Button
-                variant="contained"
-                size="small"
-                color="primary"
-                className="ml-1"
-              >
-                Login
-              </Button>
-            </Link>
+            )}
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
