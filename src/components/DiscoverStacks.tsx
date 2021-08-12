@@ -8,6 +8,7 @@ import StackPreviewBox from './StackPreviewBox';
 // styles
 import '../styles/components/DiscoverStacks.css';
 
+// TODO: remove when we get real card data
 // fake deck data for testing
 const decks = [
   { title: 'deck prev 1' },

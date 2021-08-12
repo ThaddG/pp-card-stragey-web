@@ -54,6 +54,8 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+// TODO: hide signup and login buttons when logged in
+
 export default function Navigation() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);

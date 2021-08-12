@@ -59,6 +59,17 @@
 .px-3 { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
 .px-4 { padding-left: 1rem !important; padding-right: 1rem !important; }
 
+
+/* CENTER SELF */
+.center-self {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+/* CENTER SELF'S TEXT */
+.center-text {
+  text-align: center;
+}
+
 .App {
   text-align: center;
 }

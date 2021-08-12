@@ -28,6 +28,7 @@ const paperStyle = {
   height: '70vh',
 };
 
+// TODO: implement forgot password, the action is already made
 export default function Login() {
   const user = useSelector((state) => state.auth);
   const dispatch = useDispatch();

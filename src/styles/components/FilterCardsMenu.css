@@ -1,0 +1,13 @@
+.filter-cards-menu-container {
+  width: 300px;
+  min-height: 350px;
+}
+
+.filter-cards-input {
+  width: 100% !important;
+}
+
+.filter-cards-form-control {
+  width: 100% !important;
+  margin: .50rem 0 !important;
+}
