@@ -23,8 +23,7 @@ const decks = [
 
 export default function DiscoverStacks() {
   return (
-    // TODO: remove this testing background color
-    <div className="px-2 py-2" style={{ backgroundColor: 'mintcream' }}>
+    <div className="px-2 py-2">
       <Grid container direction="row" spacing={3}>
         {decks.map((deck, index) => (
           <Grid

@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import Section from '../components/Section';
 import DiscoverStacks from '../components/DiscoverStacks';
 import CreditCards from '../components/CreditCards';
+import Education from '../components/Education';
 
 // redux
 import {
@@ -35,6 +36,12 @@ export default function Home() {
         and find out what works best for you"
       >
         <CreditCards />
+      </Section>
+      <Section
+        title="Education"
+        description="New to credit cards in general? Get acclimated with these guides"
+      >
+        <Education />
       </Section>
       {firebase.auth.uid ? (
         <p>
