@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 
 // custom components
 import FilterCardsMenu from './FilterCardsMenu';
@@ -34,6 +34,7 @@ export default function CreditCards() {
           </Grid>
         ))}
       </Grid>
+      <Button className="mt-4" color="primary" variant="contained" fullWidth={true}>View Library {`->`}</Button>
     </div>
   );
 }
