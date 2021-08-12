@@ -8,7 +8,7 @@ import CardPreview from './CardPreview';
 
 // TODO: remove this when we get real data
 const cards = [
-  { name: 'Citi Diamond Preferred' },
+  { name: 'Citi Diamond Preferred', annualFee: 0 },
   { name: 'Chase Freedom Unlimited' },
   { name: 'Capital One Platinum' },
   { name: 'Discover Student' },
