@@ -105,27 +105,28 @@ export default function CreditCards() {
     }
   };
 
+  const renderCreditCards = (arr: CardProps[]) => (
+    <>
+      {arr.map((card, index) => (
+        <Grid
+          key={index}
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          className="grid-item-container"
+        >
+          <CardPreview card={card} />
+        </Grid>
+      ))}
+    </>
+  );
+
   // FIXME: does this need to be a callback? look up later
-  const renderCreditCards = () => {
-    if (isAllDefault()) {
-      return (
-        <>
-          {cards.map((card, index) => (
-            <Grid
-              key={index}
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              lg={3}
-              className="grid-item-container"
-            >
-              <CardPreview card={card} />
-            </Grid>
-          ))}
-        </>
-      );
-    } else {
+  const renderFilteredCards = () => {
+    if (isAllDefault()) renderCreditCards(cards);
+    else {
       let cardArr = cards;
 
       if (!isDefault('query')) cardArr = filterCategory(cardArr, 'query');
@@ -135,25 +136,7 @@ export default function CreditCards() {
       if (!isDefault('annualFee'))
         cardArr = filterCategory(cardArr, 'annualFee');
 
-      return (
-        <>
-          {cardArr.map((card, index) => {
-            return (
-              <Grid
-                key={index}
-                item
-                xs={12}
-                sm={6}
-                md={4}
-                lg={3}
-                className="grid-item-container"
-              >
-                <CardPreview card={card} />
-              </Grid>
-            );
-          })}
-        </>
-      );
+      renderCreditCards(cardArr);
     }
   };
 
@@ -173,7 +156,7 @@ export default function CreditCards() {
             resetFilters={resetFilters}
           />
         </Grid>
-        {renderCreditCards()}
+        {renderFilteredCards()}
       </Grid>
       <Button
         className="mt-4"
