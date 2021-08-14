@@ -125,7 +125,7 @@ export default function CreditCards() {
 
   // FIXME: does this need to be a callback? look up later
   const renderFilteredCards = () => {
-    if (isAllDefault()) renderCreditCards(cards);
+    if (isAllDefault()) return renderCreditCards(cards);
     else {
       let cardArr = cards;
 
@@ -136,7 +136,7 @@ export default function CreditCards() {
       if (!isDefault('annualFee'))
         cardArr = filterCategory(cardArr, 'annualFee');
 
-      renderCreditCards(cardArr);
+      return renderCreditCards(cardArr);
     }
   };
 
