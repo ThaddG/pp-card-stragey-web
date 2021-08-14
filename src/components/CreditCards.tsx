@@ -7,18 +7,40 @@ import FilterCardsMenu from './FilterCardsMenu';
 import CardPreview from './CardPreview';
 
 type Filter = 'query' | 'bank' | 'rewardsType' | 'annualFee';
-interface CardProps {
+type RewardTypes = 'Dining' | 'Gas' | 'Supermarket' | 'Travel';
+export interface CardProps {
   name: string;
   bank: string;
   annualFee: number;
+  rewardTypes: Array<RewardTypes>;
 }
 
 // TODO: remove this when we get real data
 const cards: CardProps[] = [
-  { name: 'Citi Diamond Preferred', bank: 'Citi Bank', annualFee: 0 },
-  { name: 'Chase Freedom Unlimited', bank: 'Chase', annualFee: 95 },
-  { name: 'Capital One Platinum', bank: 'Capital One', annualFee: 125 },
-  { name: 'Discover Student', bank: 'Discover', annualFee: 0 },
+  {
+    name: 'Citi Diamond Preferred',
+    bank: 'Citi Bank',
+    annualFee: 0,
+    rewardTypes: ['Gas', 'Dining'],
+  },
+  {
+    name: 'Chase Freedom Unlimited',
+    bank: 'Chase',
+    annualFee: 95,
+    rewardTypes: ['Supermarket'],
+  },
+  {
+    name: 'Capital One Platinum',
+    bank: 'Capital One',
+    annualFee: 125,
+    rewardTypes: ['Travel', 'Gas'],
+  },
+  {
+    name: 'Discover Student',
+    bank: 'Discover',
+    annualFee: 0,
+    rewardTypes: ['Dining'],
+  },
 ];
 
 export default function CreditCards() {
@@ -26,7 +48,6 @@ export default function CreditCards() {
   const [bank, setBank] = useState('');
   const [rewardsType, setRewardsType] = useState('');
   const [annualFee, setAnnualFee] = useState<number | null>(null);
-  const [applyFilter, setApplyFilter] = useState(false);
 
   const handleQueryChange = (e: React.ChangeEvent<{ value: unknown }>) =>
     setQuery(e.target.value as string);
@@ -66,15 +87,17 @@ export default function CreditCards() {
   const filterCategory = (array: CardProps[], filter: Filter) => {
     switch (filter) {
       case 'query':
-        return array.filter(
-          (card) => card.name.toLowerCase().includes(query.toLowerCase())
+        return array.filter((card) =>
+          card.name.toLowerCase().includes(query.toLowerCase())
         );
       case 'bank':
         return array.filter(
           (card) => card.bank.toLowerCase() === bank.toLowerCase()
         );
       case 'rewardsType':
-        return array;
+        return array.filter((card) =>
+          card.rewardTypes.includes(rewardsType as RewardTypes)
+        );
       case 'annualFee':
         return array.filter((card) => card.annualFee === annualFee);
       default:
@@ -83,7 +106,7 @@ export default function CreditCards() {
   };
 
   // FIXME: does this need to be a callback? look up later
-  const render = () => {
+  const renderCreditCards = () => {
     if (isAllDefault()) {
       return (
         <>
@@ -109,7 +132,8 @@ export default function CreditCards() {
       if (!isDefault('bank')) cardArr = filterCategory(cardArr, 'bank');
       if (!isDefault('rewardsType'))
         cardArr = filterCategory(cardArr, 'rewardsType');
-      if (!isDefault('annualFee')) cardArr = filterCategory(cardArr, 'annualFee');
+      if (!isDefault('annualFee'))
+        cardArr = filterCategory(cardArr, 'annualFee');
 
       return (
         <>
@@ -149,7 +173,7 @@ export default function CreditCards() {
             resetFilters={resetFilters}
           />
         </Grid>
-        {render()}
+        {renderCreditCards()}
       </Grid>
       <Button
         className="mt-4"
