@@ -14,6 +14,19 @@ import {
 // styles
 import '../styles/components/FilterCardsMenu.css';
 
+type InputEventChange = (event: React.ChangeEvent<{ value: unknown }>) => void;
+interface Props {
+  query: string;
+  bank: string;
+  rewardsType: string;
+  annualFee: number | null;
+  handleQueryChange: InputEventChange;
+  handleBankChange: InputEventChange;
+  handleRewardsTypeChange: InputEventChange;
+  handleAnnualFeeChange: InputEventChange;
+  resetFilters: () => void;
+}
+
 // TODO: remove when we get real data
 // fake data
 const banks: string[] = [
@@ -22,31 +35,37 @@ const banks: string[] = [
   'Citi Bank',
   'American Express',
   'Citizens Bank',
+  'Capital One'
 ];
 const rewardsTypes: string[] = ['Travel', 'Dining', 'Gas', 'Supermarket'];
 const annualFees: number[] = [0, 95, 125];
 
-export default function FilterCardsMenu() {
-  const [bank, setBank] = useState('');
-  const [rewardsType, setRewardsType] = useState('');
-  const [annualFee, setAnnualFee] = useState(0);
-
-  const handleBankChange = (event: React.ChangeEvent<{ value: unknown }>) =>
-    setBank(event.target.value as string);
-  const handleRewardsTypeChange = (
-    event: React.ChangeEvent<{ value: unknown }>
-  ) => setRewardsType(event.target.value as string);
-  const handleAnnualFeeChange = (
-    event: React.ChangeEvent<{ value: unknown }>
-  ) => setAnnualFee(event.target.value as number);
-
+export default function FilterCardsMenu({
+  query,
+  bank,
+  rewardsType,
+  annualFee,
+  handleQueryChange,
+  handleBankChange,
+  handleRewardsTypeChange,
+  handleAnnualFeeChange,
+  resetFilters,
+}: Props) {
   return (
     <Paper className="filter-cards-menu-container px-2 py-2">
-      <Typography className="mb-2 center-text" variant="h5">Filter Cards</Typography>
+      <Typography className="mb-2 center-text" variant="h5">
+        Filter Cards
+      </Typography>
       <form className="filter-cards-form" noValidate autoComplete="off">
         <Grid>
           <Grid item xs={12}>
-            <TextField className="filter-cards-input" id="standard-basic" label="Search" />
+            <TextField
+              className="filter-cards-input"
+              id="standard-basic"
+              label="Search"
+              value={query}
+              onChange={handleQueryChange}
+            />
           </Grid>
           {/* BANKS */}
           <Grid item xs={12}>
@@ -106,9 +125,14 @@ export default function FilterCardsMenu() {
             </FormControl>
           </Grid>
         </Grid>
-        <Button className="mb-2" color="primary" variant="contained">Apply</Button>
-        <br/>
-        <Button color="secondary" variant="contained">Reset Fields</Button>
+        <br />
+        <Button
+          color="secondary"
+          variant="contained"
+          onClick={() => resetFilters()}
+        >
+          Reset Fields
+        </Button>
       </form>
     </Paper>
   );
