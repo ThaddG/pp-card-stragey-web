@@ -12,7 +12,7 @@ const initialState: InitialStateInterface = {
 export const cardReducer = (state = initialState, action: CardAction) => {
   switch (action.type) {
     case 'ADD_CARD':
-      return { ...state, cardMessage: '', existAlready: false };
+      return { ...state, cardMessage: action.payload, existAlready: false };
     case 'REMOVE_CARD':
       return { ...state, cardMessage: '', existAlready: false };
     case 'EDIT_CARD':

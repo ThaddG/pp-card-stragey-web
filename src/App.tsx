@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Contact from './pages/Contact';
 import Stack from './pages/Stack';
+import AddCard from './pages/CMS/AddCard';
 
 // redux
 import { useAppSelector as useSelector } from './hooks';
@@ -33,6 +34,7 @@ function App() {
         redirectTo="/"
       />
       <Route path="/stacks/:id" component={Stack} />
+      <Route path="/cms/add" component={AddCard} />
       <Route exact path="/contact" component={Contact} />
     </Router>
   );

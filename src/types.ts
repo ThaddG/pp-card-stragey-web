@@ -8,17 +8,12 @@ export interface UserProps {
 }
 
 export interface CardProps {
-  id: string;
-  cardHolderName: string;
-  cardName: string;
-  cardNumber: string;
-  cvv: string;
-  rewards: string[];
-  expireDate: Date;
-  zipcode: number;
+  name: string;
+  bank: string;
+  annualFee: number;
+  rewardTypes: RewardTypeProps;
   createdAt: Date;
   updatedAt: Date;
-  lastFourDigits: number;
 }
 
 export interface StackProps {
@@ -82,6 +77,7 @@ interface ClearAuthMessageAction {
  */
 interface AddCardAction {
   type: typeof CardActionTypes.ADD_CARD;
+  payload: string;
 }
 interface RemoveCardAction {
   type: typeof CardActionTypes.REMOVE_CARD;
@@ -128,3 +124,21 @@ export type CardAction =
   | CardErrorAction;
 
 export type StackAction = GetAllStacksAction | GetStackAction;
+
+
+
+/**===========================================================
+ * 
+ * 
+ *          GENERAL TYPES / INTERFACES / ENUMS
+ * 
+ * 
+ *==========================================================*/
+ export interface RewardTypeProps {
+  Travel: number;
+  Flights: number;
+  Hotels: number;
+  Dining: number;
+  Cashback: number;
+  Gas: number;
+}
