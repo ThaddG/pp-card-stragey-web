@@ -32,6 +32,20 @@ export default function AddCard() {
     Gas: 0,
   });
 
+  const resetFields = () => {
+    setName('');
+    setBank('');
+    setAnnualFee(0);
+    setRewardTypes({
+      Travel: 0,
+      Flights: 0,
+      Hotels: 0,
+      Dining: 0,
+      Cashback: 0,
+      Gas: 0,
+    });
+  };
+
   const handleTravelChange = (e: React.ChangeEvent<{ value: unknown }>) =>
     setRewardTypes({
       ...rewardTypes,
@@ -64,6 +78,7 @@ export default function AddCard() {
     e.preventDefault();
     console.log('component:', rewardTypes);
     dispatch(addCard(name, bank, annualFee, rewardTypes));
+    resetFields();
   };
 
   return (
