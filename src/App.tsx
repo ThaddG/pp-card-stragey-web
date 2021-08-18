@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Contact from './pages/Contact';
+import Stack from './pages/Stack';
 
 // redux
 import { useAppSelector as useSelector } from './hooks';
@@ -31,6 +32,7 @@ function App() {
         component={<Signup />}
         redirectTo="/"
       />
+      <Route path="/stacks/:id" component={Stack} />
       <Route exact path="/contact" component={Contact} />
     </Router>
   );

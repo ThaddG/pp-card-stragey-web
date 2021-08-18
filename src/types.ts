@@ -21,6 +21,12 @@ export interface CardProps {
   lastFourDigits: number;
 }
 
+export interface StackProps {
+  id: string;
+  title: string;
+  description: string;
+}
+
 export enum AuthActionTypes {
   SIGNUP = 'SIGNUP',
   LOGIN = 'LOGIN',
@@ -36,6 +42,11 @@ export enum CardActionTypes {
   EDIT_CARD = 'EDIT_CARD',
   CARD_EXIST = 'CARD_EXIST',
   CARD_ERROR = 'CARD_ERROR',
+}
+
+export enum StackActionTypes {
+  GET_STACK = 'GET_STACK',
+  GET_ALL_STACKS = 'GET_ALL_STACKS',
 }
 
 /**
@@ -87,6 +98,20 @@ interface CardErrorAction {
   payload: string;
 }
 
+/**
+ *
+ * STACK REDUCER INTERFACES
+ *
+ */
+interface GetAllStacksAction {
+  type: typeof StackActionTypes.GET_ALL_STACKS;
+  payload: Array<StackProps>;
+}
+interface GetStackAction {
+  type: typeof StackActionTypes.GET_STACK;
+  payload: StackProps;
+}
+
 export type AuthAction =
   | SignupAction
   | LoginAction
@@ -101,3 +126,5 @@ export type CardAction =
   | EditCardAction
   | CardExistAction
   | CardErrorAction;
+
+export type StackAction = GetAllStacksAction | GetStackAction;

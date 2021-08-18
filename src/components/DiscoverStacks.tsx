@@ -2,7 +2,6 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 
 // custom components
-import SectionHeader from './SectionHeader';
 import StackPreviewBox from './StackPreviewBox';
 
 // styles
@@ -10,22 +9,22 @@ import '../styles/components/DiscoverStacks.css';
 
 // TODO: remove when we get real card data
 // fake deck data for testing
-const decks = [
-  { title: 'deck prev 1' },
-  { title: 'deck prev 2' },
-  { title: 'deck prev 3' },
-  { title: 'deck prev 4' },
-  { title: 'deck prev 5' },
-  { title: 'deck prev 6' },
-  { title: 'deck prev 7' },
-  { title: 'deck prev 8' },
+const stacks = [
+  { id: '1', title: 'deck prev 1' },
+  { id: '2', title: 'deck prev 2' },
+  { id: '3', title: 'deck prev 3' },
+  { id: '4', title: 'deck prev 4' },
+  { id: '5', title: 'deck prev 5' },
+  { id: '6', title: 'deck prev 6' },
+  { id: '7', title: 'deck prev 7' },
+  { id: '8', title: 'deck prev 8' },
 ];
 
 export default function DiscoverStacks() {
   return (
     <div className="px-2 py-2">
       <Grid container direction="row" spacing={3}>
-        {decks.map((deck, index) => (
+        {stacks.map((stack, index) => (
           <Grid
             key={index}
             item
@@ -35,7 +34,7 @@ export default function DiscoverStacks() {
             lg={3}
             className="grid-item-container"
           >
-            <StackPreviewBox title={deck.title} />
+            <StackPreviewBox title={stack.title} />
           </Grid>
         ))}
       </Grid>
