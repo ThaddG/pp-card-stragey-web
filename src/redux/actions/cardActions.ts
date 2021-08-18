@@ -36,7 +36,7 @@ export const addCard =
         })
       )
       .catch((err) => {
-        console.log('card add fail', err);
+        console.log('Card add fail', err);
         dispatch({
           type: CardActionTypes.CARD_ERROR,
           payload: 'Failed to add card',

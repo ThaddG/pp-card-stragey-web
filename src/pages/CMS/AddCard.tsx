@@ -9,14 +9,17 @@ import {
 } from '@material-ui/core';
 
 // redux
-import { useAppSelector as useSelector, useAppDispatch as useDispatch } from '../../hooks';
+import {
+  useAppSelector as useSelector,
+  useAppDispatch as useDispatch,
+} from '../../hooks';
 import { addCard } from '../../redux/actions/cardActions';
 
 import { RewardTypeProps } from '../../types';
 
 export default function AddCard() {
   const dispatch = useDispatch();
-  const cardReducer = useSelector(state => state.card)
+  const cardReducer = useSelector((state) => state.card);
   const [name, setName] = useState<string>('');
   const [bank, setBank] = useState<string>('');
   const [annualFee, setAnnualFee] = useState<number>(0);
@@ -30,23 +33,38 @@ export default function AddCard() {
   });
 
   const handleTravelChange = (e: React.ChangeEvent<{ value: unknown }>) =>
-    setRewardTypes({ ...rewardTypes, Travel: e.target.value as number });
+    setRewardTypes({
+      ...rewardTypes,
+      Travel: Number(e.target.value) as number,
+    });
   const handleFlightsChange = (e: React.ChangeEvent<{ value: unknown }>) =>
-    setRewardTypes({ ...rewardTypes, Flights: e.target.value as number });
+    setRewardTypes({
+      ...rewardTypes,
+      Flights: Number(e.target.value) as number,
+    });
   const handleHotelsChange = (e: React.ChangeEvent<{ value: unknown }>) =>
-    setRewardTypes({ ...rewardTypes, Hotels: e.target.value as number });
+    setRewardTypes({
+      ...rewardTypes,
+      Hotels: Number(e.target.value) as number,
+    });
   const handleDiningChange = (e: React.ChangeEvent<{ value: unknown }>) =>
-    setRewardTypes({ ...rewardTypes, Dining: e.target.value as number });
+    setRewardTypes({
+      ...rewardTypes,
+      Dining: Number(e.target.value) as number,
+    });
   const handleCashbackChange = (e: React.ChangeEvent<{ value: unknown }>) =>
-    setRewardTypes({ ...rewardTypes, Cashback: e.target.value as number });
+    setRewardTypes({
+      ...rewardTypes,
+      Cashback: Number(e.target.value) as number,
+    });
   const handleGasChange = (e: React.ChangeEvent<{ value: unknown }>) =>
-    setRewardTypes({ ...rewardTypes, Gas: e.target.value as number });
+    setRewardTypes({ ...rewardTypes, Gas: Number(e.target.value) as number });
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    console.log('component:', rewardTypes);
     dispatch(addCard(name, bank, annualFee, rewardTypes));
-    console.log('igjhvjhv')
-  }
+  };
 
   return (
     <div
@@ -125,6 +143,7 @@ export default function AddCard() {
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
+                      type="number"
                       id="outlined-basic"
                       label="Travel %"
                       variant="outlined"
@@ -142,6 +161,7 @@ export default function AddCard() {
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
+                      type="number"
                       id="outlined-basic"
                       label="Flights %"
                       variant="outlined"
@@ -159,6 +179,7 @@ export default function AddCard() {
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
+                      type="number"
                       id="outlined-basic"
                       label="Hotels %"
                       variant="outlined"
@@ -176,6 +197,7 @@ export default function AddCard() {
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
+                      type="number"
                       id="outlined-basic"
                       label="Dining %"
                       variant="outlined"
@@ -193,6 +215,7 @@ export default function AddCard() {
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
+                      type="number"
                       id="outlined-basic"
                       label="Cashback %"
                       variant="outlined"
@@ -210,6 +233,7 @@ export default function AddCard() {
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
+                      type="number"
                       id="outlined-basic"
                       label="Gas %"
                       variant="outlined"
@@ -227,8 +251,8 @@ export default function AddCard() {
             </form>
           </Paper>
         </Grid>
+        <p style={{ fontWeight: 'bold' }}>{cardReducer.cardMessage || null}</p>
       </Grid>
-      {cardReducer.cardMessage ? cardReducer.cardMessage : null}
     </div>
   );
 }
