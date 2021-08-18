@@ -7,13 +7,13 @@ pp card strategy website (wip)
 > git clone https://github.com/ThaddG/pp-card-stragey-web.git
 4. In the terminal in the directory of the project, type:
 > yarn install
-5. Create a ".env.local" file in the root directory (where package.json is) and add these (vite) firebase variables:
-> - VITE_APP_FIREBASE_API_KEY=
-> - VITE_APP_FIREBASE_AUTH_DOMAIN=
-> - VITE_APP_FIREBASE_PROJECT_ID=
-> - VITE_APP_FIREBASE_STORAGE_BUCKET=
-> - VITE_APP_FIREBASE_MESSAGING_SENGER_ID=
-> - VITE_APP_FIREBASE_APP_ID=
+5. Create a ".env.local" file in the root directory (where package.json is) and add these (env) firebase variables:
+> - REACT_APP_FIREBASE_API_KEY=
+> - REACT_APP_FIREBASE_AUTH_DOMAIN=
+> - REACT_APP_FIREBASE_PROJECT_ID=
+> - REACT_APP_FIREBASE_STORAGE_BUCKET=
+> - REACT_APP_FIREBASE_MESSAGING_SENGER_ID=
+> - REACT_APP_FIREBASE_APP_ID=
 6. Ask thadd for the firebase variable data or look for it yourself in the console
 7. To then run the app, in the terminal, type:
 > yarn dev
