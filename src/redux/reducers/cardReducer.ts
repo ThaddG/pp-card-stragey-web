@@ -14,7 +14,7 @@ export const cardReducer = (state = initialState, action: CardAction) => {
     case 'ADD_CARD':
       return { ...state, cardMessage: action.payload, existAlready: false };
     case 'REMOVE_CARD':
-      return { ...state, cardMessage: '', existAlready: false };
+      return { ...state, cardMessage: action.payload, existAlready: false };
     case 'EDIT_CARD':
       return { ...state, cardMessage: '', existAlready: false };
     case 'CARD_ERROR':

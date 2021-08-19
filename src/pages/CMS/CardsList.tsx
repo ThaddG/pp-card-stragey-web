@@ -12,11 +12,12 @@ import { useAppSelector as useSelector } from '../../hooks';
 import { CardProps } from '../../types';
 
 // styles
-import '../../styles/pages/CardsList.css'
+import '../../styles/pages/CardsList.css';
 
 export default function CardsList() {
   useFirestoreConnect([{ collection: 'cards' }]);
   const cards = useSelector((state) => state.firestore.ordered.cards);
+  const cardReducer = useSelector((state) => state.card);
   return (
     <div className="cards-list-container">
       <Typography variant="h2">Cards List</Typography>
@@ -25,6 +26,7 @@ export default function CardsList() {
         : isEmpty(cards)
         ? 'Cards is empty'
         : cards.map((card: CardProps) => <CardListItem card={card} />)}
+      <p style={{ fontWeight: 'bold' }}>{cardReducer.cardMessage || null}</p>
     </div>
   );
 }

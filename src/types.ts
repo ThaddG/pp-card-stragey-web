@@ -82,6 +82,7 @@ interface AddCardAction {
 }
 interface RemoveCardAction {
   type: typeof CardActionTypes.REMOVE_CARD;
+  payload: string;
 }
 interface EditCardAction {
   type: typeof CardActionTypes.EDIT_CARD;

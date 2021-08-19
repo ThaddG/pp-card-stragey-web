@@ -43,3 +43,26 @@ export const addCard =
         });
       });
   };
+
+export const removeCard =
+  (name: string, id: string) =>
+  async (dispatch: React.Dispatch<CardAction>) => {
+    const firestore = firebase.firestore();
+
+    firestore
+      .collection('cards')
+      .doc(id)
+      .delete()
+      .then(() =>
+        dispatch({
+          type: CardActionTypes.REMOVE_CARD,
+          payload: `${name} removed successfully`,
+        })
+      )
+      .catch((err) =>
+        dispatch({
+          type: CardActionTypes.CARD_ERROR,
+          payload: 'Card remove fail',
+        })
+      );
+  };
