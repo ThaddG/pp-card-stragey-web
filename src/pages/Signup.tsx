@@ -37,7 +37,7 @@ export default function Signup() {
 
   function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
-    if (firstName != '' && lastName != '') {
+    if (firstName !== '' && lastName !== '') {
       dispatch(signup({ email, password, firstName, lastName }));
     }
   }

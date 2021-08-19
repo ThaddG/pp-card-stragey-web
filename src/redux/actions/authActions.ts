@@ -1,6 +1,4 @@
-import { nanoid } from 'nanoid';
 import React from 'react';
-import convertToDate from '../../utils/convertToDate';
 import firebase from '../../firebase';
 import { AuthAction, AuthActionTypes, UserProps } from '../../types';
 

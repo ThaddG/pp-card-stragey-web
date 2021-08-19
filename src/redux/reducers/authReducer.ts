@@ -1,4 +1,4 @@
-import { AuthAction, AuthActionTypes } from '../../types';
+import { AuthAction } from '../../types';
 
 // interfaces / types
 interface InitialStateInterface {

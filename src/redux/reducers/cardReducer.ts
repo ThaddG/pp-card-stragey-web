@@ -1,4 +1,4 @@
-import { CardAction, CardActionTypes } from '../../types';
+import { CardAction } from '../../types';
 interface InitialStateInterface {
   cardMessage: string;
   existAlready: boolean;

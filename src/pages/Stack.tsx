@@ -25,7 +25,9 @@ export default function Stack() {
   return (
     <Grid>
       <Grid item>
-        <Paper>{id}</Paper>
+        <Paper>
+          {id}
+        </Paper>
       </Grid>
     </Grid>
   );

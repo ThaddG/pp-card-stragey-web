@@ -8,6 +8,7 @@ export interface UserProps {
 }
 
 export interface CardProps {
+  id?: string;
   name: string;
   bank: string;
   annualFee: number;
