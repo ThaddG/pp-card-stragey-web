@@ -85,7 +85,7 @@ export default function AddCard() {
     <div
       style={{
         width: '100vw',
-        height: '100vh',
+        minHeight: '100vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
