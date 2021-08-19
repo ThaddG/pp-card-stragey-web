@@ -12,7 +12,7 @@ import { useAppSelector as useSelector } from '../../hooks';
 import { CardProps } from '../../types';
 
 // styles
-import '../../styles/pages/CardsList.css';
+import '../../styles/pages/CardsList.css'
 
 export default function CardsList() {
   useFirestoreConnect([{ collection: 'cards' }]);

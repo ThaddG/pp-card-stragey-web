@@ -1,8 +1,8 @@
 .cards-list-container {
-  max-width: '655px';
-  min-height: '100vh';
-  margin: 'auto';
-  display: 'flex';
-  justify-content: 'center';
-  flex-direction: 'column';
+  max-width: 655px;
+  min-height: 100vh;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
