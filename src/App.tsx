@@ -10,7 +10,7 @@ import Signup from './pages/Signup';
 import Contact from './pages/Contact';
 import Stack from './pages/Stack';
 import AddCard from './pages/CMS/AddCard';
-import CardsList from './pages/CMS/CardsList'
+import CardsList from './pages/CMS/CardsList';
 import EditCard from './pages/CMS/EditCard';
 
 // redux
@@ -20,6 +20,7 @@ import './App.css';
 
 function App() {
   const firebase = useSelector((state) => state.firebase);
+  console.log(firebase);
   return (
     <Router>
       <Route exact path="/" component={Home} />
@@ -36,9 +37,24 @@ function App() {
         redirectTo="/"
       />
       <Route path="/stacks/:id" component={Stack} />
-      <Route path="/cms/list" component={CardsList} />
-      <Route path="/cms/add" component={AddCard} />
-      <Route path="/cms/edit/:id" component={EditCard} />
+      <GuardedRoute
+        path="/cms/list"
+        check={!firebase.auth.uid}
+        redirectTo="/"
+        component={<CardsList />}
+      />
+      <GuardedRoute
+        path="/cms/add"
+        check={!firebase.auth.uid}
+        redirectTo="/"
+        component={<AddCard />}
+      />
+      <GuardedRoute
+        path="/cms/edit/:id"
+        check={!firebase.auth.uid}
+        redirectTo="/"
+        component={<EditCard />}
+      />
       <Route exact path="/contact" component={Contact} />
     </Router>
   );
