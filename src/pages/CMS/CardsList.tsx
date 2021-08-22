@@ -8,7 +8,7 @@ import CardListItem from '../../components/CMS/CardListItem';
 // redux
 import { useAppSelector as useSelector } from '../../hooks';
 
-//  types
+// types
 import { CardProps } from '../../types';
 
 // styles

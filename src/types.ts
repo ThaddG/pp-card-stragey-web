@@ -13,8 +13,8 @@ export interface CardProps {
   bank: string;
   annualFee: number;
   rewardTypes: RewardTypeProps;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface StackProps {
@@ -33,6 +33,7 @@ export enum AuthActionTypes {
 }
 
 export enum CardActionTypes {
+  GET_CARD = 'GET_CARD',
   ADD_CARD = 'ADD_CARD',
   REMOVE_CARD = 'REMOVE_CARD',
   EDIT_CARD = 'EDIT_CARD',
@@ -76,6 +77,10 @@ interface ClearAuthMessageAction {
  * CARD REDUCER INTERFACES
  *
  */
+interface GetCardAction {
+  type: typeof CardActionTypes.GET_CARD;
+  payload: CardProps;
+}
 interface AddCardAction {
   type: typeof CardActionTypes.ADD_CARD;
   payload: string;
@@ -119,6 +124,7 @@ export type AuthAction =
   | ClearAuthMessageAction;
 
 export type CardAction =
+  | GetCardAction
   | AddCardAction
   | RemoveCardAction
   | EditCardAction
@@ -127,16 +133,14 @@ export type CardAction =
 
 export type StackAction = GetAllStacksAction | GetStackAction;
 
-
-
 /**===========================================================
- * 
- * 
+ *
+ *
  *          GENERAL TYPES / INTERFACES / ENUMS
- * 
- * 
+ *
+ *
  *==========================================================*/
- export interface RewardTypeProps {
+export interface RewardTypeProps {
   Travel: number;
   Flights: number;
   Hotels: number;

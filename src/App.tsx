@@ -11,6 +11,7 @@ import Contact from './pages/Contact';
 import Stack from './pages/Stack';
 import AddCard from './pages/CMS/AddCard';
 import CardsList from './pages/CMS/CardsList'
+import EditCard from './pages/CMS/EditCard';
 
 // redux
 import { useAppSelector as useSelector } from './hooks';
@@ -35,8 +36,9 @@ function App() {
         redirectTo="/"
       />
       <Route path="/stacks/:id" component={Stack} />
-      <Route path="/cms/add" component={AddCard} />
       <Route path="/cms/list" component={CardsList} />
+      <Route path="/cms/add" component={AddCard} />
+      <Route path="/cms/edit/:id" component={EditCard} />
       <Route exact path="/contact" component={Contact} />
     </Router>
   );

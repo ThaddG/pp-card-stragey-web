@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 
 // custom components
 import CardForm from '../../components/CMS/CardForm';
 
 // redux
 import {
+  useAppSelector as useSelector,
   useAppDispatch as useDispatch,
 } from '../../hooks';
-import { addCard } from '../../redux/actions/cardActions';
+import { getCardById, editCard } from '../../redux/actions/cardActions';
 
+// types
 import { RewardTypeProps } from '../../types';
 
-export default function AddCard() {
+interface ParamProps {
+  id: string;
+}
+
+export default function EditCard() {
+  const { id } = useParams<ParamProps>();
   const dispatch = useDispatch();
-  const [name, setName] = useState<string>('');
+  const cardReducer = useSelector((state) => state.card);
+  const [name, setName] = useState<string>(cardReducer.current.name);
   const [bank, setBank] = useState<string>('');
   const [annualFee, setAnnualFee] = useState<number>(0);
   const [rewardTypes, setRewardTypes] = useState<RewardTypeProps>({
@@ -24,6 +34,11 @@ export default function AddCard() {
     Cashback: 0,
     Gas: 0,
   });
+
+  useEffect(() => {
+    dispatch(getCardById(id));
+  })
+
 
   const resetFields = () => {
     setName('');
@@ -71,10 +86,9 @@ export default function AddCard() {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     console.log('component:', rewardTypes);
-    dispatch(addCard(name, bank, annualFee, rewardTypes));
+    // dispatch(editCard(name, bank, annualFee, rewardTypes));
     resetFields();
   };
-
   return (
     <CardForm
       title="Add Card"

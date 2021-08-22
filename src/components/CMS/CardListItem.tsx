@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Paper, Grid, Button } from '@material-ui/core';
 
 // redux
@@ -31,9 +32,11 @@ export default function CardListItem({ card }: Props) {
           {card.name}
         </Grid>
         <Grid item xs={5} sm={2}>
-          <Button fullWidth variant="contained" color="primary">
-            Edit
-          </Button>
+          <Link to={`/cms/edit/${card.id}`}>
+            <Button fullWidth variant="contained" color="primary">
+              Edit
+            </Button>
+          </Link>
         </Grid>
         <Grid item xs={5} sm={2}>
           <Button

@@ -1,16 +1,20 @@
-import { CardAction } from '../../types';
+import { CardAction, CardProps } from '../../types';
 interface InitialStateInterface {
   cardMessage: string;
   existAlready: boolean;
+  current: CardProps;
 }
 
 const initialState: InitialStateInterface = {
   cardMessage: '',
   existAlready: false,
+  current: {} as CardProps
 };
 
 export const cardReducer = (state = initialState, action: CardAction) => {
   switch (action.type) {
+    case 'GET_CARD':
+      return { ...state, current: action.payload };
     case 'ADD_CARD':
       return { ...state, cardMessage: action.payload, existAlready: false };
     case 'REMOVE_CARD':

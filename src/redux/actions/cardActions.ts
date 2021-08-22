@@ -7,6 +7,14 @@ import {
   RewardTypeProps,
 } from '../../types';
 
+interface EditedCardProps {
+  id?: string;
+  name?: string;
+  bank?: string;
+  annualFee?: number;
+  rewardTypes?: RewardTypeProps;
+}
+
 export const addCard =
   (
     name: string,
@@ -65,4 +73,39 @@ export const removeCard =
           payload: 'Card remove fail',
         })
       );
+  };
+
+export const editCard =
+  (id: string) => async (dispatch: React.Dispatch<CardAction>) => {
+    const firestore = firebase.firestore();
+
+    firestore.collection('cards').doc(id).update({});
+  };
+
+export const getCardById =
+  (id: string) => async (dispatch: React.Dispatch<CardAction>) => {
+    const firestore = firebase.firestore();
+
+    try {
+      const card = firestore.collection('cards').doc(id);
+      const doc = await card.get();
+      const c = doc.data();
+      console.log('Card:', c);
+      if (c) {
+        // FIXME: there has to be a better way to do this.
+        const typedCard: CardProps = {
+          id,
+          name: c.name,
+          bank: c.bank,
+          annualFee: c.annualFee,
+          rewardTypes: c.rewardTypes,
+        };
+        dispatch({ type: CardActionTypes.GET_CARD, payload: typedCard });
+      }
+    } catch (err) {
+      dispatch({
+        type: CardActionTypes.CARD_ERROR,
+        payload: `Get Card By Id Error: ${err}`,
+      });
+    }
   };
