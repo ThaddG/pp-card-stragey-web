@@ -37,21 +37,22 @@ function App() {
         redirectTo="/"
       />
       <Route path="/stacks/:id" component={Stack} />
+      {/* CMS is for logged in user who have "owner" role */}
       <GuardedRoute
         path="/cms/list"
-        check={!!firebase.auth.uid}
+        check={!!firebase.auth.uid && firebase.profile.role === "owner"}
         redirectTo="/"
         component={<CardsList />}
       />
       <GuardedRoute
         path="/cms/add"
-        check={!!firebase.auth.uid}
+        check={!!firebase.auth.uid && firebase.profile.role === "owner"}
         redirectTo="/"
         component={<AddCard />}
       />
       <GuardedRoute
         path="/cms/edit/:id"
-        check={!!firebase.auth.uid}
+        check={!!firebase.auth.uid && firebase.profile.role === "owner"}
         redirectTo="/"
         component={<EditCard />}
       />
