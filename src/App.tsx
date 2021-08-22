@@ -39,19 +39,19 @@ function App() {
       <Route path="/stacks/:id" component={Stack} />
       <GuardedRoute
         path="/cms/list"
-        check={!firebase.auth.uid}
+        check={!!firebase.auth.uid}
         redirectTo="/"
         component={<CardsList />}
       />
       <GuardedRoute
         path="/cms/add"
-        check={!firebase.auth.uid}
+        check={!!firebase.auth.uid}
         redirectTo="/"
         component={<AddCard />}
       />
       <GuardedRoute
         path="/cms/edit/:id"
-        check={!firebase.auth.uid}
+        check={!!firebase.auth.uid}
         redirectTo="/"
         component={<EditCard />}
       />
