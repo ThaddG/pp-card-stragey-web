@@ -91,7 +91,7 @@ export default function EditCard() {
   };
   return (
     <CardForm
-      title="Add Card"
+      title="Edit Card"
       handleSubmit={handleSubmit}
       nameValue={name}
       nameChangeHandler={(e) => setName(e)}
