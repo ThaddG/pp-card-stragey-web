@@ -4,7 +4,7 @@ pp card strategy website (wip)
 1. press the green "code" button on the repo page
 2. copy the HTTPS link
 3. In your terminal in the directory you want the project to be, type:
-> git clone https://github.com/ThaddG/pp-card-stragey-web.git
+> git clone https://github.com/ThaddG/pp-card-strategy-web.git
 4. In the terminal in the directory of the project, type:
 > yarn install
 5. Create a ".env.local" file in the root directory (where package.json is) and add these (env) firebase variables:
