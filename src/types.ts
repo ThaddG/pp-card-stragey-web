@@ -47,6 +47,7 @@ export enum CardActionTypes {
   EDIT_CARD = 'EDIT_CARD',
   CARD_EXIST = 'CARD_EXIST',
   CARD_ERROR = 'CARD_ERROR',
+  CLEAR_CARD_MESSAGE = 'CLEAR_CARD_MESSAGE',
 }
 
 export enum StackActionTypes {
@@ -103,6 +104,7 @@ interface RemoveCardAction {
 }
 interface EditCardAction {
   type: typeof CardActionTypes.EDIT_CARD;
+  payload: string;
 }
 interface CardExistAction {
   type: typeof CardActionTypes.CARD_EXIST;
@@ -111,6 +113,9 @@ interface CardExistAction {
 interface CardErrorAction {
   type: typeof CardActionTypes.CARD_ERROR;
   payload: string;
+}
+interface ClearCardMessageAction {
+  type: typeof CardActionTypes.CLEAR_CARD_MESSAGE;
 }
 
 /**
@@ -142,7 +147,8 @@ export type CardAction =
   | RemoveCardAction
   | EditCardAction
   | CardExistAction
-  | CardErrorAction;
+  | CardErrorAction
+  | ClearCardMessageAction;
 
 export type StackAction = GetAllStacksAction | GetStackAction;
 

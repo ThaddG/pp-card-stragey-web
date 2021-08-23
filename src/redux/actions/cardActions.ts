@@ -77,8 +77,22 @@ export const editCard =
       .collection('cards')
       .doc(id)
       .update(card)
-      .then(() => console.log('card updated successfully'));
+      .then(() =>
+        dispatch({
+          type: CardActionTypes.EDIT_CARD,
+          payload: 'Card edited successfully',
+        })
+      )
+      .catch((err) =>
+        dispatch({
+          type: CardActionTypes.CARD_ERROR,
+          payload: `Edit Card Error: ${err}`,
+        })
+      );
   };
+
+export const clearCardMessage = () => (dispatch: React.Dispatch<CardAction>) =>
+  dispatch({ type: CardActionTypes.CLEAR_CARD_MESSAGE });
 
 export const clearCard = () => (dispatch: React.Dispatch<CardAction>) => {
   dispatch({
@@ -95,7 +109,7 @@ export const clearCard = () => (dispatch: React.Dispatch<CardAction>) => {
         Cashback: 0,
         Gas: 0,
       },
-    } as CardProps,
+    },
   });
 };
 

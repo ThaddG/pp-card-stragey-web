@@ -11,7 +11,11 @@ import {
 } from '@material-ui/core';
 
 // redux
-import { useAppSelector as useSelector } from '../../hooks';
+import {
+  useAppDispatch as useDispatch,
+  useAppSelector as useSelector,
+} from '../../hooks';
+import { clearCardMessage } from '../../redux/actions/cardActions';
 
 // types
 import { RewardTypeProps } from '../../types';
@@ -55,7 +59,11 @@ export default function CardForm({
   handleCashbackChange,
   handleGasChange,
 }: Props) {
+  const dispatch = useDispatch();
   const cardReducer = useSelector((state) => state.card);
+  React.useEffect(() => {
+    dispatch(clearCardMessage());
+  }, []);
   return (
     <div
       style={{

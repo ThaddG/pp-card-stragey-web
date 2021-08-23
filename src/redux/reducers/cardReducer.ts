@@ -34,12 +34,14 @@ export const cardReducer = (state = initialState, action: CardAction) => {
     case 'REMOVE_CARD':
       return { ...state, cardMessage: action.payload, existAlready: false };
     case 'EDIT_CARD':
-      return { ...state, cardMessage: '', existAlready: false };
+      return { ...state, cardMessage: action.payload, existAlready: false };
     case 'CARD_ERROR':
       return { ...state, cardMessage: action.payload, existAlready: false };
     case 'CARD_EXIST':
       console.log('card exist reducer running');
       return { ...state, cardMessage: action.payload, existAlready: true };
+    case 'CLEAR_CARD_MESSAGE':
+      return { ...state, cardMessage: '' };
     default:
       return state;
   }

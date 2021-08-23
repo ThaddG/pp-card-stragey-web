@@ -6,7 +6,11 @@ import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import CardListItem from '../../components/CMS/CardListItem';
 
 // redux
-import { useAppSelector as useSelector } from '../../hooks';
+import {
+  useAppDispatch as useDispatch,
+  useAppSelector as useSelector,
+} from '../../hooks';
+import { clearCardMessage } from '../../redux/actions/cardActions';
 
 // types
 import { CardProps } from '../../types';
@@ -16,8 +20,12 @@ import '../../styles/pages/CardsList.css';
 
 export default function CardsList() {
   useFirestoreConnect([{ collection: 'cards' }]);
+  const dispatch = useDispatch();
   const cards = useSelector((state) => state.firestore.ordered.cards);
   const cardReducer = useSelector((state) => state.card);
+  React.useEffect(() => {
+    dispatch(clearCardMessage());
+  }, []);
   return (
     <div className="cards-list-container">
       <Typography variant="h2">Cards List</Typography>
