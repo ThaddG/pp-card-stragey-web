@@ -5,15 +5,8 @@ import {
   CardActionTypes,
   CardProps,
   RewardTypeProps,
+  EditedCardProps,
 } from '../../types';
-
-interface EditedCardProps {
-  id?: string;
-  name?: string;
-  bank?: string;
-  annualFee?: number;
-  rewardTypes?: RewardTypeProps;
-}
 
 export const addCard =
   (
@@ -76,11 +69,35 @@ export const removeCard =
   };
 
 export const editCard =
-  (id: string) => async (dispatch: React.Dispatch<CardAction>) => {
+  (id: string, card: EditedCardProps) =>
+  async (dispatch: React.Dispatch<CardAction>) => {
     const firestore = firebase.firestore();
 
-    firestore.collection('cards').doc(id).update({});
+    firestore
+      .collection('cards')
+      .doc(id)
+      .update(card)
+      .then(() => console.log('card updated successfully'));
   };
+
+export const clearCard = () => (dispatch: React.Dispatch<CardAction>) => {
+  dispatch({
+    type: CardActionTypes.CLEAR_CARD,
+    payload: {
+      name: '',
+      bank: '',
+      annualFee: 0,
+      rewardTypes: {
+        Travel: 0,
+        Flights: 0,
+        Hotels: 0,
+        Dining: 0,
+        Cashback: 0,
+        Gas: 0,
+      },
+    } as CardProps,
+  });
+};
 
 export const getCardById =
   (id: string) => async (dispatch: React.Dispatch<CardAction>) => {

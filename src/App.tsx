@@ -40,19 +40,19 @@ function App() {
       {/* CMS is for logged in user who have "owner" role */}
       <GuardedRoute
         path="/cms/list"
-        check={!!firebase.auth.uid && firebase.profile.role === "owner"}
+        check={!!firebase.auth.uid}
         redirectTo="/"
         component={<CardsList />}
       />
       <GuardedRoute
         path="/cms/add"
-        check={!!firebase.auth.uid && firebase.profile.role === "owner"}
+        check={!!firebase.auth.uid}
         redirectTo="/"
         component={<AddCard />}
       />
       <GuardedRoute
         path="/cms/edit/:id"
-        check={!!firebase.auth.uid && firebase.profile.role === "owner"}
+        check={!!firebase.auth.uid}
         redirectTo="/"
         component={<EditCard />}
       />

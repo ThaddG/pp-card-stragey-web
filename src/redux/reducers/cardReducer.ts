@@ -8,12 +8,26 @@ interface InitialStateInterface {
 const initialState: InitialStateInterface = {
   cardMessage: '',
   existAlready: false,
-  current: {} as CardProps
+  current: {
+    name: '',
+    bank: '',
+    annualFee: 0,
+    rewardTypes: {
+      Travel: 0,
+      Flights: 0,
+      Hotels: 0,
+      Dining: 0,
+      Cashback: 0,
+      Gas: 0,
+    },
+  } as CardProps,
 };
 
 export const cardReducer = (state = initialState, action: CardAction) => {
   switch (action.type) {
     case 'GET_CARD':
+      return { ...state, current: action.payload };
+    case 'CLEAR_CARD':
       return { ...state, current: action.payload };
     case 'ADD_CARD':
       return { ...state, cardMessage: action.payload, existAlready: false };

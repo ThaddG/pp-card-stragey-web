@@ -16,6 +16,13 @@ export interface CardProps {
   createdAt?: Date;
   updatedAt?: Date;
 }
+export interface EditedCardProps {
+  id?: string;
+  name?: string;
+  bank?: string;
+  annualFee?: number;
+  rewardTypes?: RewardTypeProps;
+}
 
 export interface StackProps {
   id: string;
@@ -34,6 +41,7 @@ export enum AuthActionTypes {
 
 export enum CardActionTypes {
   GET_CARD = 'GET_CARD',
+  CLEAR_CARD = 'CLEAR_CARD',
   ADD_CARD = 'ADD_CARD',
   REMOVE_CARD = 'REMOVE_CARD',
   EDIT_CARD = 'EDIT_CARD',
@@ -81,6 +89,10 @@ interface GetCardAction {
   type: typeof CardActionTypes.GET_CARD;
   payload: CardProps;
 }
+interface ClearCardAction {
+  type: typeof CardActionTypes.CLEAR_CARD;
+  payload: CardProps;
+}
 interface AddCardAction {
   type: typeof CardActionTypes.ADD_CARD;
   payload: string;
@@ -125,6 +137,7 @@ export type AuthAction =
 
 export type CardAction =
   | GetCardAction
+  | ClearCardAction
   | AddCardAction
   | RemoveCardAction
   | EditCardAction

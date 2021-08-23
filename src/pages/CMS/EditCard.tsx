@@ -10,10 +10,14 @@ import {
   useAppSelector as useSelector,
   useAppDispatch as useDispatch,
 } from '../../hooks';
-import { getCardById, editCard } from '../../redux/actions/cardActions';
+import {
+  getCardById,
+  editCard,
+  clearCard,
+} from '../../redux/actions/cardActions';
 
 // types
-import { RewardTypeProps } from '../../types';
+import { RewardTypeProps, EditedCardProps } from '../../types';
 
 interface ParamProps {
   id: string;
@@ -23,7 +27,7 @@ export default function EditCard() {
   const { id } = useParams<ParamProps>();
   const dispatch = useDispatch();
   const cardReducer = useSelector((state) => state.card);
-  const [name, setName] = useState<string>(cardReducer.current.name);
+  const [name, setName] = useState<string>('');
   const [bank, setBank] = useState<string>('');
   const [annualFee, setAnnualFee] = useState<number>(0);
   const [rewardTypes, setRewardTypes] = useState<RewardTypeProps>({
@@ -36,23 +40,18 @@ export default function EditCard() {
   });
 
   useEffect(() => {
+    dispatch(clearCard());
     dispatch(getCardById(id));
-  })
+  }, []);
 
-
-  const resetFields = () => {
-    setName('');
-    setBank('');
-    setAnnualFee(0);
-    setRewardTypes({
-      Travel: 0,
-      Flights: 0,
-      Hotels: 0,
-      Dining: 0,
-      Cashback: 0,
-      Gas: 0,
-    });
-  };
+  useEffect(() => {
+    if (isLoaded(cardReducer.current)) {
+      setName(cardReducer.current.name);
+      setBank(cardReducer.current.bank);
+      setAnnualFee(cardReducer.current.annualFee);
+      setRewardTypes(cardReducer.current.rewardTypes);
+    }
+  }, [cardReducer.current]);
 
   // TODO: refactor this. there has to be a better way to handle these
   const handleTravelChange = (e: React.ChangeEvent<{ value: unknown }>) =>
@@ -84,10 +83,15 @@ export default function EditCard() {
     setRewardTypes({ ...rewardTypes, Gas: Number(e.target.value) as number });
 
   const handleSubmit = (e: React.SyntheticEvent) => {
+    const cardPayload: EditedCardProps = {
+      name,
+      bank,
+      annualFee,
+      rewardTypes,
+    };
     e.preventDefault();
     console.log('component:', rewardTypes);
-    // dispatch(editCard(name, bank, annualFee, rewardTypes));
-    resetFields();
+    dispatch(editCard(id, cardPayload));
   };
   return (
     <CardForm
