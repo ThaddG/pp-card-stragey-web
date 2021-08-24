@@ -104,27 +104,27 @@ export const clearCard = () => (dispatch: React.Dispatch<CardAction>) => {
       rewardTypes: {
         Travel: {
           percent: 0,
-          rank: null,
+          rank: 0,
         },
         Flights: {
           percent: 0,
-          rank: null,
+          rank: 0,
         },
         Hotels: {
           percent: 0,
-          rank: null,
+          rank: 0,
         },
         Dining: {
           percent: 0,
-          rank: null,
+          rank: 0,
         },
         Cashback: {
           percent: 0,
-          rank: null,
+          rank: 0,
         },
         Gas: {
           percent: 0,
-          rank: null,
+          rank: 0,
         },
       },
     },

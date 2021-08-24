@@ -167,30 +167,31 @@ export enum RewardTypeValues {
   CASHBACK = 'Cashback',
   GAS = 'Gas',
 }
+// TODO: add groceries
 export interface RewardTypeProps {
   Travel: {
     percent: number;
-    rank: number | null;
+    rank: number;
   };
   Flights: {
     percent: number;
-    rank: number | null;
+    rank: number;
   };
   Hotels: {
     percent: number;
-    rank: number | null;
+    rank: number;
   };
   Dining: {
     percent: number;
-    rank: number | null;
+    rank: number;
   };
   Cashback: {
     percent: number;
-    rank: number | null;
+    rank: number;
   };
   Gas: {
     percent: number;
-    rank: number | null;
+    rank: number;
   };
 }
 

@@ -33,27 +33,27 @@ export default function EditCard() {
   const [rewardTypes, setRewardTypes] = useState<RewardTypeProps>({
     Travel: {
       percent: 0,
-      rank: null,
+      rank: 0,
     },
     Flights: {
       percent: 0,
-      rank: null,
+      rank: 0,
     },
     Hotels: {
       percent: 0,
-      rank: null,
+      rank: 0,
     },
     Dining: {
       percent: 0,
-      rank: null,
+      rank: 0,
     },
     Cashback: {
       percent: 0,
-      rank: null,
+      rank: 0,
     },
     Gas: {
       percent: 0,
-      rank: null,
+      rank: 0,
     },
   });
 
@@ -210,6 +210,7 @@ export default function EditCard() {
       annualFeeChangeHandler={(e) => setAnnualFee(e)}
       rewardTypesValue={rewardTypes}
       handlePercentChange={handleRewardTypePercentChange}
+      handleRankChange={handleRewardTypeRankChange}
     />
   );
 }

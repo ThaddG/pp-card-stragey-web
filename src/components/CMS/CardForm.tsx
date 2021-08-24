@@ -37,6 +37,10 @@ interface Props {
     e: React.ChangeEvent<{ value: unknown }>,
     type: RewardType
   ) => void;
+  handleRankChange: (
+    e: React.ChangeEvent<{ value: unknown }>,
+    type: RewardType
+  ) => void;
 }
 
 export default function CardForm({
@@ -49,8 +53,8 @@ export default function CardForm({
   annualFeeValue,
   annualFeeChangeHandler,
   rewardTypesValue,
-  rewardTypesChangeHandler,
   handlePercentChange,
+  handleRankChange,
 }: Props) {
   const dispatch = useDispatch();
   const cardReducer = useSelector((state) => state.card);
@@ -129,11 +133,12 @@ export default function CardForm({
                 <Grid item xs={12} className="center-text my-4">
                   <Typography variant="h5">Reward Types</Typography>
                 </Grid>
+
                 {/* Travel */}
                 <Grid item xs={6}>
                   <Typography variant="h5">Travel</Typography>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={3}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
                       type="number"
@@ -149,11 +154,27 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
+                <Grid item xs={3}>
+                  <FormControl margin="dense" required={true} fullWidth>
+                    <TextField
+                      type="number"
+                      id="outlined-basic"
+                      label="Rank #"
+                      variant="outlined"
+                      placeholder="0%"
+                      value={rewardTypesValue.Travel.rank}
+                      onChange={(e) =>
+                        handleRankChange(e, RewardTypeValues.TRAVEL)
+                      }
+                    />
+                  </FormControl>
+                </Grid>
+
                 {/* FLIGHTS */}
                 <Grid item xs={6}>
                   <Typography variant="h5">Flights</Typography>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={3}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
                       type="number"
@@ -169,11 +190,27 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
+                <Grid item xs={3}>
+                  <FormControl margin="dense" required={true} fullWidth>
+                    <TextField
+                      type="number"
+                      id="outlined-basic"
+                      label="Rank #"
+                      variant="outlined"
+                      placeholder="0%"
+                      value={rewardTypesValue.Flights.rank}
+                      onChange={(e) =>
+                        handleRankChange(e, RewardTypeValues.FLIGHTS)
+                      }
+                    />
+                  </FormControl>
+                </Grid>
+
                 {/* HOTELS */}
                 <Grid item xs={6}>
                   <Typography variant="h5">Hotels</Typography>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={3}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
                       type="number"
@@ -189,11 +226,28 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
+                <Grid item xs={3}>
+                  <FormControl margin="dense" required={true} fullWidth>
+                    <TextField
+                      type="number"
+                      id="outlined-basic"
+                      label="Rank #"
+                      variant="outlined"
+                      placeholder="0%"
+                      value={rewardTypesValue.Hotels.rank}
+                      onChange={(e) =>
+                        handleRankChange(e, RewardTypeValues.HOTELS)
+                      }
+                      required={true}
+                    />
+                  </FormControl>
+                </Grid>
+
                 {/* DINING */}
                 <Grid item xs={6}>
                   <Typography variant="h5">Dining</Typography>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={3}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
                       type="number"
@@ -209,11 +263,28 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
+                <Grid item xs={3}>
+                  <FormControl margin="dense" required={true} fullWidth>
+                    <TextField
+                      type="number"
+                      id="outlined-basic"
+                      label="Rank #"
+                      variant="outlined"
+                      placeholder="0%"
+                      value={rewardTypesValue.Dining.rank}
+                      onChange={(e) =>
+                        handleRankChange(e, RewardTypeValues.DINING)
+                      }
+                      required={true}
+                    />
+                  </FormControl>
+                </Grid>
+
                 {/* CASHBACK */}
                 <Grid item xs={6}>
                   <Typography variant="h5">Cashback</Typography>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={3}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
                       type="number"
@@ -229,11 +300,28 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
+                <Grid item xs={3}>
+                  <FormControl margin="dense" required={true} fullWidth>
+                    <TextField
+                      type="number"
+                      id="outlined-basic"
+                      label="Rank #"
+                      variant="outlined"
+                      placeholder="0%"
+                      value={rewardTypesValue.Cashback.rank}
+                      onChange={(e) =>
+                        handleRankChange(e, RewardTypeValues.CASHBACK)
+                      }
+                      required={true}
+                    />
+                  </FormControl>
+                </Grid>
+
                 {/* GAS */}
                 <Grid item xs={6}>
                   <Typography variant="h5">Gas</Typography>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={3}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
                       type="number"
@@ -244,6 +332,22 @@ export default function CardForm({
                       value={rewardTypesValue.Gas.percent}
                       onChange={(e) =>
                         handlePercentChange(e, RewardTypeValues.GAS)
+                      }
+                      required={true}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={3}>
+                  <FormControl margin="dense" required={true} fullWidth>
+                    <TextField
+                      type="number"
+                      id="outlined-basic"
+                      label="Rank #"
+                      variant="outlined"
+                      placeholder="0%"
+                      value={rewardTypesValue.Gas.rank}
+                      onChange={(e) =>
+                        handleRankChange(e, RewardTypeValues.GAS)
                       }
                       required={true}
                     />
