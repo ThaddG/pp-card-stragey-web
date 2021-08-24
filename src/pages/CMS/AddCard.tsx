@@ -11,27 +11,27 @@ import { RewardTypeProps, RewardType } from '../../types';
 
 const initialRewardTypesState = {
   Travel: {
-    percent: 0,
+    description: '',
     rank: 0,
   },
   Flights: {
-    percent: 0,
+    description: '',
     rank: 0,
   },
   Hotels: {
-    percent: 0,
+    description: '',
     rank: 0,
   },
   Dining: {
-    percent: 0,
+    description: '',
     rank: 0,
   },
   Cashback: {
-    percent: 0,
+    description: '',
     rank: 0,
   },
   Gas: {
-    percent: 0,
+    description: '',
     rank: 0,
   },
 };
@@ -60,7 +60,7 @@ export default function AddCard() {
           ...rewardTypes,
           Travel: {
             ...rewardTypes.Travel,
-            percent: Number(e.target.value) as number,
+            description: String(e.target.value),
           },
         });
       case 'Flights':
@@ -68,7 +68,7 @@ export default function AddCard() {
           ...rewardTypes,
           Flights: {
             ...rewardTypes.Flights,
-            percent: Number(e.target.value) as number,
+            description: String(e.target.value),
           },
         });
       case 'Hotels':
@@ -76,7 +76,7 @@ export default function AddCard() {
           ...rewardTypes,
           Hotels: {
             ...rewardTypes.Hotels,
-            percent: Number(e.target.value) as number,
+            description: String(e.target.value),
           },
         });
       case 'Dining':
@@ -84,7 +84,7 @@ export default function AddCard() {
           ...rewardTypes,
           Dining: {
             ...rewardTypes.Dining,
-            percent: Number(e.target.value) as number,
+            description: String(e.target.value),
           },
         });
       case 'Cashback':
@@ -92,7 +92,7 @@ export default function AddCard() {
           ...rewardTypes,
           Cashback: {
             ...rewardTypes.Cashback,
-            percent: Number(e.target.value) as number,
+            description: String(e.target.value),
           },
         });
       case 'Gas':
@@ -100,7 +100,7 @@ export default function AddCard() {
           ...rewardTypes,
           Gas: {
             ...rewardTypes.Gas,
-            percent: Number(e.target.value) as number,
+            description: String(e.target.value),
           },
         });
       default:

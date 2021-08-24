@@ -32,27 +32,27 @@ export default function EditCard() {
   const [annualFee, setAnnualFee] = useState<number>(0);
   const [rewardTypes, setRewardTypes] = useState<RewardTypeProps>({
     Travel: {
-      percent: 0,
+      description: '',
       rank: 0,
     },
     Flights: {
-      percent: 0,
+      description: '',
       rank: 0,
     },
     Hotels: {
-      percent: 0,
+      description: '',
       rank: 0,
     },
     Dining: {
-      percent: 0,
+      description: '',
       rank: 0,
     },
     Cashback: {
-      percent: 0,
+      description: '',
       rank: 0,
     },
     Gas: {
-      percent: 0,
+      description: '',
       rank: 0,
     },
   });
@@ -81,7 +81,7 @@ export default function EditCard() {
           ...rewardTypes,
           Travel: {
             ...rewardTypes.Travel,
-            percent: Number(e.target.value) as number,
+            description: String(e.target.value),
           },
         });
       case 'Flights':
@@ -89,7 +89,7 @@ export default function EditCard() {
           ...rewardTypes,
           Flights: {
             ...rewardTypes.Flights,
-            percent: Number(e.target.value) as number,
+            description: String(e.target.value),
           },
         });
       case 'Hotels':
@@ -97,7 +97,7 @@ export default function EditCard() {
           ...rewardTypes,
           Hotels: {
             ...rewardTypes.Hotels,
-            percent: Number(e.target.value) as number,
+            description: String(e.target.value),
           },
         });
       case 'Dining':
@@ -105,7 +105,7 @@ export default function EditCard() {
           ...rewardTypes,
           Dining: {
             ...rewardTypes.Dining,
-            percent: Number(e.target.value) as number,
+            description: String(e.target.value),
           },
         });
       case 'Cashback':
@@ -113,7 +113,7 @@ export default function EditCard() {
           ...rewardTypes,
           Cashback: {
             ...rewardTypes.Cashback,
-            percent: Number(e.target.value) as number,
+            description: String(e.target.value),
           },
         });
       case 'Gas':
@@ -121,7 +121,7 @@ export default function EditCard() {
           ...rewardTypes,
           Gas: {
             ...rewardTypes.Gas,
-            percent: Number(e.target.value) as number,
+            description: String(e.target.value),
           },
         });
       default:

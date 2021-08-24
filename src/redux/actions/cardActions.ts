@@ -73,10 +73,12 @@ export const editCard =
   async (dispatch: React.Dispatch<CardAction>) => {
     const firestore = firebase.firestore();
 
+    const updatedCard = {...card, updatedAt: new Date() };
+
     firestore
       .collection('cards')
       .doc(id)
-      .update(card)
+      .update(updatedCard)
       .then(() =>
         dispatch({
           type: CardActionTypes.EDIT_CARD,
@@ -103,27 +105,27 @@ export const clearCard = () => (dispatch: React.Dispatch<CardAction>) => {
       annualFee: 0,
       rewardTypes: {
         Travel: {
-          percent: 0,
+          description: '',
           rank: 0,
         },
         Flights: {
-          percent: 0,
+          description: '',
           rank: 0,
         },
         Hotels: {
-          percent: 0,
+          description: '',
           rank: 0,
         },
         Dining: {
-          percent: 0,
+          description: '',
           rank: 0,
         },
         Cashback: {
-          percent: 0,
+          description: '',
           rank: 0,
         },
         Gas: {
-          percent: 0,
+          description: '',
           rank: 0,
         },
       },

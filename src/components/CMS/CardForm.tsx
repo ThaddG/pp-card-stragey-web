@@ -8,6 +8,8 @@ import {
   Paper,
   FormControl,
   Button,
+  Input,
+  InputLabel
 } from '@material-ui/core';
 
 // redux
@@ -138,15 +140,30 @@ export default function CardForm({
                 <Grid item xs={6}>
                   <Typography variant="h5">Travel</Typography>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={6}>
+                  <FormControl margin="dense" required={true} fullWidth>
+                    <InputLabel htmlFor="travel-rank-input">Travel Rank</InputLabel>
+                    <Input
+                      type="number"
+                      id="travel-rank-input"
+                      placeholder="0%"
+                      value={rewardTypesValue.Travel.rank}
+                      onChange={(e) =>
+                        handleRankChange(e, RewardTypeValues.TRAVEL)
+                      }
+                      inputProps={{ 'min': 0, 'max': 5 }}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
-                      type="number"
+                      type="text"
                       id="outlined-basic"
-                      label="Travel %"
+                      label="Travel Description"
                       variant="outlined"
-                      placeholder="0%"
-                      value={rewardTypesValue.Travel.percent}
+                      placeholder="description..."
+                      value={rewardTypesValue.Travel.description}
                       onChange={(e) =>
                         handlePercentChange(e, RewardTypeValues.TRAVEL)
                       }
@@ -154,35 +171,36 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
-                <Grid item xs={3}>
-                  <FormControl margin="dense" required={true} fullWidth>
-                    <TextField
-                      type="number"
-                      id="outlined-basic"
-                      label="Rank #"
-                      variant="outlined"
-                      placeholder="0%"
-                      value={rewardTypesValue.Travel.rank}
-                      onChange={(e) =>
-                        handleRankChange(e, RewardTypeValues.TRAVEL)
-                      }
-                    />
-                  </FormControl>
-                </Grid>
+              
 
                 {/* FLIGHTS */}
                 <Grid item xs={6}>
                   <Typography variant="h5">Flights</Typography>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={6}>
+                  <FormControl margin="dense" required={true} fullWidth>
+                  <InputLabel htmlFor="flights-rank-input">Flights Rank</InputLabel>
+                    <Input
+                      type="number"
+                      id="flights-rank-input"
+                      placeholder="0%"
+                      value={rewardTypesValue.Flights.rank}
+                      onChange={(e) =>
+                        handleRankChange(e, RewardTypeValues.FLIGHTS)
+                      }
+                      inputProps={{ 'min': 0, 'max': 5 }}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
-                      type="number"
+                      type="text"
                       id="outlined-basic"
-                      label="Flights %"
+                      label="Flights Description"
                       variant="outlined"
-                      placeholder="0%"
-                      value={rewardTypesValue.Flights.percent}
+                      placeholder="description..."
+                      value={rewardTypesValue.Flights.description}
                       onChange={(e) =>
                         handlePercentChange(e, RewardTypeValues.FLIGHTS)
                       }
@@ -190,35 +208,37 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
-                <Grid item xs={3}>
-                  <FormControl margin="dense" required={true} fullWidth>
-                    <TextField
-                      type="number"
-                      id="outlined-basic"
-                      label="Rank #"
-                      variant="outlined"
-                      placeholder="0%"
-                      value={rewardTypesValue.Flights.rank}
-                      onChange={(e) =>
-                        handleRankChange(e, RewardTypeValues.FLIGHTS)
-                      }
-                    />
-                  </FormControl>
-                </Grid>
+                
 
                 {/* HOTELS */}
                 <Grid item xs={6}>
                   <Typography variant="h5">Hotels</Typography>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={6}>
+                  <FormControl margin="dense" required={true} fullWidth>
+                  <InputLabel htmlFor="hotels-rank-input">Flights Rank</InputLabel>
+                    <Input
+                      type="number"
+                      id="hotels-rank-input"
+                      placeholder="0%"
+                      value={rewardTypesValue.Hotels.rank}
+                      onChange={(e) =>
+                        handleRankChange(e, RewardTypeValues.HOTELS)
+                      }
+                      required={true}
+                      inputProps={{ 'min': 0, 'max': 5 }}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
-                      type="number"
+                      type="text"
                       id="outlined-basic"
-                      label="Hotels %"
+                      label="Hotels Description"
                       variant="outlined"
-                      placeholder="0%"
-                      value={rewardTypesValue.Hotels.percent}
+                      placeholder="description..."
+                      value={rewardTypesValue.Hotels.description}
                       onChange={(e) =>
                         handlePercentChange(e, RewardTypeValues.HOTELS)
                       }
@@ -226,36 +246,37 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
-                <Grid item xs={3}>
-                  <FormControl margin="dense" required={true} fullWidth>
-                    <TextField
-                      type="number"
-                      id="outlined-basic"
-                      label="Rank #"
-                      variant="outlined"
-                      placeholder="0%"
-                      value={rewardTypesValue.Hotels.rank}
-                      onChange={(e) =>
-                        handleRankChange(e, RewardTypeValues.HOTELS)
-                      }
-                      required={true}
-                    />
-                  </FormControl>
-                </Grid>
+                
 
                 {/* DINING */}
                 <Grid item xs={6}>
                   <Typography variant="h5">Dining</Typography>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={6}>
+                  <FormControl margin="dense" required={true} fullWidth>
+                  <InputLabel htmlFor="dining-rank-input">Flights Rank</InputLabel>
+                    <Input
+                      type="number"
+                      id="dining-rank-input"
+                      placeholder="0%"
+                      value={rewardTypesValue.Dining.rank}
+                      onChange={(e) =>
+                        handleRankChange(e, RewardTypeValues.DINING)
+                      }
+                      required={true}
+                      inputProps={{ 'min': 0, 'max': 5 }}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
-                      type="number"
+                      type="text"
                       id="outlined-basic"
-                      label="Dining %"
+                      label="Dining Description"
                       variant="outlined"
-                      placeholder="0%"
-                      value={rewardTypesValue.Dining.percent}
+                      placeholder="description..."
+                      value={rewardTypesValue.Dining.description}
                       onChange={(e) =>
                         handlePercentChange(e, RewardTypeValues.DINING)
                       }
@@ -263,36 +284,37 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
-                <Grid item xs={3}>
-                  <FormControl margin="dense" required={true} fullWidth>
-                    <TextField
-                      type="number"
-                      id="outlined-basic"
-                      label="Rank #"
-                      variant="outlined"
-                      placeholder="0%"
-                      value={rewardTypesValue.Dining.rank}
-                      onChange={(e) =>
-                        handleRankChange(e, RewardTypeValues.DINING)
-                      }
-                      required={true}
-                    />
-                  </FormControl>
-                </Grid>
+                
 
                 {/* CASHBACK */}
                 <Grid item xs={6}>
                   <Typography variant="h5">Cashback</Typography>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={6}>
+                  <FormControl margin="dense" required={true} fullWidth>
+                  <InputLabel htmlFor="cashback-rank-input">Flights Rank</InputLabel>
+                    <Input
+                      type="number"
+                      id="cashback-rank-input"
+                      placeholder="0%"
+                      value={rewardTypesValue.Cashback.rank}
+                      onChange={(e) =>
+                        handleRankChange(e, RewardTypeValues.CASHBACK)
+                      }
+                      required={true}
+                      inputProps={{ 'min': 0, 'max': 5 }}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
                   <FormControl margin="dense" required={true} fullWidth>
                     <TextField
-                      type="number"
+                      type="text"
                       id="outlined-basic"
-                      label="Cashback %"
+                      label="Cashback Description"
                       variant="outlined"
-                      placeholder="0%"
-                      value={rewardTypesValue.Cashback.percent}
+                      placeholder="description..."
+                      value={rewardTypesValue.Cashback.description}
                       onChange={(e) =>
                         handlePercentChange(e, RewardTypeValues.CASHBACK)
                       }
@@ -300,36 +322,37 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
-                <Grid item xs={3}>
-                  <FormControl margin="dense" required={true} fullWidth>
-                    <TextField
-                      type="number"
-                      id="outlined-basic"
-                      label="Rank #"
-                      variant="outlined"
-                      placeholder="0%"
-                      value={rewardTypesValue.Cashback.rank}
-                      onChange={(e) =>
-                        handleRankChange(e, RewardTypeValues.CASHBACK)
-                      }
-                      required={true}
-                    />
-                  </FormControl>
-                </Grid>
+                
 
                 {/* GAS */}
                 <Grid item xs={6}>
                   <Typography variant="h5">Gas</Typography>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
-                    <TextField
+                  <InputLabel htmlFor="flights-rank-input">Flights Rank</InputLabel>
+                    <Input
                       type="number"
                       id="outlined-basic"
-                      label="Gas %"
-                      variant="outlined"
                       placeholder="0%"
-                      value={rewardTypesValue.Gas.percent}
+                      value={rewardTypesValue.Gas.rank}
+                      onChange={(e) =>
+                        handleRankChange(e, RewardTypeValues.GAS)
+                      }
+                      required={true}
+                      inputProps={{ 'min': 0, 'max': 5 }}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl margin="dense" required={true} fullWidth>
+                    <TextField
+                      type="text"
+                      id="outlined-basic"
+                      label="Gas Description"
+                      variant="outlined"
+                      placeholder="description"
+                      value={rewardTypesValue.Gas.description}
                       onChange={(e) =>
                         handlePercentChange(e, RewardTypeValues.GAS)
                       }
@@ -337,22 +360,7 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
-                <Grid item xs={3}>
-                  <FormControl margin="dense" required={true} fullWidth>
-                    <TextField
-                      type="number"
-                      id="outlined-basic"
-                      label="Rank #"
-                      variant="outlined"
-                      placeholder="0%"
-                      value={rewardTypesValue.Gas.rank}
-                      onChange={(e) =>
-                        handleRankChange(e, RewardTypeValues.GAS)
-                      }
-                      required={true}
-                    />
-                  </FormControl>
-                </Grid>
+                
               </Grid>
               <Button variant="contained" color="primary" type="submit">
                 Submit
