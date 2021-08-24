@@ -159,11 +159,45 @@ export type StackAction = GetAllStacksAction | GetStackAction;
  *
  *
  *==========================================================*/
-export interface RewardTypeProps {
-  Travel: number;
-  Flights: number;
-  Hotels: number;
-  Dining: number;
-  Cashback: number;
-  Gas: number;
+export enum RewardTypeValues {
+  TRAVEL = 'Travel',
+  FLIGHTS = 'Flights',
+  HOTELS = 'Hotels',
+  DINING = 'Dining',
+  CASHBACK = 'Cashback',
+  GAS = 'Gas',
 }
+export interface RewardTypeProps {
+  Travel: {
+    percent: number;
+    rank: number | null;
+  };
+  Flights: {
+    percent: number;
+    rank: number | null;
+  };
+  Hotels: {
+    percent: number;
+    rank: number | null;
+  };
+  Dining: {
+    percent: number;
+    rank: number | null;
+  };
+  Cashback: {
+    percent: number;
+    rank: number | null;
+  };
+  Gas: {
+    percent: number;
+    rank: number | null;
+  };
+}
+
+export type RewardType =
+  | RewardTypeValues.TRAVEL
+  | RewardTypeValues.FLIGHTS
+  | RewardTypeValues.HOTELS
+  | RewardTypeValues.DINING
+  | RewardTypeValues.GAS
+  | RewardTypeValues.CASHBACK;

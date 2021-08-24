@@ -18,7 +18,7 @@ import {
 import { clearCardMessage } from '../../redux/actions/cardActions';
 
 // types
-import { RewardTypeProps } from '../../types';
+import { RewardTypeProps, RewardType, RewardTypeValues } from '../../types';
 
 interface Props {
   title: string;
@@ -33,12 +33,10 @@ interface Props {
   rewardTypesChangeHandler?: React.Dispatch<
     React.SetStateAction<RewardTypeProps>
   >;
-  handleTravelChange: (e: React.ChangeEvent<{ value: unknown }>) => void;
-  handleFlightsChange: (e: React.ChangeEvent<{ value: unknown }>) => void;
-  handleHotelsChange: (e: React.ChangeEvent<{ value: unknown }>) => void;
-  handleDiningChange: (e: React.ChangeEvent<{ value: unknown }>) => void;
-  handleCashbackChange: (e: React.ChangeEvent<{ value: unknown }>) => void;
-  handleGasChange: (e: React.ChangeEvent<{ value: unknown }>) => void;
+  handlePercentChange: (
+    e: React.ChangeEvent<{ value: unknown }>,
+    type: RewardType
+  ) => void;
 }
 
 export default function CardForm({
@@ -52,12 +50,7 @@ export default function CardForm({
   annualFeeChangeHandler,
   rewardTypesValue,
   rewardTypesChangeHandler,
-  handleTravelChange,
-  handleFlightsChange,
-  handleHotelsChange,
-  handleDiningChange,
-  handleCashbackChange,
-  handleGasChange,
+  handlePercentChange,
 }: Props) {
   const dispatch = useDispatch();
   const cardReducer = useSelector((state) => state.card);
@@ -148,8 +141,10 @@ export default function CardForm({
                       label="Travel %"
                       variant="outlined"
                       placeholder="0%"
-                      value={rewardTypesValue.Travel}
-                      onChange={(e) => handleTravelChange(e)}
+                      value={rewardTypesValue.Travel.percent}
+                      onChange={(e) =>
+                        handlePercentChange(e, RewardTypeValues.TRAVEL)
+                      }
                       required={true}
                     />
                   </FormControl>
@@ -166,8 +161,10 @@ export default function CardForm({
                       label="Flights %"
                       variant="outlined"
                       placeholder="0%"
-                      value={rewardTypesValue.Flights}
-                      onChange={(e) => handleFlightsChange(e)}
+                      value={rewardTypesValue.Flights.percent}
+                      onChange={(e) =>
+                        handlePercentChange(e, RewardTypeValues.FLIGHTS)
+                      }
                       required={true}
                     />
                   </FormControl>
@@ -184,8 +181,10 @@ export default function CardForm({
                       label="Hotels %"
                       variant="outlined"
                       placeholder="0%"
-                      value={rewardTypesValue.Hotels}
-                      onChange={(e) => handleHotelsChange(e)}
+                      value={rewardTypesValue.Hotels.percent}
+                      onChange={(e) =>
+                        handlePercentChange(e, RewardTypeValues.HOTELS)
+                      }
                       required={true}
                     />
                   </FormControl>
@@ -202,8 +201,10 @@ export default function CardForm({
                       label="Dining %"
                       variant="outlined"
                       placeholder="0%"
-                      value={rewardTypesValue.Dining}
-                      onChange={(e) => handleDiningChange(e)}
+                      value={rewardTypesValue.Dining.percent}
+                      onChange={(e) =>
+                        handlePercentChange(e, RewardTypeValues.DINING)
+                      }
                       required={true}
                     />
                   </FormControl>
@@ -220,8 +221,10 @@ export default function CardForm({
                       label="Cashback %"
                       variant="outlined"
                       placeholder="0%"
-                      value={rewardTypesValue.Cashback}
-                      onChange={(e) => handleCashbackChange(e)}
+                      value={rewardTypesValue.Cashback.percent}
+                      onChange={(e) =>
+                        handlePercentChange(e, RewardTypeValues.CASHBACK)
+                      }
                       required={true}
                     />
                   </FormControl>
@@ -238,8 +241,10 @@ export default function CardForm({
                       label="Gas %"
                       variant="outlined"
                       placeholder="0%"
-                      value={rewardTypesValue.Gas}
-                      onChange={(e) => handleGasChange(e)}
+                      value={rewardTypesValue.Gas.percent}
+                      onChange={(e) =>
+                        handlePercentChange(e, RewardTypeValues.GAS)
+                      }
                       required={true}
                     />
                   </FormControl>
