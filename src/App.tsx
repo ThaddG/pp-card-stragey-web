@@ -12,6 +12,7 @@ import Stack from './pages/Stack';
 import AddCard from './pages/CMS/AddCard';
 import CardsList from './pages/CMS/CardsList';
 import EditCard from './pages/CMS/EditCard';
+import Dashboard from './pages/CMS/Dashboard';
 
 // redux
 import { useAppSelector as useSelector } from './hooks';
@@ -38,6 +39,12 @@ function App() {
       />
       <Route path="/stacks/:id" component={Stack} />
       {/* CMS is for logged in user who have "owner" role */}
+      <GuardedRoute
+        exact path="/cms"
+        check={!!firebase.auth.uid}
+        redirectTo="/"
+        component={<Dashboard />}
+      />
       <GuardedRoute
         path="/cms/list"
         check={!!firebase.auth.uid}

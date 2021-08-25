@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
@@ -11,11 +12,36 @@ interface Props {
   onClick?: () => void;
 }
 
-export default function BackButton({ text, onClick }: Props) {
+export default function BackButton({ to, text, onClick }: Props) {
   return (
-    <Button id="back-btn" color="primary" variant="contained" onClick={onClick}>
-      <ArrowBackIosIcon></ArrowBackIosIcon>
-      {text ? <span id="back-btn-text">{text}</span> : null}
-    </Button>
+    <>
+      {to ? (
+        <>
+          <Link to={to || ''}>
+            <Button
+              id="back-btn"
+              color="primary"
+              variant="contained"
+              onClick={onClick}
+            >
+              <ArrowBackIosIcon></ArrowBackIosIcon>
+              {text ? <span id="back-btn-text">{text}</span> : null}
+            </Button>
+          </Link>
+        </>
+      ) : (
+        <>
+          <Button
+            id="back-btn"
+            color="primary"
+            variant="contained"
+            onClick={onClick}
+          >
+            <ArrowBackIosIcon></ArrowBackIosIcon>
+            {text ? <span id="back-btn-text">{text}</span> : null}
+          </Button>
+        </>
+      )}
+    </>
   );
 }

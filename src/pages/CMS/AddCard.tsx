@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 // custom components
 import CardForm from '../../components/CMS/CardForm';
+import BackButton from '../../components/BackButton';
 
 // redux
 import { useAppDispatch as useDispatch } from '../../hooks';
@@ -36,8 +37,8 @@ const initialRewardTypesState: RewardTypeProps = {
   },
   Groceries: {
     description: '',
-    rank: 0
-  }
+    rank: 0,
+  },
 };
 
 export default function AddCard() {
@@ -45,7 +46,9 @@ export default function AddCard() {
   const [name, setName] = useState<string>('');
   const [bank, setBank] = useState<string>('');
   const [annualFee, setAnnualFee] = useState<number>(0);
-  const [rewardTypes, setRewardTypes] = useState<RewardTypeProps>(initialRewardTypesState);
+  const [rewardTypes, setRewardTypes] = useState<RewardTypeProps>(
+    initialRewardTypesState
+  );
 
   const resetFields = () => {
     setName('');
@@ -194,18 +197,21 @@ export default function AddCard() {
   };
 
   return (
-    <CardForm
-      title="Add Card"
-      handleSubmit={handleSubmit}
-      nameValue={name}
-      nameChangeHandler={(e) => setName(e)}
-      bankValue={bank}
-      bankChangeHandler={(e) => setBank(e)}
-      annualFeeValue={annualFee}
-      annualFeeChangeHandler={(e) => setAnnualFee(e)}
-      rewardTypesValue={rewardTypes}
-      handlePercentChange={handleRewardTypePercentChange}
-      handleRankChange={handleRewardTypeRankChange}
-    />
+    <>
+      <BackButton text="Dashboard" to="/cms" />
+      <CardForm
+        title="Add Card"
+        handleSubmit={handleSubmit}
+        nameValue={name}
+        nameChangeHandler={(e) => setName(e)}
+        bankValue={bank}
+        bankChangeHandler={(e) => setBank(e)}
+        annualFeeValue={annualFee}
+        annualFeeChangeHandler={(e) => setAnnualFee(e)}
+        rewardTypesValue={rewardTypes}
+        handlePercentChange={handleRewardTypePercentChange}
+        handleRankChange={handleRewardTypeRankChange}
+      />
+    </>
   );
 }

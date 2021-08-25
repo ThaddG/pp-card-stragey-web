@@ -6,6 +6,7 @@ export interface GuardedRouteProps {
   check: boolean;
   path: string;
   redirectTo?: string;
+  exact?: boolean;
 }
 
 const GuardedRoute: React.VFC<GuardedRouteProps> = ({

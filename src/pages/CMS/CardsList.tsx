@@ -4,6 +4,7 @@ import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 
 // custom components
 import CardListItem from '../../components/CMS/CardListItem';
+import BackButton from '../../components/BackButton';
 
 // redux
 import {
@@ -28,6 +29,7 @@ export default function CardsList() {
   }, []);
   return (
     <div className="cards-list-container">
+      <BackButton text="Dashboard" to="/cms" />
       <Typography variant="h2">Cards List</Typography>
       {!isLoaded(cards)
         ? 'Loading cards'
