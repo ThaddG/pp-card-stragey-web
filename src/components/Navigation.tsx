@@ -303,6 +303,7 @@ export default function Navigation() {
                       variant="contained"
                       color="primary"
                       className="mx-1"
+                      size="small"
                     >
                       Dashboard
                     </Button>
