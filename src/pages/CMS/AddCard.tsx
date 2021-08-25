@@ -9,7 +9,7 @@ import { addCard } from '../../redux/actions/cardActions';
 
 import { RewardTypeProps, RewardType } from '../../types';
 
-const initialRewardTypesState = {
+const initialRewardTypesState: RewardTypeProps = {
   Travel: {
     description: '',
     rank: 0,
@@ -34,6 +34,10 @@ const initialRewardTypesState = {
     description: '',
     rank: 0,
   },
+  Groceries: {
+    description: '',
+    rank: 0
+  }
 };
 
 export default function AddCard() {
@@ -103,6 +107,14 @@ export default function AddCard() {
             description: String(e.target.value),
           },
         });
+      case 'Groceries':
+        return setRewardTypes({
+          ...rewardTypes,
+          Groceries: {
+            ...rewardTypes.Groceries,
+            description: String(e.target.value),
+          },
+        });
       default:
         return;
     }
@@ -158,6 +170,14 @@ export default function AddCard() {
           ...rewardTypes,
           Gas: {
             ...rewardTypes.Gas,
+            rank: Number(e.target.value) as number,
+          },
+        });
+      case 'Groceries':
+        return setRewardTypes({
+          ...rewardTypes,
+          Groceries: {
+            ...rewardTypes.Groceries,
             rank: Number(e.target.value) as number,
           },
         });

@@ -360,6 +360,44 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
+
+
+                {/* GROCERIES */}
+                <Grid item xs={6}>
+                  <Typography variant="h5">Groceries</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <FormControl margin="dense" required={true} fullWidth>
+                  <InputLabel htmlFor="groceries-rank-input">Groceries Rank</InputLabel>
+                    <Input
+                      type="number"
+                      id="groceries-rank-input"
+                      placeholder="0%"
+                      value={rewardTypesValue.Groceries.rank}
+                      onChange={(e) =>
+                        handleRankChange(e, RewardTypeValues.GROCERIES)
+                      }
+                      required={true}
+                      inputProps={{ 'min': 0, 'max': 5 }}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl margin="dense" required={true} fullWidth>
+                    <TextField
+                      type="text"
+                      id="outlined-basic"
+                      label="Groceries Description"
+                      variant="outlined"
+                      placeholder="description"
+                      value={rewardTypesValue.Groceries.description}
+                      onChange={(e) =>
+                        handlePercentChange(e, RewardTypeValues.GROCERIES)
+                      }
+                      required={true}
+                    />
+                  </FormControl>
+                </Grid>
                 
               </Grid>
               <Button variant="contained" color="primary" type="submit">

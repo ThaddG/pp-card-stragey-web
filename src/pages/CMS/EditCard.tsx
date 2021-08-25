@@ -55,6 +55,10 @@ export default function EditCard() {
       description: '',
       rank: 0,
     },
+    Groceries: {
+      description: '',
+      rank: 0,
+    },
   });
 
   useEffect(() => {
@@ -124,6 +128,14 @@ export default function EditCard() {
             description: String(e.target.value),
           },
         });
+      case 'Groceries':
+        return setRewardTypes({
+          ...rewardTypes,
+          Groceries: {
+            ...rewardTypes.Groceries,
+            description: String(e.target.value),
+          },
+        });
       default:
         return;
     }
@@ -179,6 +191,14 @@ export default function EditCard() {
           ...rewardTypes,
           Gas: {
             ...rewardTypes.Gas,
+            rank: Number(e.target.value) as number,
+          },
+        });
+      case 'Groceries':
+        return setRewardTypes({
+          ...rewardTypes,
+          Groceries: {
+            ...rewardTypes.Groceries,
             rank: Number(e.target.value) as number,
           },
         });

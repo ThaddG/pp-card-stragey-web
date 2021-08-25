@@ -37,6 +37,10 @@ const initialState: InitialStateInterface = {
         description: '',
         rank: 0,
       },
+      Groceries: {
+        description: '',
+        rank: 0
+      }
     },
   } as CardProps,
 };

@@ -128,6 +128,10 @@ export const clearCard = () => (dispatch: React.Dispatch<CardAction>) => {
           description: '',
           rank: 0,
         },
+        Groceries: {
+          description: '',
+          rank: 0
+        }
       },
     },
   });

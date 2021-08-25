@@ -159,6 +159,10 @@ export type StackAction = GetAllStacksAction | GetStackAction;
  *
  *
  *==========================================================*/
+export interface RewardTypeAttributes {
+  description: string;
+  rank: number;
+}
 export enum RewardTypeValues {
   TRAVEL = 'Travel',
   FLIGHTS = 'Flights',
@@ -166,33 +170,17 @@ export enum RewardTypeValues {
   DINING = 'Dining',
   CASHBACK = 'Cashback',
   GAS = 'Gas',
+  GROCERIES = 'Groceries',
 }
 // TODO: add groceries
 export interface RewardTypeProps {
-  Travel: {
-    description: string;
-    rank: number;
-  };
-  Flights: {
-    description: string;
-    rank: number;
-  };
-  Hotels: {
-    description: string;
-    rank: number;
-  };
-  Dining: {
-    description: string;
-    rank: number;
-  };
-  Cashback: {
-    description: string;
-    rank: number;
-  };
-  Gas: {
-    description: string;
-    rank: number;
-  };
+  Travel: RewardTypeAttributes
+  Flights: RewardTypeAttributes
+  Hotels: RewardTypeAttributes
+  Dining: RewardTypeAttributes;
+  Cashback: RewardTypeAttributes;
+  Gas: RewardTypeAttributes;
+  Groceries: RewardTypeAttributes;
 }
 
 export type RewardType =
@@ -201,4 +189,5 @@ export type RewardType =
   | RewardTypeValues.HOTELS
   | RewardTypeValues.DINING
   | RewardTypeValues.GAS
-  | RewardTypeValues.CASHBACK;
+  | RewardTypeValues.CASHBACK
+  | RewardTypeValues.GROCERIES;
