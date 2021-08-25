@@ -254,7 +254,7 @@ export default function CardForm({
                 </Grid>
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
-                  <InputLabel htmlFor="dining-rank-input">Flights Rank</InputLabel>
+                  <InputLabel htmlFor="dining-rank-input">Dining Rank</InputLabel>
                     <Input
                       type="number"
                       id="dining-rank-input"
@@ -292,7 +292,7 @@ export default function CardForm({
                 </Grid>
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
-                  <InputLabel htmlFor="cashback-rank-input">Flights Rank</InputLabel>
+                  <InputLabel htmlFor="cashback-rank-input">Cashback Rank</InputLabel>
                     <Input
                       type="number"
                       id="cashback-rank-input"
@@ -330,10 +330,10 @@ export default function CardForm({
                 </Grid>
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
-                  <InputLabel htmlFor="flights-rank-input">Flights Rank</InputLabel>
+                  <InputLabel htmlFor="gas-rank-input">Gas Rank</InputLabel>
                     <Input
                       type="number"
-                      id="outlined-basic"
+                      id="gas-rank-input"
                       placeholder="0%"
                       value={rewardTypesValue.Gas.rank}
                       onChange={(e) =>
