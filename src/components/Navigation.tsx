@@ -158,7 +158,7 @@ export default function Navigation() {
         </Link>
       </MenuItem>
       {!firebase.auth.uid ? ( //signed out
-        <>
+        <div>
           <MenuItem>
             <Link to="/signup">
               <Button variant="contained" color="primary">
@@ -173,20 +173,31 @@ export default function Navigation() {
               </Button>
             </Link>
           </MenuItem>
-        </>
+        </div>
       ) : (
         // signed in
-        <MenuItem>
-          <Link to="/login">
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={() => dispatch(logout())}
-            >
-              Logout
-            </Button>
-          </Link>
-        </MenuItem>
+        <div>
+          {firebase.profile.role === 'owner' ? (
+            <MenuItem>
+              <Link to="/cms">
+                <Button variant="contained" color="primary">
+                  Dashboard
+                </Button>
+              </Link>
+            </MenuItem>
+          ) : null}
+          <MenuItem>
+            <Link to="/login">
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => dispatch(logout())}
+              >
+                Logout
+              </Button>
+            </Link>
+          </MenuItem>
+        </div>
       )}
     </Menu>
   );
@@ -260,8 +271,8 @@ export default function Navigation() {
                 Contact
               </Button>
             </Link>
-            {!firebase.auth.uid ? ( // signed in
-              <>
+            {!firebase.auth.uid ? ( // signed out
+              <div>
                 <Link to="/signup">
                   <Button
                     variant="contained"
@@ -282,17 +293,31 @@ export default function Navigation() {
                     Login
                   </Button>
                 </Link>
-              </>
+              </div>
             ) : (
-              <Button
-                className=""
-                variant="contained"
-                color="secondary"
-                size="small"
-                onClick={() => dispatch(logout())}
-              >
-                Logout
-              </Button>
+              // signed in
+              <div>
+                {firebase.profile.role === 'owner' ? (
+                  <Link to="/cms">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className="mx-1"
+                    >
+                      Dashboard
+                    </Button>
+                  </Link>
+                ) : null}
+                <Button
+                  className=""
+                  variant="contained"
+                  color="secondary"
+                  size="small"
+                  onClick={() => dispatch(logout())}
+                >
+                  Logout
+                </Button>
+              </div>
             )}
           </div>
           <div className={classes.sectionMobile}>
