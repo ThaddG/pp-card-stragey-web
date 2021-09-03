@@ -18,6 +18,7 @@ import Dashboard from './pages/CMS/Dashboard';
 import { useAppSelector as useSelector } from './hooks';
 
 import './App.css';
+import { isLoaded } from 'react-redux-firebase';
 
 function App() {
   const firebase = useSelector((state) => state.firebase);
@@ -39,30 +40,35 @@ function App() {
       />
       <Route path="/stacks/:id" component={Stack} />
       {/* CMS is for logged in user who have "owner" role */}
-      <GuardedRoute
-        exact path="/cms"
-        check={!!firebase.auth.uid}
-        redirectTo="/"
-        component={<Dashboard />}
-      />
-      <GuardedRoute
-        path="/cms/list"
-        check={!!firebase.auth.uid}
-        redirectTo="/"
-        component={<CardsList />}
-      />
-      <GuardedRoute
-        path="/cms/add"
-        check={!!firebase.auth.uid}
-        redirectTo="/"
-        component={<AddCard />}
-      />
-      <GuardedRoute
-        path="/cms/edit/:id"
-        check={!!firebase.auth.uid}
-        redirectTo="/"
-        component={<EditCard />}
-      />
+      {isLoaded(firebase.profile) ? (
+        <>
+          <GuardedRoute
+            exact
+            path="/cms"
+            check={firebase.profile.role === 'owner'}
+            redirectTo="/"
+            component={<Dashboard />}
+          />
+          <GuardedRoute
+            path="/cms/list"
+            check={firebase.profile.role === 'owner'}
+            redirectTo="/"
+            component={<CardsList />}
+          />
+          <GuardedRoute
+            path="/cms/add"
+            check={firebase.profile.role === 'owner'}
+            redirectTo="/"
+            component={<AddCard />}
+          />
+          <GuardedRoute
+            path="/cms/edit/:id"
+            check={firebase.profile.role === 'owner'}
+            redirectTo="/"
+            component={<EditCard />}
+          />
+        </>
+      ) : null}
       <Route exact path="/contact" component={Contact} />
     </Router>
   );
