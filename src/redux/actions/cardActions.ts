@@ -12,6 +12,7 @@ export const addCard =
   (
     name: string,
     bank: string,
+    businessOrPersonal: string,
     annualFee: number,
     rewardTypes: RewardTypeProps
   ) =>
@@ -21,6 +22,7 @@ export const addCard =
     const card: CardProps = {
       name,
       bank,
+      businessOrPersonal,
       annualFee,
       rewardTypes,
       createdAt: new Date(),
@@ -73,7 +75,7 @@ export const editCard =
   async (dispatch: React.Dispatch<CardAction>) => {
     const firestore = firebase.firestore();
 
-    const updatedCard = {...card, updatedAt: new Date() };
+    const updatedCard = { ...card, updatedAt: new Date() };
 
     firestore
       .collection('cards')
@@ -102,6 +104,7 @@ export const clearCard = () => (dispatch: React.Dispatch<CardAction>) => {
     payload: {
       name: '',
       bank: '',
+      businessOrPersonal: 'personal',
       annualFee: 0,
       rewardTypes: {
         Travel: {
@@ -130,8 +133,8 @@ export const clearCard = () => (dispatch: React.Dispatch<CardAction>) => {
         },
         Groceries: {
           description: '',
-          rank: 0
-        }
+          rank: 0,
+        },
       },
     },
   });
@@ -152,6 +155,7 @@ export const getCardById =
           id,
           name: c.name,
           bank: c.bank,
+          businessOrPersonal: c.businessOrPersonal,
           annualFee: c.annualFee,
           rewardTypes: c.rewardTypes,
         };

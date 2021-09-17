@@ -29,6 +29,8 @@ export default function EditCard() {
   const cardReducer = useSelector((state) => state.card);
   const [name, setName] = useState<string>('');
   const [bank, setBank] = useState<string>('');
+  const [businessOrPersonal, setBusinessOrPersonal] =
+    useState<string>('personal');
   const [annualFee, setAnnualFee] = useState<number>(0);
   const [rewardTypes, setRewardTypes] = useState<RewardTypeProps>({
     Travel: {
@@ -70,10 +72,17 @@ export default function EditCard() {
     if (isLoaded(cardReducer.current)) {
       setName(cardReducer.current.name);
       setBank(cardReducer.current.bank);
+      setBusinessOrPersonal(cardReducer.current.businessOrPersonal);
       setAnnualFee(cardReducer.current.annualFee);
       setRewardTypes(cardReducer.current.rewardTypes);
     }
   }, [cardReducer.current]);
+
+  const handleRadioButtonChange = (
+    e: React.FormEvent<HTMLInputElement>
+  ): void => {
+    setBusinessOrPersonal(e.currentTarget.value);
+  };
 
   const handleRewardTypePercentChange = (
     e: React.ChangeEvent<{ value: unknown }>,
@@ -211,6 +220,7 @@ export default function EditCard() {
     const cardPayload: EditedCardProps = {
       name,
       bank,
+      businessOrPersonal,
       annualFee,
       rewardTypes,
     };
@@ -218,6 +228,7 @@ export default function EditCard() {
     console.log('component:', rewardTypes);
     dispatch(editCard(id, cardPayload));
   };
+
   return (
     <CardForm
       title="Edit Card"
@@ -226,6 +237,8 @@ export default function EditCard() {
       nameChangeHandler={(e) => setName(e)}
       bankValue={isEmpty(cardReducer.current.name) ? 'loading bank ...' : bank}
       bankChangeHandler={(e) => setBank(e)}
+      businessOrPersonal={businessOrPersonal}
+      businessOrPersonalChangeHandler={handleRadioButtonChange}
       annualFeeValue={annualFee}
       annualFeeChangeHandler={(e) => setAnnualFee(e)}
       rewardTypesValue={rewardTypes}

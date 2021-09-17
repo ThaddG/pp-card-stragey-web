@@ -9,7 +9,11 @@ import {
   FormControl,
   Button,
   Input,
-  InputLabel
+  InputLabel,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormLabel,
 } from '@material-ui/core';
 
 // redux
@@ -19,8 +23,13 @@ import {
 } from '../../hooks';
 import { clearCardMessage } from '../../redux/actions/cardActions';
 
+// styles
+import '../../styles/components/CMS/CardForm.css';
+
 // types
 import { RewardTypeProps, RewardType, RewardTypeValues } from '../../types';
+type BusinessOrPersonal = 'business' | 'personal';
+
 
 interface Props {
   title: string;
@@ -29,6 +38,12 @@ interface Props {
   nameChangeHandler: React.Dispatch<React.SetStateAction<string>>;
   bankValue: string;
   bankChangeHandler: React.Dispatch<React.SetStateAction<string>>;
+
+
+  businessOrPersonal: string;
+  businessOrPersonalChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+
+
   annualFeeValue: number;
   annualFeeChangeHandler: React.Dispatch<React.SetStateAction<number>>;
   rewardTypesValue: RewardTypeProps;
@@ -52,6 +67,8 @@ export default function CardForm({
   nameChangeHandler,
   bankValue,
   bankChangeHandler,
+  businessOrPersonal,
+  businessOrPersonalChangeHandler,
   annualFeeValue,
   annualFeeChangeHandler,
   rewardTypesValue,
@@ -63,16 +80,9 @@ export default function CardForm({
   React.useEffect(() => {
     dispatch(clearCardMessage());
   }, []);
+
   return (
-    <div
-      style={{
-        width: '100vw',
-        minHeight: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <div className="card-form-container">
       <Grid
         container
         style={{
@@ -131,6 +141,34 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
+                {/* Personal or Business */}
+                <Grid item xs={12} className="mt-2">
+                  <FormControl>
+                    <FormLabel>
+                      Is this card for business or personal use?
+                    </FormLabel>
+                    <RadioGroup
+                      row
+                      aria-label="personal-business"
+                      defaultValue={businessOrPersonal}
+                      name="personal-business-radio-group"
+                      value={businessOrPersonal}
+                      onChange={businessOrPersonalChangeHandler}
+                    >
+                      <FormControlLabel
+                        value="personal"
+                        control={<Radio />}
+                        label="Personal"
+                      />
+                      <FormControlLabel
+                        value="business"
+                        control={<Radio />}
+                        label="Business"
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                </Grid>
+
                 {/* Reward Types */}
                 <Grid item xs={12} className="center-text my-4">
                   <Typography variant="h5">Reward Types</Typography>
@@ -142,7 +180,9 @@ export default function CardForm({
                 </Grid>
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
-                    <InputLabel htmlFor="travel-rank-input">Travel Rank</InputLabel>
+                    <InputLabel htmlFor="travel-rank-input">
+                      Travel Rank
+                    </InputLabel>
                     <Input
                       type="number"
                       id="travel-rank-input"
@@ -151,7 +191,7 @@ export default function CardForm({
                       onChange={(e) =>
                         handleRankChange(e, RewardTypeValues.TRAVEL)
                       }
-                      inputProps={{ 'min': 0, 'max': 5 }}
+                      inputProps={{ min: 0, max: 5 }}
                     />
                   </FormControl>
                 </Grid>
@@ -171,7 +211,6 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
-              
 
                 {/* FLIGHTS */}
                 <Grid item xs={6}>
@@ -179,7 +218,9 @@ export default function CardForm({
                 </Grid>
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
-                  <InputLabel htmlFor="flights-rank-input">Flights Rank</InputLabel>
+                    <InputLabel htmlFor="flights-rank-input">
+                      Flights Rank
+                    </InputLabel>
                     <Input
                       type="number"
                       id="flights-rank-input"
@@ -188,7 +229,7 @@ export default function CardForm({
                       onChange={(e) =>
                         handleRankChange(e, RewardTypeValues.FLIGHTS)
                       }
-                      inputProps={{ 'min': 0, 'max': 5 }}
+                      inputProps={{ min: 0, max: 5 }}
                     />
                   </FormControl>
                 </Grid>
@@ -208,7 +249,6 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
-                
 
                 {/* HOTELS */}
                 <Grid item xs={6}>
@@ -216,7 +256,9 @@ export default function CardForm({
                 </Grid>
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
-                  <InputLabel htmlFor="hotels-rank-input">Flights Rank</InputLabel>
+                    <InputLabel htmlFor="hotels-rank-input">
+                      Flights Rank
+                    </InputLabel>
                     <Input
                       type="number"
                       id="hotels-rank-input"
@@ -226,7 +268,7 @@ export default function CardForm({
                         handleRankChange(e, RewardTypeValues.HOTELS)
                       }
                       required={true}
-                      inputProps={{ 'min': 0, 'max': 5 }}
+                      inputProps={{ min: 0, max: 5 }}
                     />
                   </FormControl>
                 </Grid>
@@ -246,7 +288,6 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
-                
 
                 {/* DINING */}
                 <Grid item xs={6}>
@@ -254,7 +295,9 @@ export default function CardForm({
                 </Grid>
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
-                  <InputLabel htmlFor="dining-rank-input">Dining Rank</InputLabel>
+                    <InputLabel htmlFor="dining-rank-input">
+                      Dining Rank
+                    </InputLabel>
                     <Input
                       type="number"
                       id="dining-rank-input"
@@ -264,7 +307,7 @@ export default function CardForm({
                         handleRankChange(e, RewardTypeValues.DINING)
                       }
                       required={true}
-                      inputProps={{ 'min': 0, 'max': 5 }}
+                      inputProps={{ min: 0, max: 5 }}
                     />
                   </FormControl>
                 </Grid>
@@ -284,7 +327,6 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
-                
 
                 {/* CASHBACK */}
                 <Grid item xs={6}>
@@ -292,7 +334,9 @@ export default function CardForm({
                 </Grid>
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
-                  <InputLabel htmlFor="cashback-rank-input">Cashback Rank</InputLabel>
+                    <InputLabel htmlFor="cashback-rank-input">
+                      Cashback Rank
+                    </InputLabel>
                     <Input
                       type="number"
                       id="cashback-rank-input"
@@ -302,7 +346,7 @@ export default function CardForm({
                         handleRankChange(e, RewardTypeValues.CASHBACK)
                       }
                       required={true}
-                      inputProps={{ 'min': 0, 'max': 5 }}
+                      inputProps={{ min: 0, max: 5 }}
                     />
                   </FormControl>
                 </Grid>
@@ -322,7 +366,6 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
-                
 
                 {/* GAS */}
                 <Grid item xs={6}>
@@ -330,7 +373,7 @@ export default function CardForm({
                 </Grid>
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
-                  <InputLabel htmlFor="gas-rank-input">Gas Rank</InputLabel>
+                    <InputLabel htmlFor="gas-rank-input">Gas Rank</InputLabel>
                     <Input
                       type="number"
                       id="gas-rank-input"
@@ -340,7 +383,7 @@ export default function CardForm({
                         handleRankChange(e, RewardTypeValues.GAS)
                       }
                       required={true}
-                      inputProps={{ 'min': 0, 'max': 5 }}
+                      inputProps={{ min: 0, max: 5 }}
                     />
                   </FormControl>
                 </Grid>
@@ -361,14 +404,15 @@ export default function CardForm({
                   </FormControl>
                 </Grid>
 
-
                 {/* GROCERIES */}
                 <Grid item xs={6}>
                   <Typography variant="h5">Groceries</Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <FormControl margin="dense" required={true} fullWidth>
-                  <InputLabel htmlFor="groceries-rank-input">Groceries Rank</InputLabel>
+                    <InputLabel htmlFor="groceries-rank-input">
+                      Groceries Rank
+                    </InputLabel>
                     <Input
                       type="number"
                       id="groceries-rank-input"
@@ -378,7 +422,7 @@ export default function CardForm({
                         handleRankChange(e, RewardTypeValues.GROCERIES)
                       }
                       required={true}
-                      inputProps={{ 'min': 0, 'max': 5 }}
+                      inputProps={{ min: 0, max: 5 }}
                     />
                   </FormControl>
                 </Grid>
@@ -398,7 +442,6 @@ export default function CardForm({
                     />
                   </FormControl>
                 </Grid>
-                
               </Grid>
               <Button variant="contained" color="primary" type="submit">
                 Submit

@@ -45,6 +45,8 @@ export default function AddCard() {
   const dispatch = useDispatch();
   const [name, setName] = useState<string>('');
   const [bank, setBank] = useState<string>('');
+  const [businessOrPersonal, setBusinessOrPersonal] =
+    useState<string>('personal');
   const [annualFee, setAnnualFee] = useState<number>(0);
   const [rewardTypes, setRewardTypes] = useState<RewardTypeProps>(
     initialRewardTypesState
@@ -55,6 +57,12 @@ export default function AddCard() {
     setBank('');
     setAnnualFee(0);
     setRewardTypes(initialRewardTypesState);
+  };
+
+  const handleRadioButtonChange = (
+    e: React.FormEvent<HTMLInputElement>
+  ): void => {
+    setBusinessOrPersonal(e.currentTarget.value);
   };
 
   const handleRewardTypePercentChange = (
@@ -192,7 +200,7 @@ export default function AddCard() {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     console.log('component:', rewardTypes);
-    dispatch(addCard(name, bank, annualFee, rewardTypes));
+    dispatch(addCard(name, bank, businessOrPersonal, annualFee, rewardTypes));
     resetFields();
   };
 
@@ -206,6 +214,8 @@ export default function AddCard() {
         nameChangeHandler={(e) => setName(e)}
         bankValue={bank}
         bankChangeHandler={(e) => setBank(e)}
+        businessOrPersonal={businessOrPersonal}
+        businessOrPersonalChangeHandler={handleRadioButtonChange}
         annualFeeValue={annualFee}
         annualFeeChangeHandler={(e) => setAnnualFee(e)}
         rewardTypesValue={rewardTypes}

@@ -13,6 +13,7 @@ export interface CardProps {
   bank: string;
   annualFee: number;
   rewardTypes: RewardTypeProps;
+  businessOrPersonal: string; //either "business" or "personal"
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -20,6 +21,7 @@ export interface EditedCardProps {
   id?: string;
   name?: string;
   bank?: string;
+  businessOrPersonal?: string;
   annualFee?: number;
   rewardTypes?: RewardTypeProps;
 }
@@ -174,9 +176,9 @@ export enum RewardTypeValues {
 }
 // TODO: add groceries
 export interface RewardTypeProps {
-  Travel: RewardTypeAttributes
-  Flights: RewardTypeAttributes
-  Hotels: RewardTypeAttributes
+  Travel: RewardTypeAttributes;
+  Flights: RewardTypeAttributes;
+  Hotels: RewardTypeAttributes;
   Dining: RewardTypeAttributes;
   Cashback: RewardTypeAttributes;
   Gas: RewardTypeAttributes;
