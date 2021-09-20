@@ -51,7 +51,7 @@ export default function AddCard() {
   const [rewardTypes, setRewardTypes] = useState<RewardTypeProps>(
     initialRewardTypesState
   );
-  const [cardImage, setCardImage] = useState<File | null>(null);
+  const [cardImage, setCardImage] = useState<string>('');
 
   const resetFields = () => {
     setName('');
@@ -60,9 +60,9 @@ export default function AddCard() {
     setRewardTypes(initialRewardTypesState);
   };
 
-  const handleImageChange = (e: React.FormEvent<HTMLInputElement>) => {
-    if (e.currentTarget.files) setCardImage(e.currentTarget.files[0]);
-  };
+  // const handleImageChange = (e: React.FormEvent<HTMLInputElement>) => {
+  //   if (e.currentTarget.files) setCardImage(e.currentTarget.files[0]);
+  // };
 
   const handleRadioButtonChange = (
     e: React.FormEvent<HTMLInputElement>
@@ -205,7 +205,9 @@ export default function AddCard() {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     console.log('component:', rewardTypes);
-    dispatch(addCard(name, bank, businessOrPersonal, annualFee, rewardTypes));
+    dispatch(
+      addCard(name, bank, businessOrPersonal, annualFee, rewardTypes, cardImage)
+    );
     resetFields();
   };
 
@@ -226,7 +228,8 @@ export default function AddCard() {
         rewardTypesValue={rewardTypes}
         handlePercentChange={handleRewardTypePercentChange}
         handleRankChange={handleRewardTypeRankChange}
-        cardImageChangeHandler={handleImageChange}
+        cardImageUrl={cardImage}
+        cardImageChangeHandler={setCardImage}
       />
     </>
   );

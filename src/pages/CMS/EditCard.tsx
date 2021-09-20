@@ -62,7 +62,7 @@ export default function EditCard() {
       rank: 0,
     },
   });
-  const [cardImage, setCardImage] = useState<File | null>(null);
+  const [cardImage, setCardImage] = useState<string>('');
 
   useEffect(() => {
     dispatch(clearCard());
@@ -76,13 +76,9 @@ export default function EditCard() {
       setBusinessOrPersonal(cardReducer.current.businessOrPersonal);
       setAnnualFee(cardReducer.current.annualFee);
       setRewardTypes(cardReducer.current.rewardTypes);
+      setCardImage(cardReducer.current.image)
     }
   }, [cardReducer.current]);
-
-
-  const handleImageChange = (e: React.FormEvent<HTMLInputElement>) => {
-    if (e.currentTarget.files) setCardImage(e.currentTarget.files[0]);
-  }
 
   const handleRadioButtonChange = (
     e: React.FormEvent<HTMLInputElement>
@@ -229,6 +225,7 @@ export default function EditCard() {
       businessOrPersonal,
       annualFee,
       rewardTypes,
+      image: cardImage
     };
     e.preventDefault();
     console.log('component:', rewardTypes);
@@ -253,7 +250,8 @@ export default function EditCard() {
       rewardTypesValue={rewardTypes}
       handlePercentChange={handleRewardTypePercentChange}
       handleRankChange={handleRewardTypeRankChange}
-      cardImageChangeHandler={handleImageChange}
+      cardImageUrl={cardImage}
+      cardImageChangeHandler={setCardImage}
     />
   );
 }

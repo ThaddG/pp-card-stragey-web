@@ -58,7 +58,8 @@ interface Props {
     type: RewardType
   ) => void;
 
-  cardImageChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  cardImageUrl: string;
+  cardImageChangeHandler: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function CardForm({
@@ -75,7 +76,8 @@ export default function CardForm({
   rewardTypesValue,
   handlePercentChange,
   handleRankChange,
-  cardImageChangeHandler
+  cardImageUrl,
+  cardImageChangeHandler,
 }: Props) {
   const dispatch = useDispatch();
   const cardReducer = useSelector((state) => state.card);
@@ -445,15 +447,28 @@ export default function CardForm({
                   </FormControl>
                 </Grid>
               </Grid>
-              <div className="mt-2">
-                <input
-                  id="contained-button-file"
-                  name="card-image-input"
-                  type="file"
-                  accept=".jpg, .png, .webp"
-                  onChange={cardImageChangeHandler}
-                />
-              </div>
+              {/* CARD IMAGE */}
+              <Grid item xs={12}>
+                <FormControl margin="dense" required={true} fullWidth>
+                  <TextField
+                    id="outlined-basic"
+                    label="Image"
+                    variant="outlined"
+                    placeholder="https://"
+                    value={cardImageUrl}
+                    onChange={(e) => cardImageChangeHandler(e.target.value)}
+                    required={true}
+                  />
+                </FormControl>
+                {cardImageUrl ? (
+                  <img
+                    src={cardImageUrl}
+                    width="200"
+                    height="auto"
+                    alt="card-preview"
+                  />
+                ) : null}
+              </Grid>
               <br />
               <Button variant="contained" color="primary" type="submit">
                 Submit

@@ -14,7 +14,8 @@ export const addCard =
     bank: string,
     businessOrPersonal: string,
     annualFee: number,
-    rewardTypes: RewardTypeProps
+    rewardTypes: RewardTypeProps,
+    cardImage: string
   ) =>
   async (dispatch: React.Dispatch<CardAction>) => {
     const firestore = firebase.firestore();
@@ -25,6 +26,7 @@ export const addCard =
       businessOrPersonal,
       annualFee,
       rewardTypes,
+      image: cardImage,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -136,6 +138,7 @@ export const clearCard = () => (dispatch: React.Dispatch<CardAction>) => {
           rank: 0,
         },
       },
+      image: ''
     },
   });
 };
@@ -158,6 +161,7 @@ export const getCardById =
           businessOrPersonal: c.businessOrPersonal,
           annualFee: c.annualFee,
           rewardTypes: c.rewardTypes,
+          image: c.image
         };
         dispatch({ type: CardActionTypes.GET_CARD, payload: typedCard });
       }

@@ -14,6 +14,7 @@ export interface CardProps {
   annualFee: number;
   rewardTypes: RewardTypeProps;
   businessOrPersonal: string; //either "business" or "personal"
+  image: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -24,6 +25,7 @@ export interface EditedCardProps {
   businessOrPersonal?: string;
   annualFee?: number;
   rewardTypes?: RewardTypeProps;
+  image?: string;
 }
 
 export interface StackProps {
