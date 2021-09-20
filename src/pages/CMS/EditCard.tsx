@@ -62,6 +62,7 @@ export default function EditCard() {
       rank: 0,
     },
   });
+  const [cardImage, setCardImage] = useState<File | null>(null);
 
   useEffect(() => {
     dispatch(clearCard());
@@ -77,6 +78,11 @@ export default function EditCard() {
       setRewardTypes(cardReducer.current.rewardTypes);
     }
   }, [cardReducer.current]);
+
+
+  const handleImageChange = (e: React.FormEvent<HTMLInputElement>) => {
+    if (e.currentTarget.files) setCardImage(e.currentTarget.files[0]);
+  }
 
   const handleRadioButtonChange = (
     e: React.FormEvent<HTMLInputElement>
@@ -229,6 +235,9 @@ export default function EditCard() {
     dispatch(editCard(id, cardPayload));
   };
 
+
+  console.log("CARD IMAGE:", cardImage);
+
   return (
     <CardForm
       title="Edit Card"
@@ -244,6 +253,7 @@ export default function EditCard() {
       rewardTypesValue={rewardTypes}
       handlePercentChange={handleRewardTypePercentChange}
       handleRankChange={handleRewardTypeRankChange}
+      cardImageChangeHandler={handleImageChange}
     />
   );
 }

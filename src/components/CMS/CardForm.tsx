@@ -30,7 +30,6 @@ import '../../styles/components/CMS/CardForm.css';
 import { RewardTypeProps, RewardType, RewardTypeValues } from '../../types';
 type BusinessOrPersonal = 'business' | 'personal';
 
-
 interface Props {
   title: string;
   handleSubmit: (e: React.SyntheticEvent) => void;
@@ -39,10 +38,10 @@ interface Props {
   bankValue: string;
   bankChangeHandler: React.Dispatch<React.SetStateAction<string>>;
 
-
   businessOrPersonal: string;
-  businessOrPersonalChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-
+  businessOrPersonalChangeHandler: (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => void;
 
   annualFeeValue: number;
   annualFeeChangeHandler: React.Dispatch<React.SetStateAction<number>>;
@@ -58,6 +57,8 @@ interface Props {
     e: React.ChangeEvent<{ value: unknown }>,
     type: RewardType
   ) => void;
+
+  cardImageChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function CardForm({
@@ -74,6 +75,7 @@ export default function CardForm({
   rewardTypesValue,
   handlePercentChange,
   handleRankChange,
+  cardImageChangeHandler
 }: Props) {
   const dispatch = useDispatch();
   const cardReducer = useSelector((state) => state.card);
@@ -443,6 +445,16 @@ export default function CardForm({
                   </FormControl>
                 </Grid>
               </Grid>
+              <div className="mt-2">
+                <input
+                  id="contained-button-file"
+                  name="card-image-input"
+                  type="file"
+                  accept=".jpg, .png, .webp"
+                  onChange={cardImageChangeHandler}
+                />
+              </div>
+              <br />
               <Button variant="contained" color="primary" type="submit">
                 Submit
               </Button>
