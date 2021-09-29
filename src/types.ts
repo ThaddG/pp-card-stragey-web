@@ -28,10 +28,18 @@ export interface EditedCardProps {
   image?: string;
 }
 
+export interface StackOwnerProps {
+  id: string;
+  username: string;
+}
 export interface StackProps {
   id: string;
   title: string;
   description: string;
+  owner: StackOwnerProps;
+  cards: CardProps[];
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export enum AuthActionTypes {
@@ -57,6 +65,8 @@ export enum CardActionTypes {
 export enum StackActionTypes {
   GET_STACK = 'GET_STACK',
   GET_ALL_STACKS = 'GET_ALL_STACKS',
+  STACK_ERROR = 'STACK_ERROR',
+  CLEAR_STACK_MESSAGE = 'CLEAR_STACK_MESSAGE'
 }
 
 /**
@@ -135,6 +145,10 @@ interface GetStackAction {
   type: typeof StackActionTypes.GET_STACK;
   payload: StackProps;
 }
+interface StackErrorAction {
+  type: typeof StackActionTypes.STACK_ERROR;
+  payload: string;
+}
 
 export type AuthAction =
   | SignupAction
@@ -154,7 +168,10 @@ export type CardAction =
   | CardErrorAction
   | ClearCardMessageAction;
 
-export type StackAction = GetAllStacksAction | GetStackAction;
+export type StackAction =
+  | GetAllStacksAction
+  | GetStackAction
+  | StackErrorAction;
 
 /**===========================================================
  *

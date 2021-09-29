@@ -5,10 +5,12 @@ import { getFirebase, firebaseReducer } from 'react-redux-firebase';
 import { createFirestoreInstance, firestoreReducer } from 'redux-firestore';
 import { authReducer } from './reducers/authReducer';
 import { cardReducer } from './reducers/cardReducer';
+import { stackReducer } from './reducers/stackReducer';
 
 const rootReducer = combineReducers({
   card: cardReducer,
   auth: authReducer,
+  stack: stackReducer,
   firestore: firestoreReducer,
   firebase: firebaseReducer,
 });

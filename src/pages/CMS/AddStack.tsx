@@ -1,6 +1,6 @@
-import React from 'react';
-import { Typography } from '@material-ui/core';
+import React from 'react'
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
+import Paper from '@material-ui/core/Paper';
 
 // custom components
 import CardListItem from '../../components/CMS/CardListItem';
@@ -13,30 +13,33 @@ import {
 } from '../../hooks';
 import { clearCardMessage } from '../../redux/actions/cardActions';
 
-// styles
-import '../../styles/pages/CardsList.css';
-
 // types
 import { CardProps } from '../../types';
 
-export default function CardsList() {
+export default function AddStack() {
   useFirestoreConnect([{ collection: 'cards' }]);
   const dispatch = useDispatch();
   const cards = useSelector((state) => state.firestore.ordered.cards);
   const cardReducer = useSelector((state) => state.card);
+
   React.useEffect(() => {
     dispatch(clearCardMessage());
   }, []);
+
   return (
-    <div className="cards-list-container">
-      <BackButton text="Dashboard" to="/cms" />
-      <Typography variant="h2">Cards List</Typography>
-      {!isLoaded(cards)
-        ? 'Loading cards'
-        : isEmpty(cards)
-        ? 'Cards is empty'
-        : cards.map((card: CardProps) => <CardListItem card={card} />)}
-      <p style={{ fontWeight: 'bold' }}>{cardReducer.cardMessage || null}</p>
+    <div>
+      {
+        isLoaded(cards) // if it's loaded
+          ? isEmpty(cards) // if it's loaded and the database is empty
+            ? <p>There are no cards</p>
+            : cards.map((card: CardProps) => (
+              <Paper elevation={6} style={{margin: '10px 10px', padding: "20px 10px"}}>
+                
+                {card.name}
+              </Paper>
+            )) // if it's loaded and the database is not empty
+          : <p>Loading...</p> // if it's not yet loaded (waiting for data)
+      }
     </div>
-  );
+  )
 }

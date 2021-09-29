@@ -5,17 +5,16 @@ interface InitialStateInterface {
   current: StackProps;
 }
 
-const initialState: InitialStateInterface = {
-  all: [],
-  current: {} as StackProps
-};
+const initialState: any = {};
 
 export const stackReducer = (state = initialState, action: StackAction) => {
   switch (action.type) {
     case 'GET_ALL_STACKS':
       return { ...state, all: action.payload };
     case 'GET_STACK':
-      return { ...state, current: action.payload };
+      return { ...state, ...action.payload };
+    case 'STACK_ERROR':
+      return { ...state, stackError: action.payload };
     default:
       return state;
   }
