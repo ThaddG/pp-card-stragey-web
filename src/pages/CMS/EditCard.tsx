@@ -4,6 +4,7 @@ import { isLoaded, isEmpty } from 'react-redux-firebase';
 
 // custom components
 import CardForm from '../../components/CMS/CardForm';
+import BackButton from '../../components/BackButton';
 
 // redux
 import {
@@ -236,6 +237,8 @@ export default function EditCard() {
   console.log("CARD IMAGE:", cardImage);
 
   return (
+    <>
+    <BackButton text="Dashboard" to="/cms" />
     <CardForm
       title="Edit Card"
       handleSubmit={handleSubmit}
@@ -253,5 +256,6 @@ export default function EditCard() {
       cardImageUrl={cardImage}
       cardImageChangeHandler={setCardImage}
     />
+    </>
   );
 }
