@@ -21,7 +21,7 @@ import {
 } from '../hooks';
 import { signup, clearAuthMessage } from '../redux/actions/authActions';
 
-// css
+// styles
 import '../styles/pages/Login.css';
 
 export default function Signup() {
