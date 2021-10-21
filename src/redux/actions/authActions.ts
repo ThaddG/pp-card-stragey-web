@@ -33,7 +33,8 @@ export const signup =
         await firestore.collection('users').doc(res.user.uid).set(user);
         dispatch({ type: AuthActionTypes.SIGNUP });
       }
-    } catch (err) {
+    } 
+    catch (err) {
       console.log('error:', err);
       dispatch({ type: AuthActionTypes.AUTH_ERROR, payload: err.message });
     }
