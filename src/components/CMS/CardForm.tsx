@@ -28,7 +28,6 @@ import '../../styles/components/CMS/CardForm.css';
 
 // types
 import { RewardTypeProps, RewardType, RewardTypeValues } from '../../types';
-type BusinessOrPersonal = 'business' | 'personal';
 
 interface Props {
   title: string;
