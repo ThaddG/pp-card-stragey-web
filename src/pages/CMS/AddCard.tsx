@@ -58,6 +58,7 @@ export default function AddCard() {
     setBank('');
     setAnnualFee(0);
     setRewardTypes(initialRewardTypesState);
+    setCardImage('');
   };
 
   // const handleImageChange = (e: React.FormEvent<HTMLInputElement>) => {

@@ -14,7 +14,7 @@ import {
 import { clearCardMessage } from '../../redux/actions/cardActions';
 
 // styles
-import '../../styles/pages/CardsList.css';
+import '../../styles/pages/CMS/CardsList.css';
 
 // types
 import { CardProps } from '../../types';
@@ -34,7 +34,7 @@ export default function CardsList() {
       {!isLoaded(cards)
         ? 'Loading cards'
         : isEmpty(cards)
-        ? 'Cards is empty'
+        ? 'There are no cards'
         : cards.map((card: CardProps) => <CardListItem card={card} />)}
       <p style={{ fontWeight: 'bold' }}>{cardReducer.cardMessage || null}</p>
     </div>

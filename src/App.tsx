@@ -13,7 +13,11 @@ import AddCard from './pages/CMS/AddCard';
 import CardsList from './pages/CMS/CardsList';
 import EditCard from './pages/CMS/EditCard';
 import Dashboard from './pages/CMS/Dashboard';
+<<<<<<< HEAD
 import AddStack from './pages/CMS/AddStack';
+=======
+import CreateStack from './pages/CMS/CreateStack';
+>>>>>>> 2dba308a468204bcda5eacefeb50eee20c9387ba
 
 // redux
 import { useAppSelector as useSelector } from './hooks';
@@ -68,11 +72,20 @@ function App() {
             redirectTo="/"
             component={<EditCard />}
           />
+<<<<<<< HEAD
           <GuardedRoute
             path="/cms/stack/add"
             check={firebase.profile.role === 'owner'}
             redirectTo="/"
             component={<AddStack />}
+=======
+          {/* TODO: remove this later */}
+          <GuardedRoute
+            path="/cms/stack/create"
+            check={firebase.profile.role === 'owner'}
+            redirectTo="/"
+            component={<CreateStack />}
+>>>>>>> 2dba308a468204bcda5eacefeb50eee20c9387ba
           />
         </>
       ) : null}

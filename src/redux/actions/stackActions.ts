@@ -2,6 +2,11 @@ import React from 'react';
 import { StackAction, StackActionTypes, StackProps } from '../../types';
 import firebase from '../../firebase';
 
+<<<<<<< HEAD
+=======
+// useless comment
+
+>>>>>>> 2dba308a468204bcda5eacefeb50eee20c9387ba
 const getAllStacks = () => async (dispatch: React.Dispatch<StackAction>) => {
   const firestore = firebase.firestore();
 
