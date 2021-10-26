@@ -17,7 +17,7 @@ import { clearCardMessage } from '../../redux/actions/cardActions';
 import { CardProps } from '../../types';
 
 // styles
-import '../../styles/pages/CardsList.css';
+import '../../styles/pages/CMS/CardsList.css';
 
 export default function CardsList() {
   useFirestoreConnect([{ collection: 'cards' }]);
@@ -34,7 +34,7 @@ export default function CardsList() {
       {!isLoaded(cards)
         ? 'Loading cards'
         : isEmpty(cards)
-        ? 'Cards is empty'
+        ? 'There are no cards'
         : cards.map((card: CardProps) => <CardListItem card={card} />)}
       <p style={{ fontWeight: 'bold' }}>{cardReducer.cardMessage || null}</p>
     </div>
