@@ -34,8 +34,8 @@ export const PreviewAndCardDisplayContainer = styled.div`
   align-self: center;
 
   width: 98vw;
-  background-color: skyblue;
-`
+  `
+  // background-color: skyblue;
             /**
              * --------------------------------------
              *            STACK PREVIEW
@@ -55,6 +55,8 @@ export const CardsDisplay = styled.div`
   flex-basis: 25%;
 
   padding: .75rem;
+  height: 600px;
+  overflow-y: scroll;
 `
 
 

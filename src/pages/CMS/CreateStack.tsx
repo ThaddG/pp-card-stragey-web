@@ -39,6 +39,7 @@ export default function CreateStack() {
         <StackPreview>this is the stack preview</StackPreview>
 
         <CardsDisplay>
+          <h2>Cards</h2>
           {!isLoaded(cards)
             ? 'Loading cards'
             : isEmpty(cards)
