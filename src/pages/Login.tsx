@@ -21,7 +21,7 @@ import {
 } from '../hooks';
 import { login, clearAuthMessage } from '../redux/actions/authActions';
 
-// css
+// styles
 import '../styles/pages/Login.css';
 const paperStyle = {
   padding: 20,
@@ -36,7 +36,9 @@ export default function Login() {
   const [password, setPassword] = React.useState('');
 
   // clear auth message on component load
-  useEffect(() => {dispatch(clearAuthMessage())}, []);
+  useEffect(() => {
+    dispatch(clearAuthMessage());
+  }, []);
 
   function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
@@ -90,6 +92,18 @@ export default function Login() {
                   required
                 />
               </FormControl>
+              <Link to="/login/forgotpassword" style={{textDecoration: 'none'}}>
+                <Typography
+                  style={{
+                    cursor: 'pointer',
+                    width: 'fit-content',
+                    color: '#0075C4',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Forgot Password?
+                </Typography>
+              </Link>
             </Grid>
             <Grid style={{ textAlign: 'center' }} item xs={12}>
               <FormControl margin="dense" fullWidth>

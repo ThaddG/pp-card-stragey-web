@@ -13,6 +13,7 @@ import AddCard from './pages/CMS/AddCard';
 import CardsList from './pages/CMS/CardsList';
 import EditCard from './pages/CMS/EditCard';
 import Dashboard from './pages/CMS/Dashboard';
+import PasswordResetRequest from './pages/PasswordResetRequest';
 
 // redux
 import { useAppSelector as useSelector } from './hooks';
@@ -27,6 +28,7 @@ function App() {
     <Router>
       <Route exact path="/" component={Home} />
       <GuardedRoute
+        exact
         path="/login"
         check={!firebase.auth.uid}
         component={<Login />}
@@ -36,6 +38,12 @@ function App() {
         path="/signup"
         check={!firebase.auth.uid}
         component={<Signup />}
+        redirectTo="/"
+      />
+      <GuardedRoute
+        path="/login/forgotpassword"
+        check={!firebase.auth.uid}
+        component={<PasswordResetRequest />}
         redirectTo="/"
       />
       <Route path="/stacks/:id" component={Stack} />
