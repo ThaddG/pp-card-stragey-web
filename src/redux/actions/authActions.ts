@@ -33,8 +33,7 @@ export const signup =
         await firestore.collection('users').doc(res.user.uid).set(user);
         dispatch({ type: AuthActionTypes.SIGNUP });
       }
-    } 
-    catch (err) {
+    } catch (err) {
       console.log('error:', err);
       dispatch({ type: AuthActionTypes.AUTH_ERROR, payload: err.message });
     }
@@ -66,21 +65,23 @@ export const logout = () => (dispatch: React.Dispatch<AuthAction>) => {
 };
 
 export const sendPasswordResetEmail =
-  (email: string) => async (dispatch: React.Dispatch<AuthAction>) => {
+  (email: string, next: () => void) =>
+  async (dispatch: React.Dispatch<AuthAction>) => {
     firebase
       .auth()
       .sendPasswordResetEmail(email)
-      .then(() =>
+      .then(() => {
         dispatch({
           type: AuthActionTypes.SEND_EMAIL,
           payload: 'Password reset email sent.',
-        })
-      )
+        });
+        if (next) next();
+      })
       .catch((err) => {
         console.log('password reset err:', err);
         dispatch({
           type: AuthActionTypes.AUTH_ERROR,
-          payload: 'Error sending password reset email',
+          payload: err.message,
         });
       });
   };
