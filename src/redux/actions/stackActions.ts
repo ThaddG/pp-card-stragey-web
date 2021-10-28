@@ -73,7 +73,7 @@ export const addStack = (stack: StackProps) => (dispatch: React.Dispatch<StackAc
   };
   firestore
     .collection('stacks')
-    .add(stack)
+    .add(payload)
     .then(() => {
       dispatch({
         type: StackActionTypes.ADD_STACK,
