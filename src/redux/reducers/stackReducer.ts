@@ -5,7 +5,19 @@ interface InitialStateInterface {
   current: StackProps;
 }
 
-const initialState: any = {};
+const initialState: InitialStateInterface = {
+  all: [],
+  current: {
+    id: '',
+    title: '',
+    description: '',
+    cards: [],
+    owner: {
+      id: '',
+      username: ''
+    }
+  }
+};
 
 export const stackReducer = (state = initialState, action: StackAction) => {
   switch (action.type) {

@@ -10,6 +10,7 @@ import {
   useAppDispatch as useDispatch,
   useAppSelector as useSelector,
 } from '../../hooks';
+import { addCardToStack } from '../../redux/actions/stackActions';
 
 // types
 import { CardProps } from '../../types';
@@ -26,25 +27,48 @@ import {
 export default function CreateStack() {
   useFirestoreConnect([{ collection: 'cards' }]);
   const cards = useSelector((state) => state.firestore.ordered.cards);
-  const cardReducer = useSelector((state) => state.card);
+
   const dispatch = useDispatch();
+  const cardReducer = useSelector((state) => state.card);
+  const { current } = useSelector((state) => state.stack);
+
+  function addToStack(card: CardProps) {
+    dispatch(addCardToStack(card));
+  }
+  function removeFromStack(card: CardProps) {
+
+  }
 
   return (
     <CreateStackLayout>
       <Header>
-        <h2>Create stack testing page</h2>
+        Create stack testing page
       </Header>
 
       <PreviewAndCardDisplayContainer>
-        <StackPreview>this is the stack preview</StackPreview>
-
+        <StackPreview>this is the stack preview
+          {current.cards.map((card: CardProps) => (
+            <div key={card.id}>{card.name}</div>
+          ))}
+        </StackPreview>
         <CardsDisplay>
           <h2>Cards</h2>
           {!isLoaded(cards)
             ? 'Loading cards'
             : isEmpty(cards)
             ? 'There are no cards'
-            : cards.map((card: CardProps) => <CardDisplayItem card={card} />)}
+            : cards.map((card: CardProps) => (
+                <CardDisplayItem
+                  key={card.id}
+                  card={card}
+                  click={
+                    current.cards.includes(card)
+                    ? () => removeFromStack(card)
+                    : () => addToStack(card)
+                  }
+                  isInStack={current.cards.includes(card)}
+                />
+              ))}
         </CardsDisplay>
       </PreviewAndCardDisplayContainer>
     </CreateStackLayout>

@@ -10,11 +10,17 @@ import { CardContainer } from '../../styles/components/CMS/CardDisplayItemStyles
 
 interface Props {
   card: CardProps;
+  click:() => void;
+  isInStack: boolean;
 }
 
-export default function CardDisplayItem({ card }: Props) {
-  return <CardContainer elevation={4}>
+export default function CardDisplayItem({ card, click, isInStack }: Props) {
+  return <CardContainer elevation={4} onClick={click}>
     {card.name}
-    <CheckBoxOutlineBlankIcon></CheckBoxOutlineBlankIcon>
+    {isInStack
+      ? <CheckBoxIcon></CheckBoxIcon>
+      : <CheckBoxOutlineBlankIcon></CheckBoxOutlineBlankIcon>
+    }
+   
   </CardContainer>;
 }
