@@ -67,7 +67,8 @@ export enum StackActionTypes {
   GET_ALL_STACKS = 'GET_ALL_STACKS',
   STACK_ERROR = 'STACK_ERROR',
   CLEAR_STACK_MESSAGE = 'CLEAR_STACK_MESSAGE',
-  ADD_CARD_TO_STACK = 'ADD_CARD_TO_STACK'
+  ADD_CARD_TO_STACK = 'ADD_CARD_TO_STACK',
+  REMOVE_CARD_FROM_STACK = 'REMOVE_CARD_FROM_STACK',
 }
 
 /**
@@ -154,6 +155,10 @@ interface AddCardToStackAction {
   type: typeof StackActionTypes.ADD_CARD_TO_STACK,
   payload: CardProps
 }
+interface RemoveCardFromStackAction {
+  type: typeof StackActionTypes.REMOVE_CARD_FROM_STACK,
+  payload: CardProps
+}
 
 export type AuthAction =
   | SignupAction
@@ -177,7 +182,8 @@ export type StackAction =
   | GetAllStacksAction
   | GetStackAction
   | StackErrorAction
-  | AddCardToStackAction;
+  | AddCardToStackAction
+  | RemoveCardFromStackAction;
 
 /**===========================================================
  *

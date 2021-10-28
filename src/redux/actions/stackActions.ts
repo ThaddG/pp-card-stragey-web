@@ -1,5 +1,10 @@
 import React from 'react';
-import { StackAction, StackActionTypes, StackProps, CardProps } from '../../types';
+import {
+  StackAction,
+  StackActionTypes,
+  StackProps,
+  CardProps,
+} from '../../types';
 import firebase from '../../firebase';
 
 const getAllStacks = () => async (dispatch: React.Dispatch<StackAction>) => {
@@ -41,6 +46,14 @@ export const addCardToStack =
   (card: CardProps) => (dispatch: React.Dispatch<StackAction>) => {
     dispatch({
       type: StackActionTypes.ADD_CARD_TO_STACK,
-      payload: card
-    })
-};
+      payload: card,
+    });
+  };
+
+export const removeCardFromStack =
+  (card: CardProps) => (dispatch: React.Dispatch<StackAction>) => {
+    dispatch({
+      type: StackActionTypes.REMOVE_CARD_FROM_STACK,
+      payload: card,
+    });
+  };

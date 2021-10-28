@@ -10,7 +10,7 @@ import {
   useAppDispatch as useDispatch,
   useAppSelector as useSelector,
 } from '../../hooks';
-import { addCardToStack } from '../../redux/actions/stackActions';
+import { addCardToStack, removeCardFromStack } from '../../redux/actions/stackActions';
 
 // types
 import { CardProps } from '../../types';
@@ -36,7 +36,7 @@ export default function CreateStack() {
     dispatch(addCardToStack(card));
   }
   function removeFromStack(card: CardProps) {
-
+    dispatch(removeCardFromStack(card));
   }
 
   return (

@@ -1,4 +1,5 @@
 import { StackAction, StackProps } from '../../types';
+export {};
 
 interface InitialStateInterface {
   all: Array<StackProps>;
@@ -28,9 +29,14 @@ export const stackReducer = (state = initialState, action: StackAction) => {
     case 'STACK_ERROR':
       return { ...state, stackError: action.payload };
     case 'ADD_CARD_TO_STACK':
-      const card = action.payload;
-      const stackList = [...state.current.cards, card];
+      const cardToAdd = action.payload;
+      const stackList = [...state.current.cards, cardToAdd];
       return { ...state, current: { ...state.current, cards: stackList } };
+    case 'REMOVE_CARD_FROM_STACK':
+      const cardToRemove = action.payload;
+      const index = state.current.cards.indexOf(cardToRemove);
+      if (index > -1) state.current.cards.splice(index, 1);
+      return state;
     default:
       return state;
   }
