@@ -13,6 +13,7 @@ import AddCard from './pages/CMS/AddCard';
 import CardsList from './pages/CMS/CardsList';
 import EditCard from './pages/CMS/EditCard';
 import Dashboard from './pages/CMS/Dashboard';
+import CreateStack from './pages/CMS/CreateStack';
 import PasswordResetRequest from './pages/PasswordResetRequest';
 
 // redux
@@ -74,6 +75,13 @@ function App() {
             check={firebase.profile.role === 'owner'}
             redirectTo="/"
             component={<EditCard />}
+          />
+          {/* TODO: remove this later */}
+          <GuardedRoute
+            path="/cms/stack/create"
+            check={firebase.profile.role === 'owner'}
+            redirectTo="/"
+            component={<CreateStack />}
           />
         </>
       ) : null}
