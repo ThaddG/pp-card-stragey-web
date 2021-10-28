@@ -207,7 +207,7 @@ export default function Navigation() {
       <AppBar position="static" style={{ backgroundColor: 'mintcream' }}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            Plenty Pay
+            Plenty Pay (DEPLOY TEST)
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
