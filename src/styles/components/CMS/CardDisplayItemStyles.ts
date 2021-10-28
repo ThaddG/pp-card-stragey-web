@@ -8,5 +8,6 @@ export const CardContainer = styled(Paper)`
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
   cursor: pointer;
 `

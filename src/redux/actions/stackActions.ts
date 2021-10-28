@@ -57,3 +57,30 @@ export const removeCardFromStack =
       payload: card,
     });
   };
+
+export const clearStack = () => (dispatch: React.Dispatch<StackAction>) => {
+  dispatch({
+    type: StackActionTypes.CLEAR_STACK
+  })
+}
+
+export const addStack = (stack: StackProps) => (dispatch: React.Dispatch<StackAction>) => {
+  const firestore = firebase.firestore();
+  const payload: StackProps = {
+    ...stack,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  };
+  firestore
+    .collection('stacks')
+    .add(stack)
+    .then(() => {
+      dispatch({
+        type: StackActionTypes.ADD_STACK,
+        payload
+      });
+    })
+    .catch((err) => {
+      console.log("Add Stack Error: " + err);
+    })
+}

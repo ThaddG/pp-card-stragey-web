@@ -33,7 +33,7 @@ export interface StackOwnerProps {
   username: string;
 }
 export interface StackProps {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   owner: StackOwnerProps;
@@ -69,6 +69,8 @@ export enum StackActionTypes {
   CLEAR_STACK_MESSAGE = 'CLEAR_STACK_MESSAGE',
   ADD_CARD_TO_STACK = 'ADD_CARD_TO_STACK',
   REMOVE_CARD_FROM_STACK = 'REMOVE_CARD_FROM_STACK',
+  ADD_STACK = 'ADD_STACK',
+  CLEAR_STACK = 'CLEAR_STACK'
 }
 
 /**
@@ -159,6 +161,13 @@ interface RemoveCardFromStackAction {
   type: typeof StackActionTypes.REMOVE_CARD_FROM_STACK,
   payload: CardProps
 }
+interface AddStackAction {
+  type: typeof StackActionTypes.ADD_STACK,
+  payload: StackProps
+}
+interface ClearStackAction {
+  type: typeof StackActionTypes.CLEAR_STACK,
+}
 
 export type AuthAction =
   | SignupAction
@@ -183,7 +192,9 @@ export type StackAction =
   | GetStackAction
   | StackErrorAction
   | AddCardToStackAction
-  | RemoveCardFromStackAction;
+  | RemoveCardFromStackAction
+  | AddStackAction
+  | ClearStackAction;
 
 /**===========================================================
  *

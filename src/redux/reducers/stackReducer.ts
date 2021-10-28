@@ -1,23 +1,26 @@
 import { StackAction, StackProps } from '../../types';
 export {};
 
+const emptyStack: StackProps = {
+  id: '',
+  title: '',
+  description: '',
+  cards: [],
+  owner: {
+    id: '',
+    username: '',
+  },
+};
 interface InitialStateInterface {
   all: Array<StackProps>;
   current: StackProps;
+  message: string;
 }
 
 const initialState: InitialStateInterface = {
   all: [],
-  current: {
-    id: '',
-    title: '',
-    description: '',
-    cards: [],
-    owner: {
-      id: '',
-      username: ''
-    }
-  }
+  current: emptyStack,
+  message: '',
 };
 
 export const stackReducer = (state = initialState, action: StackAction) => {
@@ -37,6 +40,10 @@ export const stackReducer = (state = initialState, action: StackAction) => {
       const index = state.current.cards.indexOf(cardToRemove);
       if (index > -1) state.current.cards.splice(index, 1);
       return state;
+    case 'ADD_STACK':
+      return { ...state, current: emptyStack, message: 'Stack added successfully' };
+    case 'CLEAR_STACK':
+      return { ...state, current: emptyStack };
     default:
       return state;
   }

@@ -19,8 +19,11 @@ export const CreateStackLayout = styled.div`
          *            HEADER
          * --------------------------------------
          */
-export const Header = styled.h2`
-  background-color: tomato;
+export const Header = styled.div`
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  padding-left: 1vw;
 `
         /**
          * --------------------------------------------------------
@@ -34,6 +37,7 @@ export const PreviewAndCardDisplayContainer = styled.div`
   align-self: center;
 
   width: 98vw;
+  height: 60vh;
   `
   // background-color: skyblue;
             /**
@@ -41,9 +45,18 @@ export const PreviewAndCardDisplayContainer = styled.div`
              *            STACK PREVIEW
              * --------------------------------------
              */
+            // flex-basis: 75%;
 export const StackPreview = styled.div`
-  background-color: lightgreen;
-  flex-basis: 75%;
+  background-color: #8be8cb;
+  width: 75%;
+  padding: .5rem;
+  border-radius: .5rem;
+
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+  
+  overflow-y: scroll;
 `
             /**
              * --------------------------------------
@@ -51,11 +64,12 @@ export const StackPreview = styled.div`
              * --------------------------------------
              */
 export const CardsDisplay = styled.div`
-  background-color: lightgray;
+  background-color: #1c77c3;
   flex-basis: 25%;
 
+  color: #fff;
+
   padding: .75rem;
-  height: 600px;
   overflow-y: scroll;
 `
 

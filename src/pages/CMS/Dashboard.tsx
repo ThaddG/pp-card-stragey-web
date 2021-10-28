@@ -47,6 +47,18 @@ export default function Dashbaord() {
           Add Card
         </Button>
       </Link>
+
+      <br />
+      <Link to="/cms/stack/create">
+        <Button
+          className="my-1"
+          size="large"
+          color="primary"
+          variant="contained"
+        >
+          Create Stack
+        </Button>
+      </Link>
     </div>
   );
 }
