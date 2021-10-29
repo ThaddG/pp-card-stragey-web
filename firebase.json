@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "build",
+    "public": "dist",
     "predeploy": ["yarn install", "CI=false yarn run build"],
     "ignore": [
       "firebase.json",
