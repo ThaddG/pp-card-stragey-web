@@ -17,4 +17,3 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PLENTYPAY_TEST }}'
           channelId: live
           projectId: plentypay-test
-          path: build
