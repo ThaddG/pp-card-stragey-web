@@ -7,36 +7,20 @@ name: Deploy to Firebase Hosting on merge
     branches:
       - master
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm install -g yarn
-    - name: yarn install, build and test
-      run: |
-        yarn install
-        CI=false yarn build
-    - name: Archive build
-      uses: actions/upload-artifact@v2
-      with:
-        name: build
-        path: build
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: npm install -g yarn
+      - name: yarn install, build and test
+        run: |
+          yarn install
+          CI=false yarn build
+      - name: Archive build
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
