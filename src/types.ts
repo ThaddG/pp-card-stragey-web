@@ -216,7 +216,6 @@ export enum RewardTypeValues {
   GAS = 'Gas',
   GROCERIES = 'Groceries',
 }
-// TODO: add groceries
 export interface RewardTypeProps {
   Travel: RewardTypeAttributes;
   Flights: RewardTypeAttributes;
