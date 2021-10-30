@@ -5,22 +5,7 @@ import { Typography, Button } from '@material-ui/core';
 // custom components
 import BackButton from '../../components/BackButton';
 
-// redux
-import {
-  useAppDispatch as useDispatch,
-  useAppSelector as useSelector,
-} from '../../hooks';
-import { getStackById } from '../../redux/actions/stackActions';
-
 export default function Dashbaord() {
-  const id = 'NV93GQnWq16fkK4hTgbn';
-  const dispatch = useDispatch();
-  const stack = useSelector((state) => state.stack);
-  React.useEffect(() => {
-    dispatch(getStackById(id));
-  }, []);
-
-  console.log("STACK:", stack);
   return (
     <div style={{ width: '350px', margin: '60px auto 0' }}>
       <BackButton text="home" to="/" />
@@ -57,6 +42,19 @@ export default function Dashbaord() {
           variant="contained"
         >
           Create Stack
+        </Button>
+      </Link>
+
+      {/* TODO: this will probably be deleted */}
+      <br />
+      <Link to="/cms/stack/edit">
+        <Button
+          className="my-1"
+          size="large"
+          color="primary"
+          variant="contained"
+        >
+          Edit Stack
         </Button>
       </Link>
     </div>

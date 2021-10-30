@@ -15,6 +15,7 @@ import EditCard from './pages/CMS/EditCard';
 import Dashboard from './pages/CMS/Dashboard';
 import CreateStack from './pages/CMS/CreateStack';
 import PasswordResetRequest from './pages/PasswordResetRequest';
+import EditStack from './pages/CMS/EditStack';
 
 // redux
 import { useAppSelector as useSelector } from './hooks';
@@ -24,7 +25,6 @@ import { isLoaded } from 'react-redux-firebase';
 
 function App() {
   const firebase = useSelector((state) => state.firebase);
-  console.log(firebase);
   return (
     <Router>
       <Route exact path="/" component={Home} />
@@ -82,6 +82,13 @@ function App() {
             check={firebase.profile.role === 'owner'}
             redirectTo="/"
             component={<CreateStack />}
+          />
+          {/* TODO: change this so that it takes variable IDs */}
+          <GuardedRoute
+            path="/cms/stack/edit"
+            check={firebase.profile.role === 'owner'}
+            redirectTo="/"
+            component={<EditStack />}
           />
         </>
       ) : null}

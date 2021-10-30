@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
+import { useParams } from 'react-router-dom';
 
 // custom components
 import StackTemplate from '../../components/CMS/StackTemplate';
@@ -10,16 +10,18 @@ import {
   useAppSelector as useSelector,
 } from '../../hooks';
 import {
-  addStack,
-  clearStack,
+  getStackNEW,
 } from '../../redux/actions/stackActions';
 
 // styles
 
 // types
+interface ParamProps {
+  id: string;
+}
 
-export default function CreateStack() {
-  useFirestoreConnect([{ collection: 'cards' }]);
+export default function EditStack() {
+  const { id } = useParams<ParamProps>();
 
   const dispatch = useDispatch();
   const stack = useSelector((state) => state.stack); //the current stack
@@ -41,22 +43,17 @@ export default function CreateStack() {
   }
 
   function handleSubmit() {
-    const payload = {
-      title,
-      description,
-      owner: {
-        id: firebase.auth.uid,
-        username: firebase.profile.firstName
-      },
-      cards: stack.current.cards
-    }
-    dispatch(addStack(payload))
-    clearFields()
+    // TODO: update stack function goes here
   }
 
   React.useEffect(() => {
-    dispatch(clearStack());
+    // dispatch(getStackNEW(id));
+    dispatch(getStackNEW('cmha3suoWFeruzTRQ10G'));
   }, []);
+  React.useEffect(() => {
+    setTitle(stack.current.title);
+    setDescription(stack.current.description);
+  },[stack.current])
 
   return (
     <StackTemplate
