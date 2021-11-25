@@ -15,6 +15,7 @@ import EditCard from './pages/CMS/EditCard';
 import Dashboard from './pages/CMS/Dashboard';
 import CreateStack from './pages/CMS/CreateStack';
 import PasswordResetRequest from './pages/PasswordResetRequest';
+import Maintenance from './pages/Maintenance';
 
 // redux
 import { useAppSelector as useSelector } from './hooks';
@@ -27,8 +28,11 @@ function App() {
   console.log(firebase);
   return (
     <Router>
-      <Route exact path="/" component={Home} />
-      <GuardedRoute
+      {/* TODO: REMOVE AFTER MAINTENANCE */}
+      <Route exact path="/" component={Maintenance} />
+      
+      {/* <Route exact path="/" component={Home} /> */}
+      {/* <GuardedRoute
         exact
         path="/login"
         check={!firebase.auth.uid}
@@ -47,7 +51,7 @@ function App() {
         component={<PasswordResetRequest />}
         redirectTo="/"
       />
-      <Route path="/stacks/:id" component={Stack} />
+      <Route path="/stacks/:id" component={Stack} /> */}
       {/* CMS is for logged in user who have "owner" role */}
       {isLoaded(firebase.profile) ? (
         <>
@@ -85,7 +89,7 @@ function App() {
           />
         </>
       ) : null}
-      <Route exact path="/contact" component={Contact} />
+      {/* <Route exact path="/contact" component={Contact} /> */}
     </Router>
   );
 }

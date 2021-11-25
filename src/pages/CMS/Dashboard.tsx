@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Typography, Button } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 // custom components
 import BackButton from '../../components/BackButton';
@@ -11,6 +12,8 @@ import {
   useAppSelector as useSelector,
 } from '../../hooks';
 import { getStackById } from '../../redux/actions/stackActions';
+// TODO: REMOVE AFTER MAINTENANCE
+import { logout } from '../../redux/actions/authActions';
 
 export default function Dashbaord() {
   const id = 'NV93GQnWq16fkK4hTgbn';
@@ -20,11 +23,16 @@ export default function Dashbaord() {
     dispatch(getStackById(id));
   }, []);
 
-  console.log("STACK:", stack);
+  console.log('STACK:', stack);
   return (
     <div style={{ width: '350px', margin: '60px auto 0' }}>
       <BackButton text="home" to="/" />
       <Typography variant="h2">Dashboard</Typography>
+      {/* TODO: REMOVE AFTER MAINTENANCE */}
+      <Button color="secondary" variant="contained" onClick={() => dispatch(logout())}>
+        Signout
+      </Button>
+      <br />
       <Link to="/cms/list">
         <Button
           className="my-1"
