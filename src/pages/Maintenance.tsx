@@ -62,7 +62,7 @@ export default function Maintenance() {
               Maximize your rewards with credit cards that compliment one
               another. Increase your income by stacking credit cards with
               benefits that compliment each other.
-            <Typography variant="h5">
+            <Typography variant="h4">
               Coming Soon!
             </Typography>
           </WordContentBody>
