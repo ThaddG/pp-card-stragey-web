@@ -16,6 +16,7 @@ import Dashboard from './pages/CMS/Dashboard';
 import CreateStack from './pages/CMS/CreateStack';
 import PasswordResetRequest from './pages/PasswordResetRequest';
 import EditStack from './pages/CMS/EditStack';
+import StackList from './pages/CMS/StackList';
 
 // redux
 import { useAppSelector as useSelector } from './hooks';
@@ -48,7 +49,7 @@ function App() {
         redirectTo="/"
       />
       <Route path="/stacks/:id" component={Stack} />
-      {/* CMS is for logged in user who have "owner" role */}
+      {/* CMS is for logged in user who has "owner" role */}
       {isLoaded(firebase.profile) ? (
         <>
           <GuardedRoute
@@ -75,6 +76,12 @@ function App() {
             check={firebase.profile.role === 'owner'}
             redirectTo="/"
             component={<EditCard />}
+          />
+          <GuardedRoute
+            path="/cms/stacks"
+            check={firebase.profile.role === 'owner'}
+            redirectTo="/"
+            component={<StackList />}
           />
           {/* TODO: remove this later */}
           <GuardedRoute
