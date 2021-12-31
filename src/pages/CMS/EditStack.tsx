@@ -21,8 +21,7 @@ export default function EditStack() {
   const { id } = useParams<ParamProps>();
 
   const dispatch = useDispatch();
-  const stack = useSelector((state) => state.stack); //the current stack
-  // const firebase = useSelector(state => state.firebase);
+  const stack = useSelector((state) => state.stack);
 
   const [title, setTitle] = React.useState<string>('');
   const [description, setDescription] = React.useState<string>('');

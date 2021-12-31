@@ -87,8 +87,6 @@ export const editStack =
 
     const updatedStack = { ...stack, updatedAt: new Date() };
 
-    console.log("action is working")
-
     firestore
       .collection('stacks')
       .doc(id)

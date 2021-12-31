@@ -1,4 +1,4 @@
-import { StackAction, StackProps } from '../../types';
+import StackProps, { StackAction } from '../../models/stack';
 export {};
 
 export const emptyStack: StackProps = {
@@ -48,6 +48,8 @@ export const stackReducer = (state = initialState, action: StackAction) => {
       };
     case 'CLEAR_STACK':
       return { ...state, current: emptyStack };
+    case 'EDIT_STACK':
+      return { ...state, message: action.payload }
     default:
       return state;
   }
