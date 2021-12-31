@@ -9,10 +9,7 @@ import {
   useAppDispatch as useDispatch,
   useAppSelector as useSelector,
 } from '../../hooks';
-import {
-  addStack,
-  clearStack,
-} from '../../redux/actions/stackActions';
+import { addStack, clearStack } from '../../redux/actions/stackActions';
 
 // styles
 
@@ -23,7 +20,7 @@ export default function CreateStack() {
 
   const dispatch = useDispatch();
   const stack = useSelector((state) => state.stack); //the current stack
-  const firebase = useSelector(state => state.firebase);
+  const firebase = useSelector((state) => state.firebase);
 
   const [title, setTitle] = React.useState<string>('');
   const [description, setDescription] = React.useState<string>('');
@@ -46,12 +43,12 @@ export default function CreateStack() {
       description,
       owner: {
         id: firebase.auth.uid,
-        username: firebase.profile.firstName
+        username: firebase.profile.firstName,
       },
-      cards: stack.current.cards
-    }
-    dispatch(addStack(payload))
-    clearFields()
+      cards: stack.current.cards,
+    };
+    dispatch(addStack(payload));
+    clearFields();
   }
 
   React.useEffect(() => {
@@ -60,6 +57,7 @@ export default function CreateStack() {
 
   return (
     <StackTemplate
+      pageTitle="Create Stack"
       title={title}
       description={description}
       handleTitleChange={handleTitleChange}

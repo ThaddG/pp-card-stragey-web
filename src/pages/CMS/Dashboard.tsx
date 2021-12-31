@@ -47,14 +47,14 @@ export default function Dashbaord() {
 
       {/* TODO: this will probably be deleted */}
       <br />
-      <Link to="/cms/stack/edit">
+      <Link to="/cms/stacks">
         <Button
           className="my-1"
           size="large"
           color="primary"
           variant="contained"
         >
-          Edit Stack
+          Stack List
         </Button>
       </Link>
     </div>

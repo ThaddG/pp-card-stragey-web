@@ -42,6 +42,7 @@ interface Props {
   handleDescriptionChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   clearFields: () => void;
   submit: () => void;
+  pageTitle: string;
 }
 
 export default function StackTemplate({
@@ -50,7 +51,8 @@ export default function StackTemplate({
   handleTitleChange,
   handleDescriptionChange,
   clearFields,
-  submit
+  submit,
+  pageTitle
 }: Props) {
   useFirestoreConnect([{ collection: 'cards' }]);
   const cards = useSelector((state) => state.firestore.ordered.cards);
@@ -90,7 +92,7 @@ export default function StackTemplate({
     <CreateStackLayout>
       <BackButton to="/cms" text="Dashboard" />
       <Header>
-        <h2 style={{ margin: '0 0 0 150px', padding: '0' }}>Create Stack</h2>
+        <h2 style={{ margin: '0 0 0 150px', padding: '0' }}>{pageTitle}</h2>
       </Header>
 
       <PreviewAndCardDisplayContainer>

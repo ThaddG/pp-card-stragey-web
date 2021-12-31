@@ -92,7 +92,7 @@ function App() {
           />
           {/* TODO: change this so that it takes variable IDs */}
           <GuardedRoute
-            path="/cms/stack/edit"
+            path="/cms/stack/edit/:id"
             check={firebase.profile.role === 'owner'}
             redirectTo="/"
             component={<EditStack />}

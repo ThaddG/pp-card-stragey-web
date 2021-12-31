@@ -1,11 +1,11 @@
 import React from 'react';
-import {
+import { CardProps } from '../../types';
+import firebase from '../../firebase';
+import StackProps, {
+  EditedStackProps,
   StackAction,
   StackActionTypes,
-  StackProps,
-  CardProps,
-} from '../../types';
-import firebase from '../../firebase';
+} from '../../models/stack';
 
 const getAllStacks = () => async (dispatch: React.Dispatch<StackAction>) => {
   const firestore = firebase.firestore();
@@ -13,7 +13,7 @@ const getAllStacks = () => async (dispatch: React.Dispatch<StackAction>) => {
   firestore.collection('stacks').get();
 };
 
-export const getStackNEW =
+export const getStackById =
   (id: string) => (dispatch: React.Dispatch<StackAction>) => {
     const firestore = firebase.firestore();
 
@@ -79,4 +79,31 @@ export const addStack =
       .catch((err) => {
         console.log('Add Stack Error: ' + err);
       });
+  };
+
+export const editStack =
+  (id: string, stack: EditedStackProps) => (dispatch: React.Dispatch<StackAction>) => {
+    const firestore = firebase.firestore();
+
+    const updatedStack = { ...stack, updatedAt: new Date() };
+
+    console.log("action is working")
+
+    firestore
+      .collection('stacks')
+      .doc(id)
+      .update(updatedStack)
+      .then(() =>
+        dispatch({
+          type: StackActionTypes.EDIT_STACK,
+          payload: 'Stack edited successfully',
+        })
+      )
+      .catch((err) =>
+        dispatch({
+          type: StackActionTypes.STACK_ERROR,
+          payload: `Edit Stack Error: ${err}`,
+        })
+      );
+
   };

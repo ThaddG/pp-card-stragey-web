@@ -9,13 +9,10 @@ import {
   useAppDispatch as useDispatch,
   useAppSelector as useSelector,
 } from '../../hooks';
-import {
-  getStackNEW,
-} from '../../redux/actions/stackActions';
-
-// styles
+import { getStackById, editStack } from '../../redux/actions/stackActions';
 
 // types
+import { EditedStackProps } from '../../models/stack';
 interface ParamProps {
   id: string;
 }
@@ -25,7 +22,7 @@ export default function EditStack() {
 
   const dispatch = useDispatch();
   const stack = useSelector((state) => state.stack); //the current stack
-  const firebase = useSelector(state => state.firebase);
+  // const firebase = useSelector(state => state.firebase);
 
   const [title, setTitle] = React.useState<string>('');
   const [description, setDescription] = React.useState<string>('');
@@ -43,20 +40,25 @@ export default function EditStack() {
   }
 
   function handleSubmit() {
-    // TODO: update stack function goes here
+    const stackPayload: EditedStackProps = {
+      title,
+      description,
+      cards: stack.current.cards,
+    };
+    dispatch(editStack(id, stackPayload));
   }
 
   React.useEffect(() => {
-    // dispatch(getStackNEW(id));
-    dispatch(getStackNEW('cmha3suoWFeruzTRQ10G'));
+    dispatch(getStackById(id));
   }, []);
   React.useEffect(() => {
     setTitle(stack.current.title);
     setDescription(stack.current.description);
-  },[stack.current])
+  }, [stack.current]);
 
   return (
     <StackTemplate
+      pageTitle="Edit Stack"
       title={title}
       description={description}
       handleTitleChange={handleTitleChange}
