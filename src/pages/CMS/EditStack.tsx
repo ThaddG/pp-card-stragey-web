@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
+import { useParams } from 'react-router-dom';
 
 // custom components
 import StackTemplate from '../../components/CMS/StackTemplate';
@@ -9,18 +9,19 @@ import {
   useAppDispatch as useDispatch,
   useAppSelector as useSelector,
 } from '../../hooks';
-import { addStack, clearStack } from '../../redux/actions/stackActions';
-
-// styles
+import { getStackById, editStack } from '../../redux/actions/stackActions';
 
 // types
+import { EditedStackProps } from '../../models/stack';
+interface ParamProps {
+  id: string;
+}
 
-export default function CreateStack() {
-  useFirestoreConnect([{ collection: 'cards' }]);
+export default function EditStack() {
+  const { id } = useParams<ParamProps>();
 
   const dispatch = useDispatch();
-  const stack = useSelector((state) => state.stack); //the current stack
-  const firebase = useSelector((state) => state.firebase);
+  const stack = useSelector((state) => state.stack);
 
   const [title, setTitle] = React.useState<string>('');
   const [description, setDescription] = React.useState<string>('');
@@ -38,26 +39,25 @@ export default function CreateStack() {
   }
 
   function handleSubmit() {
-    const payload = {
+    const stackPayload: EditedStackProps = {
       title,
       description,
-      owner: {
-        id: firebase.auth.uid,
-        username: firebase.profile.firstName,
-      },
       cards: stack.current.cards,
     };
-    dispatch(addStack(payload));
-    clearFields();
+    dispatch(editStack(id, stackPayload));
   }
 
   React.useEffect(() => {
-    dispatch(clearStack());
+    dispatch(getStackById(id));
   }, []);
+  React.useEffect(() => {
+    setTitle(stack.current.title);
+    setDescription(stack.current.description);
+  }, [stack.current]);
 
   return (
     <StackTemplate
-      pageTitle="Create Stack"
+      pageTitle="Edit Stack"
       title={title}
       description={description}
       handleTitleChange={handleTitleChange}

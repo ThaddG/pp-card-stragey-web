@@ -1,7 +1,7 @@
-import { StackAction, StackProps } from '../../types';
+import StackProps, { StackAction } from '../../models/stack';
 export {};
 
-const emptyStack: StackProps = {
+export const emptyStack: StackProps = {
   id: '',
   title: '',
   description: '',
@@ -28,7 +28,7 @@ export const stackReducer = (state = initialState, action: StackAction) => {
     case 'GET_ALL_STACKS':
       return { ...state, all: action.payload };
     case 'GET_STACK':
-      return { ...state, ...action.payload };
+      return { ...state, current: { ...action.payload } };
     case 'STACK_ERROR':
       return { ...state, stackError: action.payload };
     case 'ADD_CARD_TO_STACK':
@@ -41,9 +41,15 @@ export const stackReducer = (state = initialState, action: StackAction) => {
       if (index > -1) state.current.cards.splice(index, 1);
       return state;
     case 'ADD_STACK':
-      return { ...state, current: emptyStack, message: 'Stack added successfully' };
+      return {
+        ...state,
+        current: emptyStack,
+        message: 'Stack added successfully',
+      };
     case 'CLEAR_STACK':
       return { ...state, current: emptyStack };
+    case 'EDIT_STACK':
+      return { ...state, message: action.payload }
     default:
       return state;
   }
