@@ -1,12 +1,5 @@
-import {ReactComponent as PPLogo} from '../assets/plentyPayLogo-02 1.svg'
+import { ReactComponent as PPLogo } from '../assets/plentyPayLogo-02 1.svg';
 
-const Logo = () => {
-
-  return (
-    <div>
-      <PPLogo />
-    </div>
-  )
-}
+const Logo = () => <PPLogo />;
 
 export default Logo;
