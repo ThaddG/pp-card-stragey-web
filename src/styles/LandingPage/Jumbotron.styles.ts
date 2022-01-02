@@ -12,3 +12,8 @@ export const Container = styled.div<Props>`
   background-size: cover;
   background-position: center;
 `
+
+export const ContentContainer = styled.div`
+  width: 90%;
+  margin: 0 auto;
+`
