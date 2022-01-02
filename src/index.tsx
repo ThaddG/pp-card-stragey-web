@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store, { rrfProps } from './redux/store';
 import { ReactReduxFirebaseProvider, isLoaded } from 'react-redux-firebase';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './styles/theme';
 
 // custom components
 import App from './App';
@@ -32,7 +34,9 @@ ReactDOM.render(
     <Provider store={store}>
       <ReactReduxFirebaseProvider {...rrfProps}>
         <AuthIsLoaded>
-          <App />
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
         </AuthIsLoaded>
       </ReactReduxFirebaseProvider>
     </Provider>
