@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import pic from "../../assets/naipo-de-k24rOBJ2D_0-unsplash.png"
 
 interface Props {
   image: string;
