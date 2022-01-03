@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface Props {
-  image: string;
+  readonly image: string;
 }
 
 export const Container = styled.div<Props>`
@@ -14,7 +14,7 @@ export const Container = styled.div<Props>`
 `;
 
 export const ContentContainer = styled.div`
-  width: 89%;
+  width: 75%;
   height: 90%;
   margin: 0 auto;
   display: flex;
