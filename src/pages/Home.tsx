@@ -2,13 +2,13 @@ import React from 'react';
 
 // custom components
 import Jumbotron from '../components/LandingPage/Jumbotron';
-import NumberCard from '../components/LandingPage/NumberCard';
+import StepsSection from '../components/LandingPage/StepsSection';
 
 export default function Home() {
   return (
     <div>
       <Jumbotron />
-      <NumberCard />
+      <StepsSection />
     </div>
   );
 }

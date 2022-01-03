@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import Box from '@mui/material/Box';
 
 export const Container = styled(Box)`
-  max-width: 362px;
-  height: 235px;
-  background-color: #dfede5;
-  border-radius: 28px;
+  padding: 2rem 0;
+  background-color: rgba(93, 236, 174, 0.1);
 `;
