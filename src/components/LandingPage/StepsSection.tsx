@@ -11,14 +11,14 @@ const StepsSection = () => {
     <Container>
       <MuiContainer>
         <Grid container>
-          <Grid item xs={4}>
-            <NumberCard />
+          <Grid item xs={12} md={4}>
+            <NumberCard number={1} />
           </Grid>
-          <Grid item xs={4}>
-            <NumberCard />
+          <Grid item xs={12} md={4}>
+            <NumberCard number={2} />
           </Grid>
-          <Grid item xs={4}>
-            <NumberCard />
+          <Grid item xs={12} md={4}>
+            <NumberCard number={3} />
           </Grid>
         </Grid>
       </MuiContainer>

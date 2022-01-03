@@ -7,3 +7,12 @@ export const Container = styled(Box)`
   background-color: #dfede5;
   border-radius: 28px;
 `;
+
+export const Number = styled.div`
+  font-family: 'Yeseva One';
+  font-size: 130px;
+  position: absolute;
+  left: 8.78%;
+  top: -30%;
+  color: #5becad;
+`;

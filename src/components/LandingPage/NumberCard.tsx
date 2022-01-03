@@ -1,7 +1,19 @@
-import { Container } from '../../styles/LandingPage/NumberCard.styles';
+import Typography from '@mui/material/Typography';
 
-const NumberCard = () => {
-  return <Container></Container>;
+// styles
+import { Container, Number } from '../../styles/LandingPage/NumberCard.styles';
+
+// types
+interface Props {
+  number: number;
+}
+
+const NumberCard: React.FC<Props> = ({ number }) => {
+  return (
+    <Container sx={{ position: 'relative' }}>
+      <Number>{number}</Number>
+    </Container>
+  );
 };
 
 export default NumberCard;
