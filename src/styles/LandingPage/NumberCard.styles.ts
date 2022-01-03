@@ -6,6 +6,11 @@ export const Container = styled(Box)`
   height: 235px;
   background-color: #dfede5;
   border-radius: 28px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Number = styled.div`

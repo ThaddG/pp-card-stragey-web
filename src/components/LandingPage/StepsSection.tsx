@@ -11,15 +11,15 @@ const StepsSection = () => {
     <Container>
       <MuiContainer>
         <Grid container>
-          <Grid item xs={12} md={4}>
-            <NumberCard number={1} />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <NumberCard number={2} />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <NumberCard number={3} />
-          </Grid>
+          {text.map((t) => (
+            <Grid item xs={12} md={4}>
+              <NumberCard
+                number={t.number}
+                title={t.title}
+                bodyText={t.description}
+              />
+            </Grid>
+          ))}
         </Grid>
       </MuiContainer>
     </Container>
@@ -27,3 +27,21 @@ const StepsSection = () => {
 };
 
 export default StepsSection;
+
+const text = [
+  {
+    number: 1,
+    title: 'Shop',
+    description: `Plenty Pay works at all stores that accept credit cars. All you have to do is shop.`,
+  },
+  {
+    number: 2,
+    title: 'Hold your phone to the terminal',
+    description: `Just like any other digital wallet or NFC-compatible credit card.`,
+  },
+  {
+    number: 3,
+    title: 'Let the app do the rest',
+    description: `You've just maximized your reward potential!`,
+  },
+];

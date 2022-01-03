@@ -6,6 +6,10 @@ const theme = createTheme({
       fontFamily: 'Yeseva One',
       fontSize: 40,
     },
+    h5: {
+      fontFamily: 'Yeseva One',
+      fontSize: 32,
+    },
     body1: {
       fontSize: 20,
     },
@@ -17,7 +21,7 @@ const theme = createTheme({
           color: '#fff',
           border: '1px solid #E0E0E0',
           borderRadius: '100px',
-          padding: '10px 24px'
+          padding: '10px 24px',
         },
       },
     },
