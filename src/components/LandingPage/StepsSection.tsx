@@ -17,7 +17,7 @@ const StepsSection = () => {
             <Grid
               item
               xs={12}
-              md={4}
+              lg={4}
               sx={{ display: 'flex', justifyContent: 'center' }}
             >
               <NumberCard
