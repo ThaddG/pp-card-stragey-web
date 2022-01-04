@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Container as MuiContainer } from '@mui/material';
 
 interface Props {
   readonly image: string;
@@ -11,12 +12,4 @@ export const Container = styled.div<Props>`
   background-image: url(${(props) => props.image});
   background-size: cover;
   background-position: center;
-`;
-
-export const ContentContainer = styled.div`
-  width: 75%;
-  height: 90%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
 `;
