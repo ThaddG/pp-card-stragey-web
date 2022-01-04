@@ -1,17 +1,24 @@
 import NumberCard from './NumberCard';
 
-import {
-  Container as MuiContainer,
-} from '@mui/material';
+import { Container as MuiContainer, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 
 // styles
 import { Container } from '../../styles/LandingPage/StepsSection.styles';
 
+const ALT_COLOR = '#5becad';
+
 const StepsSection = () => {
   return (
     <Container>
       <MuiContainer>
+        <Typography variant="h1" sx={{ mb: 12, mt: 4 }}>
+          Plenty Pay is a{' '}
+          <span style={{ color: ALT_COLOR }}>digital wallet</span> that
+          automatically chooses the{' '}
+          <span style={{ color: ALT_COLOR }}>best card</span> to{' '}
+          <span style={{ color: ALT_COLOR }}>maximize your rewards</span>.
+        </Typography>
         <Grid container>
           {text.map((t) => (
             <Grid

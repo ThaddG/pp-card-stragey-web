@@ -18,10 +18,10 @@ interface Props {
 
 const NumberCard: React.FC<Props> = ({ number, title, bodyText }) => {
   const theme = useTheme();
-  const small = useMediaQuery(theme.breakpoints.up('sm'));
+  const xSmall = useMediaQuery(theme.breakpoints.up('xs'));
   return (
     <Container
-      sx={{ position: 'relative', mb: small ? 4 : 1, mt: small ? 4 : 1 }}
+      sx={{ position: 'relative', mb: xSmall ? 4 : 1, mt: xSmall ? 4 : 1 }}
     >
       <Number>{number}</Number>
       <StepIcon className="mb-3" />

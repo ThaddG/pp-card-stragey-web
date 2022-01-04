@@ -4,6 +4,10 @@ const theme = createTheme({
   typography: {
     h1: {
       fontFamily: 'Yeseva One',
+      fontSize: 44,
+    },
+    h2: {
+      fontFamily: 'Yeseva One',
       fontSize: 40,
     },
     h5: {
