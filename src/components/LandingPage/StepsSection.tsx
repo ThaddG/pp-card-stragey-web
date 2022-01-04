@@ -1,6 +1,8 @@
 import NumberCard from './NumberCard';
 
-import { Container as MuiContainer } from '@mui/material';
+import {
+  Container as MuiContainer,
+} from '@mui/material';
 import Grid from '@mui/material/Grid';
 
 // styles
@@ -12,7 +14,12 @@ const StepsSection = () => {
       <MuiContainer>
         <Grid container>
           {text.map((t) => (
-            <Grid item xs={12} md={4}>
+            <Grid
+              item
+              xs={12}
+              md={4}
+              sx={{ display: 'flex', justifyContent: 'center' }}
+            >
               <NumberCard
                 number={t.number}
                 title={t.title}
