@@ -7,6 +7,7 @@ const SolvingProblemsSection = () => {
   return (
     <Container backgroundColor="#fff">
       <MuiContainer>
+        {/* TODO: change font to Poppins */}
         <Typography variant="body2">
           SOLVING PROBLEMS
         </Typography>
