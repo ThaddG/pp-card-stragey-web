@@ -1,23 +1,83 @@
-import { Container as MuiContainer, Typography } from '@mui/material';
+import { Container as MuiContainer, Typography, Grid } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+
+// custom components
+import ProblemBlock from './ProblemBlock';
 
 // styles
-import { Container } from '../../styles/LandingPage/global.styles';
+import {
+  SectionContainer,
+  SectionTitle,
+} from '../../styles/LandingPage/global.styles';
+import { MobileCenteredGridItem } from '../../styles/LandingPage/SolvingProblemsSection.styles';
 
 const SolvingProblemsSection = () => {
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
   return (
-    <Container backgroundColor="#fff">
+    <SectionContainer backgroundColor="#fff">
       <MuiContainer>
         {/* TODO: change font to Poppins */}
-        <Typography variant="body2" sx={{ mb: 2 }}>
+        <SectionTitle variant="body2" sx={{ mb: 2 }}>
           SOLVING PROBLEMS
-        </Typography>
-        <Typography variant="h5">
+        </SectionTitle>
+        <Typography variant="h5" sx={{ mb: 5 }}>
           Consumers are losing money by not using the optimal card at checkout.
           We solve it.
         </Typography>
+        <Grid container>
+          {data.map((problem) => (
+            <MobileCenteredGridItem
+              item
+              xs={12}
+              sm={6}
+              lg={4}
+              sx={{ mb: 4 }}
+              isMobile={mobile}
+            >
+              <ProblemBlock
+                title={problem.title}
+                description={problem.description}
+              />
+            </MobileCenteredGridItem>
+          ))}
+        </Grid>
       </MuiContainer>
-    </Container>
+    </SectionContainer>
   );
 };
+
+const data = [
+  {
+    title: 'Make Money',
+    description:
+      'Maximizing your credit card rewards will get you more money quicker.',
+  },
+  {
+    title: 'Relieve Stress',
+    description:
+      "You don't have to worry about which card to use at checkout anymore.",
+  },
+  {
+    title: 'Become Organized',
+    description:
+      'See all of your balances and rewards. No need to log in to multiple accounts.',
+  },
+  {
+    title: 'Easy To Use',
+    description:
+      'Easily connect your bank accounts and access all of your information at once.',
+  },
+  {
+    title: 'Secure',
+    description:
+      'The app and all of your information is secure through and through.',
+  },
+  {
+    title: 'Rewards Tracker',
+    description: "Easily check how much money you'r purchases.",
+  },
+];
 
 export default SolvingProblemsSection;
