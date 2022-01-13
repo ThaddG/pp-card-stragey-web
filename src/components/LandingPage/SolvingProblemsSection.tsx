@@ -1,4 +1,9 @@
-import { Container as MuiContainer, Typography, Grid } from '@mui/material';
+import {
+  Container as MuiContainer,
+  Typography,
+  Grid,
+  Button,
+} from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
@@ -43,6 +48,13 @@ const SolvingProblemsSection = () => {
             </MobileCenteredGridItem>
           ))}
         </Grid>
+        {/* TODO: style this correctly (theme) */}
+        <Button
+          variant="outlined"
+          sx={{ borderColor: '#27AE60', color: '#27AE60' }}
+        >
+          Join Waitlist
+        </Button>
       </MuiContainer>
     </SectionContainer>
   );
