@@ -38,7 +38,7 @@ const SolvingProblemsSection = () => {
               xs={12}
               sm={6}
               lg={4}
-              sx={{ mb: 4 }}
+              sx={{ mb: mobile ? 6 : 4 }}
               isMobile={mobile}
             >
               <ProblemBlock

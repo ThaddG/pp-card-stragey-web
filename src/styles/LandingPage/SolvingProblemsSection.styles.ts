@@ -10,6 +10,6 @@ export const MobileCenteredGridItem = styled(Grid)<Props>`
     props.isMobile &&
     `
     display: flex;
-    justify-content: center
+    justify-content: center;
   `}
 `;
