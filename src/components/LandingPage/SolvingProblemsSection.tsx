@@ -15,7 +15,7 @@ import {
   SectionContainer,
   SectionTitle,
 } from '../../styles/LandingPage/global.styles';
-import { MobileCenteredGridItem } from '../../styles/LandingPage/SolvingProblemsSection.styles';
+import { MobileCenteredGridItem } from '../../styles/LandingPage/global.styles';
 
 const SolvingProblemsSection = () => {
   const theme = useTheme();
@@ -31,7 +31,7 @@ const SolvingProblemsSection = () => {
           Consumers are losing money by not using the optimal card at checkout.
           We solve it.
         </Typography>
-        <Grid container>
+        <Grid container spacing={3}>
           {data.map((problem) => (
             <MobileCenteredGridItem
               item
@@ -88,7 +88,8 @@ const data = [
   },
   {
     title: 'Rewards Tracker',
-    description: "Easily check how much money you'r purchases.",
+    description:
+      "Easily check how much money you're earning with your purchases.",
   },
 ];
 
