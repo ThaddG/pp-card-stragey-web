@@ -31,7 +31,7 @@ const SolvingProblemsSection = () => {
           Consumers are losing money by not using the optimal card at checkout.
           We solve it.
         </Typography>
-        <Grid container>
+        <Grid container spacing={3}>
           {data.map((problem) => (
             <MobileCenteredGridItem
               item

@@ -4,6 +4,7 @@ import React from 'react';
 import Jumbotron from '../components/LandingPage/Jumbotron';
 import StepsSection from '../components/LandingPage/StepsSection';
 import SolvingProblemsSection from '../components/LandingPage/SolvingProblemsSection';
+import FeaturesSection from '../components/LandingPage/FeaturesSection';
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Jumbotron />
       <StepsSection />
       <SolvingProblemsSection />
+      <FeaturesSection />
     </div>
   );
 }
