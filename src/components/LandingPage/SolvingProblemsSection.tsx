@@ -88,7 +88,8 @@ const data = [
   },
   {
     title: 'Rewards Tracker',
-    description: "Easily check how much money you'r purchases.",
+    description:
+      "Easily check how much money you're earning with your purchases.",
   },
 ];
 
