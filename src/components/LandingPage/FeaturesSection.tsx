@@ -1,5 +1,7 @@
 import { Container as MuiContainer, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 // custom components
 import FeatureBlock from './FeatureBlock';
@@ -16,9 +18,12 @@ import StackIcon from '../../assets/icons/stack-icon.svg';
 import {
   SectionContainer,
   SectionTitle,
+  MobileCenteredGridItem,
 } from '../../styles/LandingPage/global.styles';
 
 const FeaturesSection = () => {
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <SectionContainer backgroundColor="#fff">
       <MuiContainer>
@@ -28,13 +33,13 @@ const FeaturesSection = () => {
         </Typography>
         <Grid container spacing={3}>
           {data.map((d) => (
-            <Grid item xs={12} sm={6} lg={4}>
+            <MobileCenteredGridItem isMobile={mobile} item xs={12} sm={6} lg={4}>
               <FeatureBlock
                 icon={d.icon}
                 title={d.title}
                 description={d.description}
               />
-            </Grid>
+            </MobileCenteredGridItem>
           ))}
         </Grid>
       </MuiContainer>

@@ -15,7 +15,7 @@ import {
   SectionContainer,
   SectionTitle,
 } from '../../styles/LandingPage/global.styles';
-import { MobileCenteredGridItem } from '../../styles/LandingPage/SolvingProblemsSection.styles';
+import { MobileCenteredGridItem } from '../../styles/LandingPage/global.styles';
 
 const SolvingProblemsSection = () => {
   const theme = useTheme();
