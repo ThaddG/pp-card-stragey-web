@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 // custom components
 import Jumbotron from '../components/LandingPage/Jumbotron';
@@ -11,6 +12,10 @@ import Footer from '../components/LandingPage/Footer';
 export default function Home() {
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>PlentyPay | Home</title>
+      </Helmet>
       <Jumbotron />
       <StepsSection />
       <SolvingProblemsSection />
