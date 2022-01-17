@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Auth } from '../../firebase';
+import { Auth, Firestore } from '../../firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { collection, addDoc } from 'firebase/firestore';
 import randomPassword from '../../utils/randomPassword';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -37,11 +39,15 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
 
   // TODO: add storing user to database as well
   const addToWatchlist = async () => {
-    await Auth.createUserWithEmailAndPassword(email, randomPassword(15)).catch(
-      (error) => {
+    await createUserWithEmailAndPassword(Auth, email, randomPassword(15))
+      .then(async () => {
+        await addDoc(collection(Firestore, 'users'), {
+          Email: email,
+        });
+      })
+      .catch((error) => {
         console.error('create user with email and password error');
-      }
-    );
+      });
   };
 
   return (
