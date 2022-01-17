@@ -3,6 +3,7 @@ import { Auth, Firestore } from '../../firebase';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 import { AuthAction, AuthActionTypes, UserProps } from '../../types';
@@ -52,9 +53,7 @@ export const login =
   };
 
 export const logout = () => (dispatch: React.Dispatch<AuthAction>) => {
-  firebase
-    .auth()
-    .signOut()
+  signOut(Auth)
     .then(() => {
       dispatch({ type: AuthActionTypes.LOGOUT });
     })
