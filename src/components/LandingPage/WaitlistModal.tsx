@@ -1,14 +1,18 @@
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import InputAdornment from '@mui/material/InputAdornment';
+import Button from '@mui/material/Button';
 
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 450,
+  maxWidth: 450,
   bgcolor: 'background.paper',
   border: '2px solid #fff',
   borderRadius: '28px',
@@ -22,6 +26,10 @@ interface Props {
 }
 
 const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
+  const [email, setEmail] = useState<string>('');
+  const onChangeEmail: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setEmail(e.currentTarget.value);
+  };
   return (
     <Modal
       open={open}
@@ -37,12 +45,23 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
           Enter your email below to join in the waiting list and be notified
           when we're ready for launch.
         </Typography>
-        <TextField
-          id="email"
-          label="Email"
-          variant="standard"
-          fullWidth
-        />
+        <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: 1 }}>
+          <TextField
+            fullWidth
+            type="email"
+            id="input-email"
+            label="Email"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <MailOutlineIcon />
+                </InputAdornment>
+              ),
+            }}
+            variant="standard"
+          />
+          <Button variant="contained">Join!</Button>
+        </Box>
       </Box>
     </Modal>
   );
