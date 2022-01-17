@@ -92,6 +92,7 @@ export const addStack =
 export const editStack =
   (id: string, stack: EditedStackProps) =>
   async (dispatch: React.Dispatch<StackAction>) => {
+    
     const updatedStack = { ...stack, updatedAt: new Date() };
     const stackRef = doc(Firestore, 'stacks', id);
 
