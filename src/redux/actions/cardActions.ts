@@ -1,5 +1,6 @@
 import React from 'react';
-import firebase from '../../firebase';
+import { Auth, Firestore } from '../../firebase';
+import { collection, addDoc } from 'firebase/firestore';
 import {
   CardAction,
   CardActionTypes,
@@ -18,8 +19,6 @@ export const addCard =
     cardImage: string
   ) =>
   async (dispatch: React.Dispatch<CardAction>) => {
-    const firestore = firebase.firestore();
-
     const card: CardProps = {
       name,
       bank,
@@ -31,9 +30,7 @@ export const addCard =
       updatedAt: new Date(),
     };
 
-    firestore
-      .collection('cards')
-      .add(card)
+    await addDoc(collection(Firestore, 'cards'), card)
       .then(() =>
         dispatch({
           type: CardActionTypes.ADD_CARD,
@@ -138,7 +135,7 @@ export const clearCard = () => (dispatch: React.Dispatch<CardAction>) => {
           rank: 0,
         },
       },
-      image: ''
+      image: '',
     },
   });
 };
@@ -161,7 +158,7 @@ export const getCardById =
           businessOrPersonal: c.businessOrPersonal,
           annualFee: c.annualFee,
           rewardTypes: c.rewardTypes,
-          image: c.image
+          image: c.image,
         };
         dispatch({ type: CardActionTypes.GET_CARD, payload: typedCard });
       }
