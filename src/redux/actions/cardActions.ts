@@ -147,8 +147,10 @@ export const getCardById =
 
       if (cardSnap.exists()) {
         console.log('Document data:', cardSnap.data());
-        // FIXME: make these types match and then uncomment it
-        // dispatch({ type: CardActionTypes.GET_CARD, payload: cardSnap.data() });
+        dispatch({
+          type: CardActionTypes.GET_CARD,
+          payload: cardSnap.data() as CardProps,
+        });
       } else {
         console.log('Card does not exist!');
         dispatch({
