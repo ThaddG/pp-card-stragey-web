@@ -1,5 +1,5 @@
 import React from 'react';
-import { Auth, Firestore } from '../../firebase';
+import { Firestore } from '../../firebase';
 import {
   collection,
   addDoc,
