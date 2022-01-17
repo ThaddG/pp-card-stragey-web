@@ -37,7 +37,6 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
     setEmail(e.currentTarget.value);
   };
 
-  // TODO: add storing user to database as well
   const addToWatchlist = async () => {
     await createUserWithEmailAndPassword(Auth, email, randomPassword(15))
       .then(async () => {
