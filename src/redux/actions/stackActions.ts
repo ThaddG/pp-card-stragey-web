@@ -1,6 +1,6 @@
 import React from 'react';
 import { Firestore } from '../../firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
 import { CardProps } from '../../types';
 import StackProps, {
   EditedStackProps,
@@ -14,27 +14,30 @@ const getAllStacks = () => async (dispatch: React.Dispatch<StackAction>) => {
 };
 
 export const getStackById =
-  (id: string) => (dispatch: React.Dispatch<StackAction>) => {
-    const firestore = firebase.firestore();
+  (id: string) => async (dispatch: React.Dispatch<StackAction>) => {
+    const stackRef = doc(Firestore, 'stacks', id);
+    const stackSnap = await getDoc(stackRef);
 
-    firestore
-      .collection('stacks')
-      .doc(id)
-      .get()
-      .then((stack) => {
-        const stackPayload = stack.data() as StackProps;
+    try {
+      if (stackSnap.exists()) {
+        console.log('Document data:', stackSnap.data());
         dispatch({
           type: StackActionTypes.GET_STACK,
-          payload: stackPayload,
+          payload: stackSnap.data() as StackProps,
         });
-      })
-      .catch((err) => {
-        console.error('getStackByID error' + err);
+      } else {
+        console.log('Stack does not exist!');
         dispatch({
           type: StackActionTypes.STACK_ERROR,
-          payload: `Get Card By Id Error: ${err}`,
+          payload: 'Stack does not exist!',
         });
+      }
+    } catch (err) {
+      dispatch({
+        type: StackActionTypes.STACK_ERROR,
+        payload: `Get Card By Id Error: ${err}`,
       });
+    }
   };
 
 export const addCardToStack =
