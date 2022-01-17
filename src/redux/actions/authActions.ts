@@ -1,5 +1,7 @@
 import React from 'react';
-import firebase from '../../firebase';
+import { Auth, Firestore } from '../../firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { collection, addDoc } from 'firebase/firestore';
 import { AuthAction, AuthActionTypes, UserProps } from '../../types';
 
 interface LoginProps {
@@ -14,12 +16,8 @@ interface SignupProps extends LoginProps {
 export const signup =
   ({ email, password, firstName, lastName }: SignupProps) =>
   async (dispatch: React.Dispatch<AuthAction>) => {
-    const firestore = firebase.firestore();
-
     try {
-      const res = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password);
+      const res = await createUserWithEmailAndPassword(Auth, email, password);
 
       if (res.user) {
         const user: UserProps = {
@@ -30,7 +28,7 @@ export const signup =
           createdAt: new Date(),
           cards: [],
         };
-        await firestore.collection('users').doc(res.user.uid).set(user);
+        await addDoc(collection(Firestore, 'users'), user);
         dispatch({ type: AuthActionTypes.SIGNUP });
       }
     } catch (err) {
