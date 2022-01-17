@@ -1,6 +1,13 @@
 import React from 'react';
 import { Firestore } from '../../firebase';
-import { collection, getDocs, getDoc, addDoc, doc } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  getDoc,
+  addDoc,
+  updateDoc,
+  doc,
+} from 'firebase/firestore';
 import { CardProps } from '../../types';
 import StackProps, {
   EditedStackProps,
@@ -84,15 +91,11 @@ export const addStack =
 
 export const editStack =
   (id: string, stack: EditedStackProps) =>
-  (dispatch: React.Dispatch<StackAction>) => {
-    const firestore = firebase.firestore();
-
+  async (dispatch: React.Dispatch<StackAction>) => {
     const updatedStack = { ...stack, updatedAt: new Date() };
+    const stackRef = doc(Firestore, 'stacks', id);
 
-    firestore
-      .collection('stacks')
-      .doc(id)
-      .update(updatedStack)
+    await updateDoc(stackRef, { ...updatedStack })
       .then(() =>
         dispatch({
           type: StackActionTypes.EDIT_STACK,
