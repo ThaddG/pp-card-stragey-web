@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Auth } from '../../firebase';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -30,6 +31,15 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
   const onChangeEmail: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setEmail(e.currentTarget.value);
   };
+
+  const addToWatchlist = async () => {
+    await Auth.createUserWithEmailAndPassword(email, 'password').catch(
+      (error) => {
+        console.error('create user with email and password error');
+      }
+    );
+  };
+
   return (
     <Modal
       open={open}
@@ -59,8 +69,12 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
               ),
             }}
             variant="standard"
+            value={email}
+            onChange={onChangeEmail}
           />
-          <Button variant="contained">Join!</Button>
+          <Button variant="contained" sx={{ bgcolor: 'limegreen' }}>
+            Join!
+          </Button>
         </Box>
       </Box>
     </Modal>
