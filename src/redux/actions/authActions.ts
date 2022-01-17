@@ -1,6 +1,9 @@
 import React from 'react';
 import { Auth, Firestore } from '../../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 import { AuthAction, AuthActionTypes, UserProps } from '../../types';
 
@@ -40,9 +43,7 @@ export const signup =
 export const login =
   ({ email, password }: LoginProps) =>
   async (dispatch: React.Dispatch<AuthAction>) => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(Auth, email, password)
       .then(() => dispatch({ type: AuthActionTypes.LOGIN }))
       .catch((err) => {
         console.log('login error:', err);
