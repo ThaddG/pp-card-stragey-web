@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 import { AuthAction, AuthActionTypes, UserProps } from '../../types';
@@ -62,12 +63,10 @@ export const logout = () => (dispatch: React.Dispatch<AuthAction>) => {
     );
 };
 
-export const sendPasswordResetEmail =
+export const sendPasswordReset =
   (email: string, next: () => void) =>
   async (dispatch: React.Dispatch<AuthAction>) => {
-    firebase
-      .auth()
-      .sendPasswordResetEmail(email)
+    sendPasswordResetEmail(Auth, email)
       .then(() => {
         dispatch({
           type: AuthActionTypes.SEND_EMAIL,
