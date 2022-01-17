@@ -1,6 +1,7 @@
 import React from 'react';
+import { Firestore } from '../../firebase';
+import { collection, getDocs } from 'firebase/firestore';
 import { CardProps } from '../../types';
-import firebase from '../../firebase';
 import StackProps, {
   EditedStackProps,
   StackAction,
@@ -8,9 +9,8 @@ import StackProps, {
 } from '../../models/stack';
 
 const getAllStacks = () => async (dispatch: React.Dispatch<StackAction>) => {
-  const firestore = firebase.firestore();
-
-  firestore.collection('stacks').get();
+  await getDocs(collection(Firestore, 'stacks'));
+  // TODO: i dont think i finished this method when i first wrote it
 };
 
 export const getStackById =
@@ -82,7 +82,8 @@ export const addStack =
   };
 
 export const editStack =
-  (id: string, stack: EditedStackProps) => (dispatch: React.Dispatch<StackAction>) => {
+  (id: string, stack: EditedStackProps) =>
+  (dispatch: React.Dispatch<StackAction>) => {
     const firestore = firebase.firestore();
 
     const updatedStack = { ...stack, updatedAt: new Date() };
@@ -103,5 +104,4 @@ export const editStack =
           payload: `Edit Stack Error: ${err}`,
         })
       );
-
   };
