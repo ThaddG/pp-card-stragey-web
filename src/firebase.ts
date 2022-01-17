@@ -11,6 +11,13 @@ export let config = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 }
 
+// OLD
+// firebase.initializeApp(config);
+// firebase.firestore();
+// export default firebase;
+
+// NEW
 firebase.initializeApp(config);
-firebase.firestore();
 export default firebase;
+export const Auth = firebase.auth();
+export const Firestore = firebase.firestore();
