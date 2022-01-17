@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Auth } from '../../firebase';
+import randomPassword from '../../utils/randomPassword';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -26,14 +27,17 @@ interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+// TODO: make email empty when modal close and maybe when join button pressed
+
 const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
   const [email, setEmail] = useState<string>('');
   const onChangeEmail: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setEmail(e.currentTarget.value);
   };
 
+  // TODO: add storing user to database as well
   const addToWatchlist = async () => {
-    await Auth.createUserWithEmailAndPassword(email, 'password').catch(
+    await Auth.createUserWithEmailAndPassword(email, randomPassword(15)).catch(
       (error) => {
         console.error('create user with email and password error');
       }
@@ -72,7 +76,11 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
             value={email}
             onChange={onChangeEmail}
           />
-          <Button variant="contained" sx={{ bgcolor: 'limegreen' }}>
+          <Button
+            variant="contained"
+            onClick={addToWatchlist}
+            sx={{ bgcolor: '#27AE60' }}
+          >
             Join!
           </Button>
         </Box>
