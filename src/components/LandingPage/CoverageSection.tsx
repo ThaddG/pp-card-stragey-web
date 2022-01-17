@@ -18,7 +18,9 @@ const CoverageSection = () => {
   return (
     <SectionContainer backgroundColor="#fff">
       <MuiContainer>
-        <SectionTitle sx={{ mb: 2 }}>WHERE YOU CAN USE PLENTY PAY</SectionTitle>
+        <SectionTitle variant="body2" sx={{ mb: 2 }}>
+          WHERE YOU CAN USE PLENTY PAY
+        </SectionTitle>
         <Typography variant="h5" sx={{ mb: 3 }}>
           Available in every state in the US on launch.
         </Typography>

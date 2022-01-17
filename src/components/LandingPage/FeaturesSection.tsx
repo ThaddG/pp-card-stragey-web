@@ -27,7 +27,7 @@ const FeaturesSection = () => {
   return (
     <SectionContainer backgroundColor="#fff">
       <MuiContainer>
-        <SectionTitle sx={{ mb: 2 }}>FEATURES</SectionTitle>
+        <SectionTitle variant="body2" sx={{ mb: 2 }}>FEATURES</SectionTitle>
         <Typography variant="h5" sx={{ mb: 5 }}>
           More than just a wallet
         </Typography>
