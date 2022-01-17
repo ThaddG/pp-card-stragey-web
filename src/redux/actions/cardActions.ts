@@ -6,6 +6,7 @@ import {
   doc,
   deleteDoc,
   updateDoc,
+  getDoc,
 } from 'firebase/firestore';
 import {
   CardAction,
@@ -140,25 +141,20 @@ export const clearCard = () => (dispatch: React.Dispatch<CardAction>) => {
 
 export const getCardById =
   (id: string) => async (dispatch: React.Dispatch<CardAction>) => {
-    const firestore = firebase.firestore();
-
     try {
-      const card = firestore.collection('cards').doc(id);
-      const doc = await card.get();
-      const c = doc.data();
-      console.log('Card:', c);
-      if (c) {
-        // FIXME: there has to be a better way to do this.
-        const typedCard: CardProps = {
-          id,
-          name: c.name,
-          bank: c.bank,
-          businessOrPersonal: c.businessOrPersonal,
-          annualFee: c.annualFee,
-          rewardTypes: c.rewardTypes,
-          image: c.image,
-        };
-        dispatch({ type: CardActionTypes.GET_CARD, payload: typedCard });
+      const cardRef = doc(Firestore, 'cards', id);
+      const cardSnap = await getDoc(cardRef);
+
+      if (cardSnap.exists()) {
+        console.log('Document data:', cardSnap.data());
+        // FIXME: make these types match and then uncomment it
+        // dispatch({ type: CardActionTypes.GET_CARD, payload: cardSnap.data() });
+      } else {
+        console.log('Card does not exist!');
+        dispatch({
+          type: CardActionTypes.CARD_ERROR,
+          payload: 'Card does not exist!',
+        });
       }
     } catch (err) {
       dispatch({
