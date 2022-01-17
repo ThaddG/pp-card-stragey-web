@@ -15,6 +15,7 @@ const theme = createTheme({
       fontSize: 32,
     },
     h6: {
+      fontFamily: 'Yeseva One',
       fontSize: 24,
     },
     body1: {
