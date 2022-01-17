@@ -1,10 +1,16 @@
+import { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+
+// custom components
+import WaitlistModal from './WaitlistModal';
 
 // styles
 import { Container } from '../../styles/LandingPage/CallToActionText.styles';
 
 const CallToActionText = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleModalOpen = () => setModalOpen(true);
   return (
     <Container>
       <Typography variant="h2">
@@ -14,7 +20,11 @@ const CallToActionText = () => {
         Increase your income by stacking credit cards with benefits that
         compliment each other
       </Typography>
-      <Button variant="outlined">Join Watchlist</Button>
+      <Button variant="outlined" onClick={handleModalOpen}>Join Watchlist</Button>
+      <WaitlistModal
+        open={modalOpen}
+        setOpen={setModalOpen}
+      />
     </Container>
   );
 };
