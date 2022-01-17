@@ -1,6 +1,6 @@
 import React from 'react';
 import { Auth, Firestore } from '../../firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, deleteDoc } from 'firebase/firestore';
 import {
   CardAction,
   CardActionTypes,
@@ -49,12 +49,7 @@ export const addCard =
 export const removeCard =
   (name: string, id: string) =>
   async (dispatch: React.Dispatch<CardAction>) => {
-    const firestore = firebase.firestore();
-
-    firestore
-      .collection('cards')
-      .doc(id)
-      .delete()
+    await deleteDoc(doc(Firestore, 'cards', id))
       .then(() =>
         dispatch({
           type: CardActionTypes.REMOVE_CARD,
