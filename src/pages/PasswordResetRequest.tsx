@@ -21,7 +21,7 @@ import {
 } from '../hooks';
 import {
   clearAuthMessage,
-  sendPasswordResetEmail,
+  sendPasswordReset,
 } from '../redux/actions/authActions';
 
 // styles
@@ -59,7 +59,7 @@ export default function PasswordResetRequest() {
 
   function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
-    dispatch(sendPasswordResetEmail(email, startProgress));
+    dispatch(sendPasswordReset(email, startProgress));
   }
 
   return (

@@ -1,6 +1,14 @@
 import React from 'react';
+import { Firestore } from '../../firebase';
+import {
+  collection,
+  getDocs,
+  getDoc,
+  addDoc,
+  updateDoc,
+  doc,
+} from 'firebase/firestore';
 import { CardProps } from '../../types';
-import firebase from '../../firebase';
 import StackProps, {
   EditedStackProps,
   StackAction,
@@ -8,33 +16,35 @@ import StackProps, {
 } from '../../models/stack';
 
 const getAllStacks = () => async (dispatch: React.Dispatch<StackAction>) => {
-  const firestore = firebase.firestore();
-
-  firestore.collection('stacks').get();
+  await getDocs(collection(Firestore, 'stacks'));
+  // TODO: i dont think i finished this method when i first wrote it
 };
 
 export const getStackById =
-  (id: string) => (dispatch: React.Dispatch<StackAction>) => {
-    const firestore = firebase.firestore();
+  (id: string) => async (dispatch: React.Dispatch<StackAction>) => {
+    const stackRef = doc(Firestore, 'stacks', id);
+    const stackSnap = await getDoc(stackRef);
 
-    firestore
-      .collection('stacks')
-      .doc(id)
-      .get()
-      .then((stack) => {
-        const stackPayload = stack.data() as StackProps;
+    try {
+      if (stackSnap.exists()) {
+        console.log('Document data:', stackSnap.data());
         dispatch({
           type: StackActionTypes.GET_STACK,
-          payload: stackPayload,
+          payload: stackSnap.data() as StackProps,
         });
-      })
-      .catch((err) => {
-        console.error('getStackByID error' + err);
+      } else {
+        console.log('Stack does not exist!');
         dispatch({
           type: StackActionTypes.STACK_ERROR,
-          payload: `Get Card By Id Error: ${err}`,
+          payload: 'Stack does not exist!',
         });
+      }
+    } catch (err) {
+      dispatch({
+        type: StackActionTypes.STACK_ERROR,
+        payload: `Get Card By Id Error: ${err}`,
       });
+    }
   };
 
 export const addCardToStack =
@@ -60,16 +70,14 @@ export const clearStack = () => (dispatch: React.Dispatch<StackAction>) => {
 };
 
 export const addStack =
-  (stack: StackProps) => (dispatch: React.Dispatch<StackAction>) => {
-    const firestore = firebase.firestore();
+  (stack: StackProps) => async (dispatch: React.Dispatch<StackAction>) => {
     const payload: StackProps = {
       ...stack,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
-    firestore
-      .collection('stacks')
-      .add(payload)
+
+    await addDoc(collection(Firestore, 'stacks'), payload)
       .then(() => {
         dispatch({
           type: StackActionTypes.ADD_STACK,
@@ -82,15 +90,13 @@ export const addStack =
   };
 
 export const editStack =
-  (id: string, stack: EditedStackProps) => (dispatch: React.Dispatch<StackAction>) => {
-    const firestore = firebase.firestore();
-
+  (id: string, stack: EditedStackProps) =>
+  async (dispatch: React.Dispatch<StackAction>) => {
+    
     const updatedStack = { ...stack, updatedAt: new Date() };
+    const stackRef = doc(Firestore, 'stacks', id);
 
-    firestore
-      .collection('stacks')
-      .doc(id)
-      .update(updatedStack)
+    await updateDoc(stackRef, { ...updatedStack })
       .then(() =>
         dispatch({
           type: StackActionTypes.EDIT_STACK,
@@ -103,5 +109,4 @@ export const editStack =
           payload: `Edit Stack Error: ${err}`,
         })
       );
-
   };

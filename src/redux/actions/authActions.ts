@@ -1,5 +1,12 @@
 import React from 'react';
-import firebase from '../../firebase';
+import { Auth, Firestore } from '../../firebase';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail,
+} from 'firebase/auth';
+import { collection, addDoc } from 'firebase/firestore';
 import { AuthAction, AuthActionTypes, UserProps } from '../../types';
 
 interface LoginProps {
@@ -14,12 +21,8 @@ interface SignupProps extends LoginProps {
 export const signup =
   ({ email, password, firstName, lastName }: SignupProps) =>
   async (dispatch: React.Dispatch<AuthAction>) => {
-    const firestore = firebase.firestore();
-
     try {
-      const res = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password);
+      const res = await createUserWithEmailAndPassword(Auth, email, password);
 
       if (res.user) {
         const user: UserProps = {
@@ -30,7 +33,7 @@ export const signup =
           createdAt: new Date(),
           cards: [],
         };
-        await firestore.collection('users').doc(res.user.uid).set(user);
+        await addDoc(collection(Firestore, 'users'), user);
         dispatch({ type: AuthActionTypes.SIGNUP });
       }
     } catch (err) {
@@ -42,9 +45,7 @@ export const signup =
 export const login =
   ({ email, password }: LoginProps) =>
   async (dispatch: React.Dispatch<AuthAction>) => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(Auth, email, password)
       .then(() => dispatch({ type: AuthActionTypes.LOGIN }))
       .catch((err) => {
         console.log('login error:', err);
@@ -53,9 +54,7 @@ export const login =
   };
 
 export const logout = () => (dispatch: React.Dispatch<AuthAction>) => {
-  firebase
-    .auth()
-    .signOut()
+  signOut(Auth)
     .then(() => {
       dispatch({ type: AuthActionTypes.LOGOUT });
     })
@@ -64,12 +63,10 @@ export const logout = () => (dispatch: React.Dispatch<AuthAction>) => {
     );
 };
 
-export const sendPasswordResetEmail =
+export const sendPasswordReset =
   (email: string, next: () => void) =>
   async (dispatch: React.Dispatch<AuthAction>) => {
-    firebase
-      .auth()
-      .sendPasswordResetEmail(email)
+    sendPasswordResetEmail(Auth, email)
       .then(() => {
         dispatch({
           type: AuthActionTypes.SEND_EMAIL,
