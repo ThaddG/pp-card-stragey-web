@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -28,6 +29,10 @@ interface Props {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+const CloseButton = () => (
+  <CloseIcon sx={{ cursor: 'pointer', float: 'right', textAlign: 'right' }} />
+);
 
 // TODO: make email empty when modal close and maybe when join button pressed
 
@@ -57,6 +62,10 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
       aria-describedby="modal-for-joining-waitlist"
     >
       <Box sx={style}>
+        <CloseIcon
+          sx={{ cursor: 'pointer', float: 'right', textAlign: 'right' }}
+          onClick={() => setOpen(false)}
+        />
         <Typography variant="h2" sx={{ mb: 2 }}>
           Join the Waitlist!
         </Typography>
