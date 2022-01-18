@@ -30,10 +30,6 @@ interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CloseButton = () => (
-  <CloseIcon sx={{ cursor: 'pointer', float: 'right', textAlign: 'right' }} />
-);
-
 // TODO: make email empty when modal close and maybe when join button pressed
 
 const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
