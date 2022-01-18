@@ -8,9 +8,12 @@ import WaitlistModal from './WaitlistModal';
 // styles
 import { Container } from '../../styles/LandingPage/CallToActionText.styles';
 
-const CallToActionText = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const handleModalOpen = () => setModalOpen(true);
+// types
+interface Props {
+  handleModalOpen: () => void;
+}
+
+const CallToActionText: React.FC<Props> = ({ handleModalOpen }) => {
   return (
     <Container>
       <Typography variant="h2">
@@ -20,11 +23,9 @@ const CallToActionText = () => {
         Increase your income by stacking credit cards with benefits that
         compliment each other
       </Typography>
-      <Button variant="outlined" onClick={handleModalOpen}>Join Watchlist</Button>
-      <WaitlistModal
-        open={modalOpen}
-        setOpen={setModalOpen}
-      />
+      <Button variant="outlined" onClick={handleModalOpen}>
+        Join Watchlist
+      </Button>
     </Container>
   );
 };

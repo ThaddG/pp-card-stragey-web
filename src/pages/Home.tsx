@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 
 // custom components
@@ -7,20 +8,24 @@ import SolvingProblemsSection from '../components/LandingPage/SolvingProblemsSec
 import FeaturesSection from '../components/LandingPage/FeaturesSection';
 import CoverageSection from '../components/LandingPage/CoverageSection';
 import Footer from '../components/LandingPage/Footer';
+import WaitlistModal from '../components/LandingPage/WaitlistModal';
 
 export default function Home() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleModalOpen = () => setModalOpen(true);
   return (
     <div>
       <Helmet>
         <meta charSet="utf-8" />
         <title>PlentyPay | Home</title>
       </Helmet>
-      <Jumbotron />
+      <Jumbotron handleModalOpen={handleModalOpen} />
       <StepsSection />
-      <SolvingProblemsSection />
+      <SolvingProblemsSection handleModalOpen={handleModalOpen} />
       <FeaturesSection />
-      <CoverageSection />
+      <CoverageSection handleModalOpen={handleModalOpen} />
       <Footer />
+      <WaitlistModal open={modalOpen} setOpen={setModalOpen} />
     </div>
   );
 }
