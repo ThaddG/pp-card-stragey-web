@@ -1,6 +1,5 @@
 import {
   Container as MuiContainer,
-  Box,
   Button,
   Typography,
 } from '@mui/material';
@@ -14,7 +13,12 @@ import {
   SectionTitle,
 } from '../../styles/LandingPage/global.styles';
 
-const CoverageSection = () => {
+// types
+interface Props {
+  handleModalOpen: () => void;
+}
+
+const CoverageSection: React.FC<Props> = ({handleModalOpen}) => {
   return (
     <SectionContainer backgroundColor="#fff">
       <MuiContainer>
@@ -27,6 +31,7 @@ const CoverageSection = () => {
         <Button
           variant="outlined"
           sx={{ borderColor: '#27AE60', color: '#27AE60' }}
+          onClick={handleModalOpen}
         >
           Join Watchlist
         </Button>

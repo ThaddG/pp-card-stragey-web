@@ -23,7 +23,7 @@ export default function Home() {
       <StepsSection />
       <SolvingProblemsSection handleModalOpen={handleModalOpen} />
       <FeaturesSection />
-      <CoverageSection />
+      <CoverageSection handleModalOpen={handleModalOpen} />
       <Footer />
       <WaitlistModal open={modalOpen} setOpen={setModalOpen} />
     </div>
