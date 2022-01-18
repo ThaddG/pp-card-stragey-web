@@ -1,5 +1,13 @@
 import React from 'react';
-import firebase from '../../firebase';
+import { Firestore } from '../../firebase';
+import {
+  collection,
+  addDoc,
+  doc,
+  deleteDoc,
+  updateDoc,
+  getDoc,
+} from 'firebase/firestore';
 import {
   CardAction,
   CardActionTypes,
@@ -18,8 +26,6 @@ export const addCard =
     cardImage: string
   ) =>
   async (dispatch: React.Dispatch<CardAction>) => {
-    const firestore = firebase.firestore();
-
     const card: CardProps = {
       name,
       bank,
@@ -31,9 +37,7 @@ export const addCard =
       updatedAt: new Date(),
     };
 
-    firestore
-      .collection('cards')
-      .add(card)
+    await addDoc(collection(Firestore, 'cards'), card)
       .then(() =>
         dispatch({
           type: CardActionTypes.ADD_CARD,
@@ -52,12 +56,7 @@ export const addCard =
 export const removeCard =
   (name: string, id: string) =>
   async (dispatch: React.Dispatch<CardAction>) => {
-    const firestore = firebase.firestore();
-
-    firestore
-      .collection('cards')
-      .doc(id)
-      .delete()
+    await deleteDoc(doc(Firestore, 'cards', id))
       .then(() =>
         dispatch({
           type: CardActionTypes.REMOVE_CARD,
@@ -75,14 +74,11 @@ export const removeCard =
 export const editCard =
   (id: string, card: EditedCardProps) =>
   async (dispatch: React.Dispatch<CardAction>) => {
-    const firestore = firebase.firestore();
-
     const updatedCard = { ...card, updatedAt: new Date() };
 
-    firestore
-      .collection('cards')
-      .doc(id)
-      .update(updatedCard)
+    const cardRef = doc(Firestore, 'cards', id);
+
+    await updateDoc(cardRef, { ...updatedCard })
       .then(() =>
         dispatch({
           type: CardActionTypes.EDIT_CARD,
@@ -138,32 +134,29 @@ export const clearCard = () => (dispatch: React.Dispatch<CardAction>) => {
           rank: 0,
         },
       },
-      image: ''
+      image: '',
     },
   });
 };
 
 export const getCardById =
   (id: string) => async (dispatch: React.Dispatch<CardAction>) => {
-    const firestore = firebase.firestore();
-
     try {
-      const card = firestore.collection('cards').doc(id);
-      const doc = await card.get();
-      const c = doc.data();
-      console.log('Card:', c);
-      if (c) {
-        // FIXME: there has to be a better way to do this.
-        const typedCard: CardProps = {
-          id,
-          name: c.name,
-          bank: c.bank,
-          businessOrPersonal: c.businessOrPersonal,
-          annualFee: c.annualFee,
-          rewardTypes: c.rewardTypes,
-          image: c.image
-        };
-        dispatch({ type: CardActionTypes.GET_CARD, payload: typedCard });
+      const cardRef = doc(Firestore, 'cards', id);
+      const cardSnap = await getDoc(cardRef);
+
+      if (cardSnap.exists()) {
+        console.log('Document data:', cardSnap.data());
+        dispatch({
+          type: CardActionTypes.GET_CARD,
+          payload: cardSnap.data() as CardProps,
+        });
+      } else {
+        console.log('Card does not exist!');
+        dispatch({
+          type: CardActionTypes.CARD_ERROR,
+          payload: 'Card does not exist!',
+        });
       }
     } catch (err) {
       dispatch({

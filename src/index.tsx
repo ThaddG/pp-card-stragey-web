@@ -18,6 +18,7 @@ interface AuthProps {
   children: JSX.Element;
 }
 
+// FIXME: THIS IS STOPPING THE PAGE FROM LOADING
 function AuthIsLoaded({ children }: AuthProps) {
   const auth = useSelector((state) => state.firebase.auth);
   /**
@@ -25,7 +26,7 @@ function AuthIsLoaded({ children }: AuthProps) {
    * TODO: Make a loading screen for this or keep it null
    *
    */
-  if (!isLoaded(auth)) return null;
+  if (!isLoaded(auth)) return <div>Loading...</div>;
   return children;
 }
 
@@ -33,11 +34,11 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ReactReduxFirebaseProvider {...rrfProps}>
-        <AuthIsLoaded>
+        {/* <AuthIsLoaded> */}
           <ThemeProvider theme={theme}>
             <App />
           </ThemeProvider>
-        </AuthIsLoaded>
+        {/* </AuthIsLoaded> */}
       </ReactReduxFirebaseProvider>
     </Provider>
   </React.StrictMode>,
