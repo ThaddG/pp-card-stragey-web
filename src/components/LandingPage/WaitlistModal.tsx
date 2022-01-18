@@ -11,6 +11,8 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
+import Alert, { AlertColor } from '@mui/material/Alert';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -34,6 +36,11 @@ interface Props {
 
 const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
   const [email, setEmail] = useState<string>('');
+  const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false);
+  const [feedbackMessage, setFeedbackMessage] = useState<{
+    text: string;
+    severity: AlertColor;
+  }>({ text: '', severity: 'success' });
   const onChangeEmail: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setEmail(e.currentTarget.value);
   };
@@ -41,7 +48,8 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
   const handleOnClose = () => {
     setOpen(false);
     setEmail('');
-  }
+    setFeedbackOpen(false);
+  };
 
   const addToWatchlist = async () => {
     await createUserWithEmailAndPassword(Auth, email, randomPassword(15))
@@ -49,9 +57,19 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
         await addDoc(collection(Firestore, 'users'), {
           Email: email,
         });
+        setFeedbackMessage({
+          text: "You've signed up for the watchlist! 🎉",
+          severity: 'success',
+        });
+        setFeedbackOpen(true);
       })
       .catch((error) => {
-        console.error('create user with email and password error');
+        console.error('create user with email and password error:', error);
+        setFeedbackMessage({
+          text: 'Error signing up for watchlist!',
+          severity: 'error',
+        });
+        setFeedbackOpen(true);
       });
   };
 
@@ -99,6 +117,17 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
             Join!
           </Button>
         </Box>
+        {feedbackOpen && (
+          <Alert
+            sx={{ mt: 2 }}
+            iconMapping={{
+              success: <CheckCircleOutlineIcon fontSize="inherit" />,
+            }}
+            severity={feedbackMessage.severity}
+          >
+            {feedbackMessage.text}
+          </Alert>
+        )}
       </Box>
     </Modal>
   );
