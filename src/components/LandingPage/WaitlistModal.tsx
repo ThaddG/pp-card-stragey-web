@@ -32,8 +32,6 @@ interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-// TODO: make email empty when modal close and maybe when join button pressed
-
 const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
   const [email, setEmail] = useState<string>('');
   const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false);
@@ -83,7 +81,7 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
       <Box sx={style}>
         <CloseIcon
           sx={{ cursor: 'pointer', float: 'right', textAlign: 'right' }}
-          onClick={() => setOpen(false)}
+          onClick={handleOnClose}
         />
         <Typography variant="h2" sx={{ mb: 2 }}>
           Join the Waitlist!
