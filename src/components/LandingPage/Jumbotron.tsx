@@ -16,7 +16,7 @@ interface Props {
   handleModalOpen: () => void;
 }
 
-const Jumbotron: React.FC<Props> = ({handleModalOpen}) => {
+const Jumbotron: React.FC<Props> = ({ handleModalOpen }) => {
   return (
     <Container image={JumbotronImage}>
       <Box sx={{ mt: 3, width: '100%', textAlign: 'center' }}>
