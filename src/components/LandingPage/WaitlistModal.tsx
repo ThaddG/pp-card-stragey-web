@@ -13,18 +13,16 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import Alert, { AlertColor } from '@mui/material/Alert';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { motion } from 'framer-motion';
 
 const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
   maxWidth: 450,
   bgcolor: 'background.paper',
   border: '2px solid #fff',
   borderRadius: '28px',
   boxShadow: 24,
   p: 4,
+  m: 1,
 };
 
 interface Props {
@@ -77,8 +75,14 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
       onClose={handleOnClose}
       aria-labelledby="join-waitlist-modal"
       aria-describedby="modal-for-joining-waitlist"
+      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
     >
-      <Box sx={style}>
+      <Box
+        sx={style}
+        component={motion.div}
+        animate={{ y: '10%' }}
+        transition={{ ease: 'easeOut', duration: 0.3 }}
+      >
         <CloseIcon
           sx={{ cursor: 'pointer', float: 'right', textAlign: 'right' }}
           onClick={handleOnClose}

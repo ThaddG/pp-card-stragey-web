@@ -1,9 +1,5 @@
-import { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-
-// custom components
-import WaitlistModal from './WaitlistModal';
 
 // styles
 import { Container } from '../../styles/LandingPage/CallToActionText.styles';
