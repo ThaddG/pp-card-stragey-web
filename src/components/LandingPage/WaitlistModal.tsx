@@ -84,7 +84,7 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
           onClick={handleOnClose}
         />
         <Typography variant="h2" sx={{ mb: 2 }}>
-          Join the Waitlist!
+          Join the Watchlist!
         </Typography>
         <Typography variant="body1" sx={{ mb: 2 }}>
           Enter your email below to join in the waiting list and be notified
