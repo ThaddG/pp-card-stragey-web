@@ -17,7 +17,11 @@ import {
 } from '../../styles/LandingPage/global.styles';
 import { MobileCenteredGridItem } from '../../styles/LandingPage/global.styles';
 
-const SolvingProblemsSection = () => {
+interface Props {
+  handleModalOpen: () => void;
+}
+
+const SolvingProblemsSection: React.FC<Props> = ({handleModalOpen}) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('sm'));
   return (
@@ -52,6 +56,7 @@ const SolvingProblemsSection = () => {
         <Button
           variant="outlined"
           sx={{ borderColor: '#27AE60', color: '#27AE60' }}
+          onClick={handleModalOpen}
         >
           Join Waitlist
         </Button>

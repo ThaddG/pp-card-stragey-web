@@ -11,7 +11,12 @@ import JumbotronImage from '../../assets/naipo-de-k24rOBJ2D_0-unsplash.png';
 // styles
 import { Container } from '../../styles/LandingPage/Jumbotron.styles';
 
-const Jumbotron = () => {
+// types
+interface Props {
+  handleModalOpen: () => void;
+}
+
+const Jumbotron: React.FC<Props> = ({handleModalOpen}) => {
   return (
     <Container image={JumbotronImage}>
       <Box sx={{ mt: 3, width: '100%', textAlign: 'center' }}>
@@ -20,7 +25,7 @@ const Jumbotron = () => {
       <MuiContainer
         sx={{ display: 'flex', alignItems: 'center', height: '90%' }}
       >
-        <CallToActionText />
+        <CallToActionText handleModalOpen={handleModalOpen} />
       </MuiContainer>
     </Container>
   );
