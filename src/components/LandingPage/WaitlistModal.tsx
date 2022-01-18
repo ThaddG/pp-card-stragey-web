@@ -38,6 +38,11 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
     setEmail(e.currentTarget.value);
   };
 
+  const handleOnClose = () => {
+    setOpen(false);
+    setEmail('');
+  }
+
   const addToWatchlist = async () => {
     await createUserWithEmailAndPassword(Auth, email, randomPassword(15))
       .then(async () => {
@@ -53,7 +58,7 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
   return (
     <Modal
       open={open}
-      onClose={() => setOpen(false)}
+      onClose={handleOnClose}
       aria-labelledby="join-waitlist-modal"
       aria-describedby="modal-for-joining-waitlist"
     >
