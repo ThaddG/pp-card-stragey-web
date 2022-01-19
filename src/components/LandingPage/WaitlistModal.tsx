@@ -52,12 +52,22 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
       .then(async () => {
         await addDoc(collection(Firestore, 'users'), {
           Email: email,
+        }).then(() => {
+          console.log("successful")
+          setFeedbackMessage({
+            text: "You've signed up for the watchlist! 🎉",
+            severity: 'success',
+          });
+          setFeedbackOpen(true);
+        })
+        .catch((error) => {
+          setFeedbackMessage({
+            text: "Error signing up for the watchlist!",
+            severity: 'success',
+          });
+          console.log("error:", error)
+          setFeedbackOpen(true);
         });
-        setFeedbackMessage({
-          text: "You've signed up for the watchlist! 🎉",
-          severity: 'success',
-        });
-        setFeedbackOpen(true);
       })
       .catch((error) => {
         console.error('create user with email and password error:', error);

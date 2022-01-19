@@ -20,8 +20,9 @@ const StepsSection = () => {
           <span style={{ color: ALT_COLOR }}>maximize your rewards</span>.
         </Typography>
         <Grid container>
-          {text.map((t) => (
+          {text.map((t, idx) => (
             <Grid
+              key={idx}
               item
               xs={12}
               lg={4}

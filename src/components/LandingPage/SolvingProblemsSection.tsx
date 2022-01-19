@@ -21,7 +21,7 @@ interface Props {
   handleModalOpen: () => void;
 }
 
-const SolvingProblemsSection: React.FC<Props> = ({handleModalOpen}) => {
+const SolvingProblemsSection: React.FC<Props> = ({ handleModalOpen }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('sm'));
   return (
@@ -36,8 +36,9 @@ const SolvingProblemsSection: React.FC<Props> = ({handleModalOpen}) => {
           We solve it.
         </Typography>
         <Grid container spacing={3}>
-          {data.map((problem) => (
+          {data.map((problem, idx) => (
             <MobileCenteredGridItem
+              key={idx}
               item
               xs={12}
               sm={6}
