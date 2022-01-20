@@ -1,7 +1,13 @@
-import NumberCard from './NumberCard';
-
 import { Container as MuiContainer, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
+
+// custom components
+import NumberCard from './NumberCard';
+
+// assets
+import CartIcon from '../../assets/icons/cart-icon.svg';
+import NFCIcon from '../../assets/icons/NFC-icon.svg';
+import PhoneIcon from '../../assets/icons/phone-icon.svg';
 
 // styles
 import { Container } from '../../styles/LandingPage/StepsSection.styles';
@@ -30,6 +36,7 @@ const StepsSection = () => {
             >
               <NumberCard
                 number={t.number}
+                icon={t.icon}
                 title={t.title}
                 bodyText={t.description}
               />
@@ -46,17 +53,20 @@ export default StepsSection;
 const text = [
   {
     number: 1,
+    icon: CartIcon,
     title: 'Shop',
     description: `Plenty Pay works at all stores that accept credit cars. All you have to do is shop.`,
   },
   {
     number: 2,
+    icon: NFCIcon,
     title: 'Hold your phone to the terminal',
     description: `Just like any other digital wallet or NFC-compatible credit card.`,
   },
   {
     number: 3,
-    title: 'Let the app do the rest',
+    icon: PhoneIcon,
+    title: 'All Done',
     description: `You've just maximized your reward potential!`,
   },
 ];
