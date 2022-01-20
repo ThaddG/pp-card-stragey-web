@@ -4,7 +4,6 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { ReactComponent as StepIcon } from '../../assets/icons/step-icon.svg';
 
 // styles
 import { Container, Number } from '../../styles/LandingPage/NumberCard.styles';
@@ -12,11 +11,12 @@ import { Container, Number } from '../../styles/LandingPage/NumberCard.styles';
 // types
 interface Props {
   number: number;
+  icon: string;
   title: string;
   bodyText: string;
 }
 
-const NumberCard: React.FC<Props> = ({ number, title, bodyText }) => {
+const NumberCard: React.FC<Props> = ({ number, icon, title, bodyText }) => {
   const theme = useTheme();
   const xSmall = useMediaQuery(theme.breakpoints.up('xs'));
   return (
@@ -24,7 +24,7 @@ const NumberCard: React.FC<Props> = ({ number, title, bodyText }) => {
       sx={{ position: 'relative', mb: xSmall ? 4 : 1, mt: xSmall ? 4 : 1 }}
     >
       <Number>{number}</Number>
-      <StepIcon className="mb-3" />
+      <img src={icon} alt={icon} />
       <MuiContainer>
         <Typography variant="h5" sx={{ textAlign: 'center', mb: 1 }}>
           {title}
