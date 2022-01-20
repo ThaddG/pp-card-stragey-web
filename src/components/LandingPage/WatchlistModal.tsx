@@ -43,7 +43,7 @@ interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
+const WatchlistModal: React.FC<Props> = ({ open, setOpen }) => {
   const [email, setEmail] = useState<string>('');
   const [feedbackOpen, setFeedbackOpen] = useState<boolean>(false);
   const [feedbackMessage, setFeedbackMessage] = useState<{
@@ -100,8 +100,8 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
         <Modal
           open={open}
           onClose={handleOnClose}
-          aria-labelledby="join-waitlist-modal"
-          aria-describedby="modal-for-joining-waitlist"
+          aria-labelledby="join-watchlist-modal"
+          aria-describedby="modal-for-joining-watchlist"
           sx={{
             display: 'flex',
             alignItems: 'center',
@@ -170,4 +170,4 @@ const WaitlistModal: React.FC<Props> = ({ open, setOpen }) => {
   );
 };
 
-export default WaitlistModal;
+export default WatchlistModal;

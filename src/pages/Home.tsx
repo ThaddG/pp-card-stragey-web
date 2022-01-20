@@ -8,7 +8,7 @@ import SolvingProblemsSection from '../components/LandingPage/SolvingProblemsSec
 import FeaturesSection from '../components/LandingPage/FeaturesSection';
 import CoverageSection from '../components/LandingPage/CoverageSection';
 import Footer from '../components/LandingPage/Footer';
-import WaitlistModal from '../components/LandingPage/WaitlistModal';
+import WatchlistModal from '../components/LandingPage/WatchlistModal';
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -25,7 +25,7 @@ export default function Home() {
       <FeaturesSection />
       <CoverageSection handleModalOpen={handleModalOpen} />
       <Footer />
-      <WaitlistModal open={modalOpen} setOpen={setModalOpen} />
+      <WatchlistModal open={modalOpen} setOpen={setModalOpen} />
     </div>
   );
 }

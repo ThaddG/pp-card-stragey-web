@@ -59,7 +59,7 @@ const SolvingProblemsSection: React.FC<Props> = ({ handleModalOpen }) => {
           sx={{ borderColor: '#27AE60', color: '#27AE60' }}
           onClick={handleModalOpen}
         >
-          Join Waitlist
+          Join Watchlist
         </Button>
       </MuiContainer>
     </SectionContainer>
