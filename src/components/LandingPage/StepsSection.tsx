@@ -66,7 +66,7 @@ const text = [
   {
     number: 3,
     icon: PhoneIcon,
-    title: 'Let the app do the rest',
+    title: 'All Done',
     description: `You've just maximized your reward potential!`,
   },
 ];
